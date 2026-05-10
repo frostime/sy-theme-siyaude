@@ -1,0 +1,43 @@
+{
+  "name": "sy-theme-siyaude",
+  "author": "frostime",
+  "url": "",
+  "version": "0.4.0",
+  "minAppVersion": "2.8.8",
+  "displayName": {
+    "default": "siyaude",
+    "en_US": "siyaude",
+    "zh_CN": "砂源"
+  },
+  "description": {
+    "default": "A Claude-inspired SiYuan theme.",
+    "en_US": "A Claude-inspired SiYuan theme.",
+    "zh_CN": "一款受 Claude 界面启发的思源笔记主题"
+  },
+  "readme": {
+    "default": "README.md",
+    "en_US": "README.md",
+    "zh_CN": "README_zh_CN.md"
+  },
+  "funding": {
+    "openCollective": "",
+    "patreon": "",
+    "github": "",
+    "custom": []
+  },
+  "modes": [
+    "light",
+    "dark"
+  ],
+  "keywords": [
+    "claude",
+    "sand",
+    "warm",
+    "editorial",
+    "focus",
+    "light",
+    "dark",
+    "思源",
+    "主题"
+  ]
+}

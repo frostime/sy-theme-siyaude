@@ -1,0 +1,1856 @@
+/*
+ * Claude Sand for SiYuan Note
+ * Warm, low-glare theme inspired by Claude's calm editorial aesthetic.
+ * No JavaScript. No external assets. Built against the official SiYuan theme-sample package contract.
+ */
+
+/* Shared design tokens ---------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  /* Typography */
+  --b3-font-family: ui-serif, Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --b3-font-family-protyle: ui-serif, Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --b3-font-family-code: "SFMono-Regular", "Cascadia Code", "JetBrains Mono", "Fira Code", Menlo, Consolas, "Noto Sans Mono CJK SC", monospace;
+  --b3-font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+
+  /* Radius, animation, density */
+  --b3-border-radius: 10px;
+  --b3-border-radius-b: 14px;
+  --b3-transition: all .18s cubic-bezier(.2, 0, .2, 1);
+  --b3-color-transition: color .18s cubic-bezier(.2, 0, .2, 1), background-color .18s cubic-bezier(.2, 0, .2, 1), border-color .18s cubic-bezier(.2, 0, .2, 1);
+  --b3-font-size-editor: 16px;
+
+  /* Claude Sand local aliases */
+  --cs-bg: #f6f0e8;
+  --cs-bg-paper: #fffaf2;
+  --cs-bg-paper-2: #fbf4ea;
+  --cs-surface: #eee4d8;
+  --cs-surface-2: #e8dccf;
+  --cs-surface-3: #decfc0;
+  --cs-text: #2f241d;
+  --cs-text-soft: #6e5d4e;
+  --cs-text-muted: #8b7a6a;
+  --cs-accent: #c15f3c;
+  --cs-accent-strong: #9b452c;
+  --cs-accent-soft: #f1d1bf;
+  --cs-accent-softer: #f8e3d7;
+  --cs-blue: #3f6f8f;
+  --cs-green: #4f7a54;
+  --cs-yellow: #a97625;
+  --cs-red: #a94636;
+  --cs-purple: #785b91;
+  --cs-border: rgba(86, 65, 49, .17);
+  --cs-border-strong: rgba(86, 65, 49, .28);
+  --cs-shadow: rgba(69, 45, 30, .12);
+  --cs-shadow-strong: rgba(69, 45, 30, .2);
+  --cs-rail: #f2e9de;
+  --cs-rail-2: #eadfd2;
+  --cs-rail-elevated: rgba(255, 250, 242, .74);
+  --cs-rail-glass: rgba(255, 250, 242, .58);
+  --cs-rail-active: rgba(193, 95, 60, .13);
+  --cs-rail-hover: rgba(193, 95, 60, .08);
+  --cs-rail-line: rgba(86, 65, 49, .12);
+
+  /* Core SiYuan variables */
+  --b3-theme-background: var(--cs-bg-paper);
+  --b3-theme-background-light: var(--cs-bg-paper-2);
+  --b3-theme-surface: var(--cs-bg);
+  --b3-theme-surface-light: var(--cs-surface);
+  --b3-theme-surface-lighter: var(--cs-surface-2);
+  --b3-theme-primary: var(--cs-accent);
+  --b3-theme-primary-light: rgba(193, 95, 60, .34);
+  --b3-theme-primary-lighter: rgba(193, 95, 60, .22);
+  --b3-theme-primary-lightest: rgba(193, 95, 60, .12);
+  --b3-theme-secondary: #7a5c3f;
+  --b3-theme-error: var(--cs-red);
+  --b3-theme-on-background: var(--cs-text);
+  --b3-theme-on-surface: var(--cs-text-soft);
+  --b3-theme-on-surface-light: var(--cs-text-muted);
+  --b3-theme-on-primary: #fffaf2;
+  --b3-theme-on-secondary: #fffaf2;
+  --b3-theme-on-error: #fff7f2;
+  --b3-theme-shadow: var(--cs-shadow);
+  --b3-border-color: var(--cs-border);
+  --b3-scroll-color: rgba(122, 92, 63, .25);
+  --b3-list-hover: rgba(193, 95, 60, .09);
+  --b3-list-icon-hover: rgba(193, 95, 60, .16);
+  --b3-list-item-focus: rgba(193, 95, 60, .14);
+  --b3-menu-background: rgba(255, 250, 242, .97);
+  --b3-menu-shadow: 0 16px 50px rgba(69, 45, 30, .18), 0 2px 10px rgba(69, 45, 30, .08);
+  --b3-toolbar-background: rgba(246, 240, 232, .92);
+  --b3-toolbar-blur-background: rgba(246, 240, 232, .78);
+  --b3-toolbar-color: var(--cs-text-soft);
+  --b3-toolbar-hover: rgba(193, 95, 60, .12);
+  --b3-empty-color: rgba(47, 36, 29, .42);
+  --b3-tooltips-color: #fffaf2;
+  --b3-tooltips-background: #4b382b;
+
+  /* Cards */
+  --b3-card-error-color: #783125;
+  --b3-card-error-background: #f8d7cc;
+  --b3-card-warning-color: #6f4c14;
+  --b3-card-warning-background: #f7e4bc;
+  --b3-card-info-color: #29546c;
+  --b3-card-info-background: #d8e8ee;
+  --b3-card-success-color: #315a35;
+  --b3-card-success-background: #dcead9;
+
+  /* Text color palette in the editor color picker */
+  --b3-font-color1: var(--b3-card-error-color);
+  --b3-font-color2: var(--b3-card-warning-color);
+  --b3-font-color3: var(--b3-card-info-color);
+  --b3-font-color4: var(--b3-card-success-color);
+  --b3-font-color5: var(--cs-text-soft);
+  --b3-font-color6: var(--cs-accent);
+  --b3-font-color7: var(--cs-blue);
+  --b3-font-color8: var(--cs-purple);
+  --b3-font-color9: #9f5b2a;
+  --b3-font-color10: #7e4965;
+  --b3-font-color11: #597d43;
+  --b3-font-color12: #8f6632;
+  --b3-font-color13: #fffaf2;
+  --b3-font-background1: var(--b3-card-error-background);
+  --b3-font-background2: var(--b3-card-warning-background);
+  --b3-font-background3: var(--b3-card-info-background);
+  --b3-font-background4: var(--b3-card-success-background);
+  --b3-font-background5: var(--cs-surface);
+  --b3-font-background6: var(--cs-accent-softer);
+  --b3-font-background7: #e3edf2;
+  --b3-font-background8: #eadfee;
+  --b3-font-background9: #f1dfca;
+  --b3-font-background10: #eaded5;
+  --b3-font-background11: #e3ead9;
+  --b3-font-background12: #f2e0c6;
+  --b3-font-background13: var(--cs-text);
+
+  /* Protyle inline and PDF colors */
+  --b3-protyle-inline-strong-color: var(--cs-text);
+  --b3-protyle-inline-em-color: var(--cs-text-soft);
+  --b3-protyle-inline-s-color: var(--cs-text-muted);
+  --b3-protyle-inline-link-color: var(--cs-accent-strong);
+  --b3-protyle-inline-mark-background: #f6dca6;
+  --b3-protyle-inline-mark-color: var(--cs-text);
+  --b3-protyle-inline-tag-color: var(--cs-accent-strong);
+  --b3-protyle-inline-tag-background: rgba(193, 95, 60, .1);
+  --b3-protyle-code-background: #f2e7dc;
+  --b3-protyle-code-linenumber-hl: rgba(193, 95, 60, .16);
+  --b3-protyle-code-linenumber: rgba(47, 36, 29, .42);
+  --b3-protyle-inline-blockref-color: var(--cs-blue);
+  --b3-protyle-inline-fileref-color: var(--cs-green);
+  --b3-pdf-selection: rgba(193, 95, 60, .2);
+  --b3-pdf-dark: #2e2119;
+}
+
+/* Explicit light mode hook for SiYuan's data-theme-mode contract */
+:root[data-theme-mode="light"] { color-scheme: light; }
+
+/* Dark mode --------------------------------------------------------------- */
+:root[data-theme-mode="dark"] {
+  color-scheme: dark;
+  --cs-bg: #191411;
+  --cs-bg-paper: #211a16;
+  --cs-bg-paper-2: #261e19;
+  --cs-surface: #2b221d;
+  --cs-surface-2: #352920;
+  --cs-surface-3: #453426;
+  --cs-text: #f4eadf;
+  --cs-text-soft: #cdbfaf;
+  --cs-text-muted: #9e8f7f;
+  --cs-accent: #d9855f;
+  --cs-accent-strong: #f0a27c;
+  --cs-accent-soft: rgba(217, 133, 95, .28);
+  --cs-accent-softer: rgba(217, 133, 95, .16);
+  --cs-blue: #91b8cc;
+  --cs-green: #9fbe91;
+  --cs-yellow: #deb66a;
+  --cs-red: #de7a68;
+  --cs-purple: #b69ad0;
+  --cs-border: rgba(242, 224, 205, .13);
+  --cs-border-strong: rgba(242, 224, 205, .23);
+  --cs-shadow: rgba(0, 0, 0, .28);
+  --cs-shadow-strong: rgba(0, 0, 0, .42);
+  --cs-rail: #1d1713;
+  --cs-rail-2: #241c17;
+  --cs-rail-elevated: rgba(43, 34, 29, .72);
+  --cs-rail-glass: rgba(43, 34, 29, .56);
+  --cs-rail-active: rgba(217, 133, 95, .16);
+  --cs-rail-hover: rgba(217, 133, 95, .1);
+  --cs-rail-line: rgba(242, 224, 205, .1);
+
+  --b3-theme-background: var(--cs-bg-paper);
+  --b3-theme-background-light: var(--cs-bg-paper-2);
+  --b3-theme-surface: var(--cs-bg);
+  --b3-theme-surface-light: var(--cs-surface);
+  --b3-theme-surface-lighter: var(--cs-surface-2);
+  --b3-theme-primary: var(--cs-accent);
+  --b3-theme-primary-light: rgba(217, 133, 95, .38);
+  --b3-theme-primary-lighter: rgba(217, 133, 95, .25);
+  --b3-theme-primary-lightest: rgba(217, 133, 95, .15);
+  --b3-theme-secondary: #d2ad83;
+  --b3-theme-error: var(--cs-red);
+  --b3-theme-on-background: var(--cs-text);
+  --b3-theme-on-surface: var(--cs-text-soft);
+  --b3-theme-on-surface-light: var(--cs-text-muted);
+  --b3-theme-on-primary: #251713;
+  --b3-theme-on-secondary: #201813;
+  --b3-theme-on-error: #241513;
+  --b3-theme-shadow: var(--cs-shadow);
+  --b3-border-color: var(--cs-border);
+  --b3-scroll-color: rgba(244, 234, 223, .24);
+  --b3-list-hover: rgba(217, 133, 95, .1);
+  --b3-list-icon-hover: rgba(217, 133, 95, .18);
+  --b3-list-item-focus: rgba(217, 133, 95, .16);
+  --b3-menu-background: rgba(33, 26, 22, .97);
+  --b3-menu-shadow: 0 16px 50px rgba(0, 0, 0, .38), 0 2px 10px rgba(0, 0, 0, .22);
+  --b3-toolbar-background: rgba(25, 20, 17, .92);
+  --b3-toolbar-blur-background: rgba(25, 20, 17, .78);
+  --b3-toolbar-color: var(--cs-text-soft);
+  --b3-toolbar-hover: rgba(217, 133, 95, .14);
+  --b3-empty-color: rgba(244, 234, 223, .38);
+  --b3-tooltips-color: #211a16;
+  --b3-tooltips-background: #f1dcc8;
+
+  --b3-card-error-color: #ffd3ca;
+  --b3-card-error-background: rgba(222, 122, 104, .18);
+  --b3-card-warning-color: #f3d7a3;
+  --b3-card-warning-background: rgba(222, 182, 106, .17);
+  --b3-card-info-color: #c4e2f0;
+  --b3-card-info-background: rgba(145, 184, 204, .16);
+  --b3-card-success-color: #cde5c2;
+  --b3-card-success-background: rgba(159, 190, 145, .16);
+
+  --b3-font-color1: var(--b3-card-error-color);
+  --b3-font-color2: var(--b3-card-warning-color);
+  --b3-font-color3: var(--b3-card-info-color);
+  --b3-font-color4: var(--b3-card-success-color);
+  --b3-font-color5: var(--cs-text-soft);
+  --b3-font-color6: var(--cs-accent);
+  --b3-font-color7: var(--cs-blue);
+  --b3-font-color8: var(--cs-purple);
+  --b3-font-color9: #d9a06e;
+  --b3-font-color10: #d99ab6;
+  --b3-font-color11: #b7d39e;
+  --b3-font-color12: #e0bd8b;
+  --b3-font-color13: #211a16;
+  --b3-font-background1: var(--b3-card-error-background);
+  --b3-font-background2: var(--b3-card-warning-background);
+  --b3-font-background3: var(--b3-card-info-background);
+  --b3-font-background4: var(--b3-card-success-background);
+  --b3-font-background5: var(--cs-surface);
+  --b3-font-background6: var(--cs-accent-softer);
+  --b3-font-background7: rgba(145, 184, 204, .16);
+  --b3-font-background8: rgba(182, 154, 208, .16);
+  --b3-font-background9: rgba(217, 160, 110, .16);
+  --b3-font-background10: rgba(217, 154, 182, .16);
+  --b3-font-background11: rgba(183, 211, 158, .16);
+  --b3-font-background12: rgba(224, 189, 139, .16);
+  --b3-font-background13: var(--cs-text);
+
+  --b3-protyle-inline-link-color: var(--cs-accent-strong);
+  --b3-protyle-inline-mark-background: rgba(224, 176, 86, .36);
+  --b3-protyle-inline-mark-color: var(--cs-text);
+  --b3-protyle-inline-tag-color: var(--cs-accent-strong);
+  --b3-protyle-inline-tag-background: rgba(217, 133, 95, .14);
+  --b3-protyle-code-background: #2b211b;
+  --b3-protyle-code-linenumber-hl: rgba(217, 133, 95, .2);
+  --b3-protyle-code-linenumber: rgba(244, 234, 223, .42);
+  --b3-protyle-inline-blockref-color: var(--cs-blue);
+  --b3-protyle-inline-fileref-color: var(--cs-green);
+  --b3-pdf-selection: rgba(217, 133, 95, .24);
+  --b3-pdf-dark: #17120f;
+}
+
+/* Global UI --------------------------------------------------------------- */
+html,
+body {
+  background: var(--b3-theme-surface);
+  color: var(--b3-theme-on-background);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--b3-font-family);
+}
+
+::selection {
+  background: var(--b3-theme-primary-light);
+  color: var(--b3-theme-on-background);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  background-color: var(--b3-scroll-color);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--b3-theme-primary-light); }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Shell surfaces */
+.toolbar,
+.status,
+.layout__dockl,
+.layout__dockr,
+.layout__dockb,
+.dock,
+.fn__flex-column,
+.layout-tab-bar,
+.layout-tab-container {
+  background-color: var(--b3-theme-surface);
+}
+
+.toolbar,
+.status,
+.block__icons,
+.protyle-breadcrumb {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.toolbar {
+  border-bottom: 1px solid var(--b3-border-color);
+}
+
+.status {
+  border-top: 1px solid var(--b3-border-color);
+}
+
+.block__icons,
+.protyle-breadcrumb {
+  background-color: color-mix(in srgb, var(--b3-theme-background) 88%, transparent);
+  border-color: var(--b3-border-color);
+}
+
+/* Panels, tabs, lists ----------------------------------------------------- */
+.layout-tab-bar .item,
+.layout-tab-bar .item__text,
+.layout-tab-bar .item__icon,
+.b3-list-item,
+.block__icon,
+.toolbar__item {
+  transition: var(--b3-color-transition), box-shadow .18s ease, transform .18s ease;
+}
+
+.layout-tab-bar .item {
+  margin: 4px 3px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.layout-tab-bar .item--focus {
+  background: var(--b3-theme-background);
+  border-color: var(--b3-border-color);
+  box-shadow: 0 1px 6px var(--b3-theme-shadow);
+}
+
+.b3-list-item,
+.block__icon,
+.toolbar__item,
+.protyle-breadcrumb__item {
+  border-radius: 9px;
+}
+
+.b3-list-item:hover,
+.block__icon:hover,
+.toolbar__item:not(.toolbar__item--disabled):hover,
+.protyle-breadcrumb__item:hover {
+  background: var(--b3-list-hover) !important;
+}
+
+.b3-list-item--focus,
+.b3-list-item--focus:hover {
+  background: var(--b3-list-item-focus) !important;
+  box-shadow: inset 3px 0 0 var(--b3-theme-primary);
+}
+
+.b3-list-item__text,
+.b3-list-item__meta,
+.block__logo,
+.block__logoicon,
+.status__msg,
+.counter {
+  color: var(--b3-theme-on-surface);
+}
+
+.b3-menu,
+.protyle-hint,
+.b3-dialog__container,
+.b3-snackbar__content,
+.graph__panel,
+.protyle-util {
+  background: var(--b3-menu-background);
+  border: 1px solid var(--b3-border-color);
+  box-shadow: var(--b3-menu-shadow);
+  border-radius: var(--b3-border-radius-b);
+}
+
+.b3-menu__item:hover,
+.b3-menu__item--current,
+.protyle-hint .b3-list-item:hover,
+.protyle-hint .b3-list-item--focus {
+  background: var(--b3-list-hover);
+}
+
+
+/* Claude shell: sidebars, document tree, bookmarks, backlinks --------------
+   These rules intentionally stay inside dock / sy__* containers so the editor
+   width and SiYuan's adaptive padding remain untouched. */
+.layout__dockl,
+.layout__dockr,
+.layout__dockb {
+  background:
+    radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--cs-accent-softer) 42%, transparent) 0, transparent 34%),
+    linear-gradient(180deg, var(--cs-rail), var(--cs-rail-2));
+  color: var(--b3-theme-on-surface);
+}
+
+.layout__dockl { border-right: 1px solid var(--cs-rail-line); }
+.layout__dockr { border-left: 1px solid var(--cs-rail-line); }
+.layout__dockb { border-top: 1px solid var(--cs-rail-line); }
+
+.layout__dockl .layout-tab-container,
+.layout__dockr .layout-tab-container,
+.layout__dockb .layout-tab-container,
+.layout__dockl .fn__flex-column,
+.layout__dockr .fn__flex-column,
+.layout__dockb .fn__flex-column {
+  background: transparent;
+}
+
+.dock {
+  background: color-mix(in srgb, var(--cs-rail-2) 82%, var(--b3-theme-background));
+  border-color: var(--cs-rail-line);
+}
+
+.dock__item {
+  margin: 4px 5px;
+  border-radius: 13px;
+  color: var(--cs-text-muted);
+  transition: var(--b3-color-transition), transform .18s ease, box-shadow .18s ease;
+}
+
+.dock__item:hover {
+  background: var(--cs-rail-hover);
+  color: var(--b3-theme-on-background);
+  transform: translateY(-1px);
+}
+
+.dock__item--active,
+.dock__item--focus,
+.dock__item--activefocus {
+  background: var(--cs-rail-active);
+  color: var(--cs-accent-strong);
+  box-shadow: inset 0 0 0 1px var(--b3-theme-primary-lighter), 0 1px 3px var(--b3-theme-shadow);
+}
+
+.layout__dockl .block__icons,
+.layout__dockr .block__icons,
+.layout__dockb .block__icons {
+  min-height: 38px;
+  margin: 6px 7px 5px;
+  padding: 4px 6px;
+  background: var(--cs-rail-glass);
+  border: 1px solid var(--cs-rail-line);
+  border-radius: 15px;
+  box-shadow: 0 1px 2px var(--b3-theme-shadow);
+}
+
+.layout__dockl .block__logo,
+.layout__dockr .block__logo,
+.layout__dockb .block__logo,
+.layout__dockl .block__logoicon,
+.layout__dockr .block__logoicon,
+.layout__dockb .block__logoicon {
+  color: var(--b3-theme-on-background);
+  font-weight: 720;
+  letter-spacing: -.015em;
+}
+
+.layout__dockl .block__icon,
+.layout__dockr .block__icon,
+.layout__dockb .block__icon {
+  color: var(--cs-text-muted);
+  border-radius: 10px;
+}
+
+.layout__dockl .block__icon:hover,
+.layout__dockr .block__icon:hover,
+.layout__dockb .block__icon:hover {
+  color: var(--cs-accent-strong);
+  background: var(--b3-list-icon-hover) !important;
+}
+
+.layout__dockl .layout-tab-bar,
+.layout__dockr .layout-tab-bar,
+.layout__dockb .layout-tab-bar {
+  padding: 5px 6px 3px;
+  background: transparent;
+  border-color: var(--cs-rail-line);
+}
+
+.layout__dockl .layout-tab-bar .item,
+.layout__dockr .layout-tab-bar .item,
+.layout__dockb .layout-tab-bar .item {
+  min-height: 30px;
+  margin: 2px 3px;
+  padding: 0 10px;
+  color: var(--cs-text-muted);
+  border-radius: 999px;
+}
+
+.layout__dockl .layout-tab-bar .item--focus,
+.layout__dockr .layout-tab-bar .item--focus,
+.layout__dockb .layout-tab-bar .item--focus {
+  color: var(--b3-theme-on-background);
+  background: var(--cs-rail-elevated);
+  border-color: var(--cs-rail-line);
+  box-shadow: 0 1px 4px var(--b3-theme-shadow);
+}
+
+.layout__dockl .b3-list,
+.layout__dockr .b3-list,
+.layout__dockb .b3-list {
+  padding: 4px 6px 12px;
+}
+
+.layout__dockl .b3-list-item,
+.layout__dockr .b3-list-item,
+.layout__dockb .b3-list-item,
+.sy__file .b3-list-item,
+.sy__bookmark .b3-list-item,
+.sy__backlink .b3-list-item,
+.sy__outline .b3-list-item,
+.sy__tag .b3-list-item {
+  min-height: 30px;
+  margin: 1px 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  color: var(--b3-theme-on-surface);
+}
+
+.layout__dockl .b3-list-item:hover,
+.layout__dockr .b3-list-item:hover,
+.layout__dockb .b3-list-item:hover,
+.sy__file .b3-list-item:hover,
+.sy__bookmark .b3-list-item:hover,
+.sy__backlink .b3-list-item:hover,
+.sy__outline .b3-list-item:hover,
+.sy__tag .b3-list-item:hover {
+  background: var(--cs-rail-hover) !important;
+  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 44%, transparent);
+}
+
+.layout__dockl .b3-list-item--focus,
+.layout__dockr .b3-list-item--focus,
+.layout__dockb .b3-list-item--focus,
+.sy__file .b3-list-item--focus,
+.sy__bookmark .b3-list-item--focus,
+.sy__backlink .b3-list-item--focus,
+.sy__outline .b3-list-item--focus,
+.sy__tag .b3-list-item--focus {
+  background: var(--cs-rail-active) !important;
+  border-color: var(--b3-theme-primary-lighter);
+  box-shadow: inset 3px 0 0 var(--b3-theme-primary), 0 1px 2px var(--b3-theme-shadow);
+}
+
+.layout__dockl .b3-list-item__text,
+.layout__dockr .b3-list-item__text,
+.layout__dockb .b3-list-item__text {
+  color: var(--b3-theme-on-surface);
+  font-weight: 520;
+  letter-spacing: -.005em;
+}
+
+.layout__dockl .b3-list-item--focus .b3-list-item__text,
+.layout__dockr .b3-list-item--focus .b3-list-item__text,
+.layout__dockb .b3-list-item--focus .b3-list-item__text {
+  color: var(--b3-theme-on-background);
+  font-weight: 660;
+}
+
+.layout__dockl .b3-list-item__toggle,
+.layout__dockr .b3-list-item__toggle,
+.layout__dockb .b3-list-item__toggle,
+.layout__dockl .b3-list-item__graphic,
+.layout__dockr .b3-list-item__graphic,
+.layout__dockb .b3-list-item__graphic,
+.sy__file .b3-list-item__toggle,
+.sy__file .b3-list-item__graphic {
+  color: var(--cs-text-muted);
+  opacity: .78;
+}
+
+.layout__dockl .b3-list-item:hover .b3-list-item__toggle,
+.layout__dockr .b3-list-item:hover .b3-list-item__toggle,
+.layout__dockb .b3-list-item:hover .b3-list-item__toggle,
+.layout__dockl .b3-list-item:hover .b3-list-item__graphic,
+.layout__dockr .b3-list-item:hover .b3-list-item__graphic,
+.layout__dockb .b3-list-item:hover .b3-list-item__graphic {
+  opacity: 1;
+}
+
+.sy__file .b3-list-item__graphic,
+.sy__bookmark .b3-list-item__graphic,
+.sy__tag .b3-list-item__graphic {
+  color: color-mix(in srgb, var(--cs-accent) 72%, var(--cs-text-muted));
+}
+
+.layout__dockl .b3-list-item__meta,
+.layout__dockr .b3-list-item__meta,
+.layout__dockb .b3-list-item__meta,
+.layout__dockl .counter,
+.layout__dockr .counter,
+.layout__dockb .counter {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cs-surface-2) 74%, transparent);
+  color: var(--cs-text-muted);
+  font-size: 11px;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.layout__dockl .b3-list-item--focus .b3-list-item__meta,
+.layout__dockr .b3-list-item--focus .b3-list-item__meta,
+.layout__dockb .b3-list-item--focus .b3-list-item__meta,
+.layout__dockl .b3-list-item--focus .counter,
+.layout__dockr .b3-list-item--focus .counter,
+.layout__dockb .b3-list-item--focus .counter {
+  background: var(--b3-theme-primary-lightest);
+  color: var(--cs-accent-strong);
+}
+
+.layout__dockl .b3-list-item__action,
+.layout__dockr .b3-list-item__action,
+.layout__dockb .b3-list-item__action {
+  border-radius: 8px;
+  opacity: .55;
+}
+
+.layout__dockl .b3-list-item:hover .b3-list-item__action,
+.layout__dockr .b3-list-item:hover .b3-list-item__action,
+.layout__dockb .b3-list-item:hover .b3-list-item__action {
+  opacity: 1;
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"],
+.sy__file .b3-list-item[data-type="navigation-root"]:hover {
+  background: transparent !important;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__text {
+  color: var(--b3-theme-on-background);
+  font-weight: 760;
+}
+
+.sy__bookmark .b3-list-item,
+.sy__outline .b3-list-item,
+.sy__tag .b3-list-item {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.sy__backlink .backlinkList,
+.sy__backlink .search__list,
+.sy__search .search__list {
+  background: transparent;
+  padding: 8px;
+}
+
+.sy__backlink .search__item,
+.sy__search .search__item,
+.sy__backlink .backlinkList > .b3-list-item {
+  margin: 7px 2px;
+  padding: 8px 9px;
+  background: var(--cs-rail-elevated);
+  border: 1px solid var(--cs-rail-line);
+  border-radius: 15px;
+  box-shadow: 0 1px 2px var(--b3-theme-shadow);
+}
+
+.sy__backlink .search__item:hover,
+.sy__search .search__item:hover,
+.sy__backlink .backlinkList > .b3-list-item:hover {
+  background: color-mix(in srgb, var(--cs-rail-elevated) 80%, var(--cs-accent-softer));
+  border-color: var(--b3-theme-primary-lighter);
+  box-shadow: 0 5px 18px color-mix(in srgb, var(--cs-shadow) 72%, transparent);
+}
+
+.sy__backlink .protyle,
+.sy__backlink .protyle-content,
+.sy__backlink .protyle-wysiwyg,
+.sy__search .protyle,
+.sy__search .protyle-content,
+.sy__search .protyle-wysiwyg {
+  background: transparent;
+}
+
+.sy__backlink .protyle-wysiwyg,
+.sy__search .protyle-wysiwyg {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-bottom: 0 !important;
+  font-size: .94em;
+  line-height: 1.58;
+}
+
+.sy__backlink .protyle-wysiwyg [data-node-id],
+.sy__search .protyle-wysiwyg [data-node-id] {
+  border-radius: 8px;
+}
+
+.sy__backlink .protyle-wysiwyg [data-node-id]:hover,
+.sy__search .protyle-wysiwyg [data-node-id]:hover {
+  background: var(--cs-rail-hover);
+}
+
+.search__header,
+.search__tip,
+.search__empty,
+.backlinkList .b3-list-item__meta {
+  color: var(--cs-text-muted);
+}
+
+/* Forms and buttons ------------------------------------------------------- */
+.b3-button,
+.b3-button--outline,
+.b3-text-field,
+.b3-select,
+.b3-textarea,
+select,
+textarea,
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="number"] {
+  border-radius: 10px;
+  transition: var(--b3-color-transition), box-shadow .18s ease, transform .18s ease;
+}
+
+.b3-button {
+  background: var(--b3-theme-primary);
+  color: var(--b3-theme-on-primary);
+  border-color: transparent;
+  box-shadow: 0 1px 2px var(--b3-theme-shadow);
+}
+
+.b3-button:hover {
+  background: var(--cs-accent-strong);
+  box-shadow: 0 4px 14px var(--b3-theme-shadow);
+  transform: translateY(-1px);
+}
+
+.b3-button--outline {
+  background: var(--b3-theme-background);
+  color: var(--b3-theme-on-background);
+  border-color: var(--b3-border-color);
+}
+
+.b3-button--outline:hover {
+  background: var(--b3-list-hover);
+  border-color: var(--b3-theme-primary-light);
+}
+
+.b3-text-field,
+.b3-select,
+.b3-textarea,
+select,
+textarea,
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="number"] {
+  background: var(--b3-theme-background);
+  color: var(--b3-theme-on-background);
+  border: 1px solid var(--b3-border-color);
+}
+
+.b3-text-field:focus,
+.b3-select:focus,
+.b3-textarea:focus,
+select:focus,
+textarea:focus,
+input:focus {
+  border-color: var(--b3-theme-primary-light);
+  box-shadow: 0 0 0 3px var(--b3-theme-primary-lightest);
+  outline: none;
+}
+
+/* Editor canvas ----------------------------------------------------------- */
+.protyle,
+.protyle-content {
+  background: var(--b3-theme-background);
+}
+
+.protyle-content {
+  scrollbar-gutter: stable;
+}
+
+.protyle-wysiwyg,
+.b3-typography {
+  color: var(--b3-theme-on-background);
+  font-family: var(--b3-font-family-protyle);
+  font-size: var(--b3-font-size-editor);
+  line-height: 1.72;
+  letter-spacing: .005em;
+}
+
+/* Let SiYuan own the editor width and its inline padding.
+   Adding max-width + margin:auto here fights the built-in adaptive-width
+   calculation and can squeeze/offset the middle editor pane. */
+.protyle-wysiwyg {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+  padding-bottom: 20vh !important;
+}
+
+.protyle-wysiwyg [data-node-id] {
+  border-radius: 9px;
+}
+
+.protyle-wysiwyg [data-node-id]:hover {
+  background-color: color-mix(in srgb, var(--b3-list-hover) 48%, transparent);
+}
+
+.protyle-title {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  box-sizing: border-box;
+}
+
+.protyle-title__input {
+  color: var(--b3-theme-on-background);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 760;
+  letter-spacing: -.03em;
+}
+
+.protyle-title__input::selection {
+  background: var(--b3-theme-primary-light);
+}
+
+.protyle-background__img img {
+  filter: saturate(.92) contrast(.98) brightness(.98);
+}
+
+.protyle-background__icon {
+  filter: drop-shadow(0 6px 16px var(--b3-theme-shadow));
+}
+
+/* Headings ---------------------------------------------------------------- */
+.protyle-wysiwyg [data-type="NodeHeading"],
+.b3-typography h1,
+.b3-typography h2,
+.b3-typography h3,
+.b3-typography h4,
+.b3-typography h5,
+.b3-typography h6 {
+  color: var(--b3-theme-on-background);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 760;
+  letter-spacing: -.025em;
+}
+
+.protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h1"],
+.b3-typography h1 {
+  font-size: 2.1em;
+  line-height: 1.18;
+  margin-top: 1.4em;
+  margin-bottom: .42em;
+}
+
+.protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h2"],
+.b3-typography h2 {
+  font-size: 1.55em;
+  line-height: 1.25;
+  margin-top: 1.2em;
+  margin-bottom: .35em;
+  padding-bottom: .2em;
+  border-bottom: 1px solid var(--b3-border-color);
+}
+
+.protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h3"],
+.b3-typography h3 {
+  font-size: 1.24em;
+  color: var(--cs-accent-strong);
+}
+
+.protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h4"],
+.b3-typography h4 {
+  font-size: 1.08em;
+  color: var(--cs-text-soft);
+}
+
+/* Inline content ---------------------------------------------------------- */
+.b3-typography a,
+.protyle-wysiwyg a,
+.protyle-wysiwyg span[data-type~="a"] {
+  color: var(--b3-protyle-inline-link-color);
+  text-decoration-color: var(--b3-theme-primary-light);
+  text-underline-offset: .16em;
+  text-decoration-thickness: 1.5px;
+}
+
+.b3-typography a:hover,
+.protyle-wysiwyg a:hover,
+.protyle-wysiwyg span[data-type~="a"]:hover {
+  color: var(--cs-accent-strong);
+  text-decoration-color: currentColor;
+}
+
+.protyle-wysiwyg strong,
+.b3-typography strong {
+  color: var(--b3-protyle-inline-strong-color);
+  font-weight: 760;
+}
+
+.protyle-wysiwyg mark,
+.b3-typography mark,
+.protyle-wysiwyg span[data-type~="mark"] {
+  background: linear-gradient(180deg, transparent 46%, var(--b3-protyle-inline-mark-background) 46%);
+  color: var(--b3-protyle-inline-mark-color);
+  border-radius: 2px;
+  padding: 0 .08em;
+}
+
+.protyle-wysiwyg span[data-type~="tag"],
+.b3-typography span[data-type~="tag"] {
+  background: var(--b3-protyle-inline-tag-background);
+  color: var(--b3-protyle-inline-tag-color);
+  border: 1px solid var(--b3-theme-primary-lighter);
+  border-radius: 999px;
+  padding: .05em .45em;
+}
+
+.protyle-wysiwyg span[data-type~="block-ref"],
+.protyle-wysiwyg span[data-type~="file-annotation-ref"] {
+  border-bottom: 1px dashed currentColor;
+}
+
+.protyle-wysiwyg span[data-type~="code"],
+.b3-typography code,
+.protyle-wysiwyg code {
+  background: var(--b3-protyle-code-background);
+  color: var(--cs-accent-strong);
+  border: 1px solid var(--b3-border-color);
+  border-radius: 6px;
+  font-family: var(--b3-font-family-code);
+  font-size: .92em;
+  padding: .11em .34em;
+}
+
+/* Blocks: code, quotes, tables, lists ------------------------------------ */
+.protyle-wysiwyg [data-type="NodeCodeBlock"],
+.b3-typography pre {
+  background: var(--b3-protyle-code-background) !important;
+  border: 1px solid var(--b3-border-color);
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .03), 0 1px 2px var(--b3-theme-shadow);
+  overflow: hidden;
+}
+
+.protyle-wysiwyg [data-type="NodeCodeBlock"] .code-block,
+.protyle-wysiwyg pre,
+.b3-typography pre {
+  font-family: var(--b3-font-family-code);
+}
+
+.protyle-wysiwyg blockquote,
+.b3-typography blockquote,
+.protyle-wysiwyg [data-type="NodeBlockquote"] {
+  background: linear-gradient(90deg, var(--b3-theme-primary-lightest), transparent 68%);
+  border-left: 4px solid var(--b3-theme-primary);
+  color: var(--b3-theme-on-surface);
+  border-radius: 0 12px 12px 0;
+  padding: .75em 1em;
+}
+
+.protyle-wysiwyg hr,
+.b3-typography hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--b3-border-color), transparent);
+  margin: 1.6em 0;
+}
+
+.protyle-wysiwyg table,
+.b3-typography table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--b3-border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--b3-theme-background);
+  box-shadow: 0 1px 4px var(--b3-theme-shadow);
+}
+
+.protyle-wysiwyg th,
+.b3-typography th {
+  background: var(--b3-theme-background-light);
+  color: var(--b3-theme-on-background);
+  font-weight: 700;
+}
+
+.protyle-wysiwyg th,
+.protyle-wysiwyg td,
+.b3-typography th,
+.b3-typography td {
+  border-color: var(--b3-border-color) !important;
+  padding: .55em .75em;
+}
+
+.protyle-wysiwyg li::marker,
+.b3-typography li::marker {
+  color: var(--b3-theme-primary);
+}
+
+.protyle-wysiwyg [data-type="NodeList"] [data-node-id]::before {
+  border-color: var(--b3-border-color);
+}
+
+/* Cards / embeds / database ---------------------------------------------- */
+.b3-card,
+.b3-chip,
+.protyle-wysiwyg [data-type="NodeBlockQueryEmbed"],
+.protyle-wysiwyg [data-type="NodeSuperBlock"],
+.av__container,
+.av__views,
+.av__row,
+.av__cell {
+  border-color: var(--b3-border-color) !important;
+}
+
+.b3-card,
+.protyle-wysiwyg [data-type="NodeBlockQueryEmbed"],
+.protyle-wysiwyg [data-type="NodeSuperBlock"] {
+  background: var(--b3-theme-background-light);
+  border-radius: 14px;
+  box-shadow: 0 1px 5px var(--b3-theme-shadow);
+}
+
+.av__header,
+.av__views,
+.av__row--header,
+.av__cell--header {
+  background: var(--b3-theme-background-light);
+}
+
+.av__cell:hover,
+.av__row:hover {
+  background: var(--b3-list-hover);
+}
+
+/* Graph / backlinks / search --------------------------------------------- */
+.graph__svg,
+.graph__panel,
+.search__layout,
+.search__list,
+.search__preview,
+.backlinkList {
+  background: var(--b3-theme-background);
+  color: var(--b3-theme-on-background);
+}
+
+.search__item--focus,
+.search__item:hover {
+  background: var(--b3-list-item-focus);
+}
+
+/* PDF and assets ---------------------------------------------------------- */
+.textLayer ::selection,
+.pdf__resize::selection {
+  background: var(--b3-pdf-selection);
+}
+
+.asset img,
+.protyle-wysiwyg img {
+  border-radius: 12px;
+  box-shadow: 0 2px 10px var(--b3-theme-shadow);
+}
+
+/* Mobile-friendly touch targets ------------------------------------------ */
+@media (max-width: 720px) {
+  :root { --b3-font-size-editor: 16px; }
+  .protyle-wysiwyg,
+  .protyle-title {
+    max-width: 100%;
+  }
+  .protyle-wysiwyg {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  .toolbar__item,
+  .block__icon,
+  .b3-list-item {
+    min-height: 32px;
+  }
+}
+
+/* Claude Shell v1.2.0: denser tree, quieter pills, pinned-tab treatment ----
+   These overrides keep the editor untouched and focus on side navigation and tabs. */
+:root {
+  --cs-list-radius: 7px;
+  --cs-list-radius-focus: 8px;
+  --cs-pin-bg: color-mix(in srgb, var(--cs-rail-elevated) 76%, var(--cs-accent-softer));
+}
+
+/* Sidebars: reduce the visual “air” between file rows without making them cramped. */
+.layout__dockl .b3-list,
+.layout__dockr .b3-list,
+.layout__dockb .b3-list {
+  padding: 3px 6px 10px;
+}
+
+.layout__dockl .b3-list-item,
+.layout__dockr .b3-list-item,
+.layout__dockb .b3-list-item,
+.sy__file .b3-list-item,
+.sy__bookmark .b3-list-item,
+.sy__backlink .b3-list-item,
+.sy__outline .b3-list-item,
+.sy__tag .b3-list-item {
+  min-height: 26px;
+  margin: 0 3px;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: var(--cs-list-radius);
+}
+
+/* Default capsules are now less round; top document tabs intentionally keep the old pill shape. */
+.b3-list-item,
+.block__icon,
+.toolbar__item,
+.protyle-breadcrumb__item,
+.layout__dockl .block__icon,
+.layout__dockr .block__icon,
+.layout__dockb .block__icon,
+.layout__dockl .b3-list-item__action,
+.layout__dockr .b3-list-item__action,
+.layout__dockb .b3-list-item__action {
+  border-radius: var(--cs-list-radius);
+}
+
+.layout__dockl .b3-list-item--focus,
+.layout__dockr .b3-list-item--focus,
+.layout__dockb .b3-list-item--focus,
+.sy__file .b3-list-item--focus,
+.sy__bookmark .b3-list-item--focus,
+.sy__backlink .b3-list-item--focus,
+.sy__outline .b3-list-item--focus,
+.sy__tag .b3-list-item--focus {
+  border-radius: var(--cs-list-radius-focus);
+  box-shadow: inset 2px 0 0 var(--b3-theme-primary), 0 1px 2px color-mix(in srgb, var(--cs-shadow) 70%, transparent);
+}
+
+/* File tree: root notebooks behave like section headers, while documents stay denser. */
+.sy__file .b3-list-item[data-type="navigation-root"] {
+  min-height: 30px;
+  margin: 5px 2px 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 9px;
+  background: transparent !important;
+  border-color: transparent;
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"]:hover {
+  background: color-mix(in srgb, var(--cs-rail-elevated) 62%, transparent) !important;
+  border-color: var(--cs-rail-line);
+  box-shadow: none;
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus,
+.sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus:hover {
+  background: linear-gradient(90deg, var(--cs-rail-active), color-mix(in srgb, var(--cs-rail-elevated) 66%, transparent)) !important;
+  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 36%, var(--cs-rail-line));
+  box-shadow: inset 2px 0 0 var(--b3-theme-primary);
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__text {
+  font-weight: 720;
+  letter-spacing: -.01em;
+}
+
+.sy__file .b3-list-item:not([data-type="navigation-root"]) .b3-list-item__text {
+  font-weight: 500;
+}
+
+.sy__file .b3-list-item:not([data-type="navigation-root"]):hover {
+  background: color-mix(in srgb, var(--cs-rail-hover) 82%, transparent) !important;
+  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 28%, transparent);
+}
+
+.sy__file .b3-list-item:not([data-type="navigation-root"]).b3-list-item--focus,
+.sy__file .b3-list-item:not([data-type="navigation-root"]).b3-list-item--focus:hover {
+  background: color-mix(in srgb, var(--cs-rail-active) 84%, var(--cs-rail-elevated)) !important;
+  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 54%, var(--cs-rail-line));
+}
+
+/* Counters: smaller-radius badges to match the calmer list rows. */
+.layout__dockl .b3-list-item__meta,
+.layout__dockr .b3-list-item__meta,
+.layout__dockb .b3-list-item__meta,
+.layout__dockl .counter,
+.layout__dockr .counter,
+.layout__dockb .counter {
+  min-width: 17px;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: 6px;
+  line-height: 17px;
+}
+
+/* Backlink and search cards: a touch less “bubble”, more editorial card. */
+.sy__backlink .search__item,
+.sy__search .search__item,
+.sy__backlink .backlinkList > .b3-list-item {
+  margin: 5px 2px;
+  padding: 7px 9px;
+  border-radius: 11px;
+}
+
+.sy__backlink .protyle-wysiwyg [data-node-id],
+.sy__search .protyle-wysiwyg [data-node-id] {
+  border-radius: 6px;
+}
+
+/* Pinned tabs: compact, identifiable, and still Claude-soft. */
+.layout-tab-bar .item.item--pin {
+  position: relative;
+  min-width: 34px;
+  min-height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: var(--cs-pin-bg);
+  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 32%, var(--cs-rail-line));
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--b3-theme-primary-light) 48%, transparent);
+}
+
+.layout-tab-bar .item.item--pin::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 12px;
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--b3-theme-primary) 78%, transparent);
+  transform: translateX(-50%);
+  opacity: .72;
+}
+
+.layout-tab-bar .item.item--pin .item__icon,
+.layout-tab-bar .item.item--pin .item__graphic {
+  color: var(--cs-accent-strong);
+  opacity: .92;
+}
+
+.layout-tab-bar .item.item--pin .item__text {
+  color: var(--b3-theme-on-surface);
+  font-weight: 620;
+}
+
+.layout-tab-bar .item.item--pin:hover {
+  background: color-mix(in srgb, var(--cs-pin-bg) 76%, var(--b3-theme-background));
+  border-color: var(--b3-theme-primary-lighter);
+  box-shadow: inset 0 -1px 0 var(--b3-theme-primary-light), 0 2px 8px color-mix(in srgb, var(--cs-shadow) 70%, transparent);
+  transform: translateY(-1px);
+}
+
+.layout-tab-bar .item.item--pin.item--focus {
+  background: var(--b3-theme-background);
+  border-color: var(--b3-theme-primary-lighter);
+  box-shadow: inset 0 -2px 0 var(--b3-theme-primary), 0 1px 6px var(--b3-theme-shadow);
+}
+
+.layout-tab-bar .item.item--pin.item--focus::after {
+  opacity: 1;
+  background: var(--b3-theme-primary);
+}
+
+/* If SiYuan hides pinned tab titles, keep the icon centered; if the title is shown by custom settings, it remains readable. */
+.layout-tab-bar .item.item--pin .item__icon:only-child,
+.layout-tab-bar .item.item--pin .item__graphic:only-child {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Claude Shell v1.3.0: dark mode polish ----------------------------------
+   Dark mode gets its own tonal system instead of only inverting the light theme:
+   warmer editor canvas, clearer dock/editor separation, quieter hover states,
+   and higher readability for code, cards, tabs, backlinks, and menus. */
+:root[data-theme-mode="dark"] {
+  color-scheme: dark;
+
+  /* Warm umber / ink palette */
+  --cs-bg: #16110e;
+  --cs-bg-paper: #211915;
+  --cs-bg-paper-2: #271f1a;
+  --cs-surface: #1b1512;
+  --cs-surface-2: #302620;
+  --cs-surface-3: #3d2f27;
+  --cs-text: #f1e7db;
+  --cs-text-soft: #cbbbaa;
+  --cs-text-muted: #978675;
+  --cs-accent: #df805b;
+  --cs-accent-strong: #f2a17c;
+  --cs-accent-soft: rgba(223, 128, 91, .24);
+  --cs-accent-softer: rgba(223, 128, 91, .13);
+  --cs-blue: #95bfd0;
+  --cs-green: #a6c896;
+  --cs-yellow: #e3bc72;
+  --cs-red: #e48270;
+  --cs-purple: #baa0d4;
+  --cs-border: rgba(239, 220, 199, .115);
+  --cs-border-strong: rgba(239, 220, 199, .21);
+  --cs-shadow: rgba(0, 0, 0, .32);
+  --cs-shadow-strong: rgba(0, 0, 0, .5);
+
+  /* Rails are intentionally a little darker than the editor paper. */
+  --cs-rail: #15100d;
+  --cs-rail-2: #1d1511;
+  --cs-rail-elevated: rgba(44, 34, 28, .66);
+  --cs-rail-glass: rgba(35, 27, 22, .58);
+  --cs-rail-active: rgba(223, 128, 91, .145);
+  --cs-rail-hover: rgba(223, 128, 91, .075);
+  --cs-rail-line: rgba(239, 220, 199, .085);
+  --cs-pin-bg: color-mix(in srgb, rgba(44, 34, 28, .84) 78%, var(--cs-accent-softer));
+
+  --b3-theme-background: var(--cs-bg-paper);
+  --b3-theme-background-light: var(--cs-bg-paper-2);
+  --b3-theme-surface: var(--cs-surface);
+  --b3-theme-surface-light: var(--cs-surface-2);
+  --b3-theme-surface-lighter: var(--cs-surface-3);
+  --b3-theme-primary: var(--cs-accent);
+  --b3-theme-primary-light: rgba(223, 128, 91, .34);
+  --b3-theme-primary-lighter: rgba(223, 128, 91, .22);
+  --b3-theme-primary-lightest: rgba(223, 128, 91, .13);
+  --b3-theme-secondary: #d8b48a;
+  --b3-theme-error: var(--cs-red);
+  --b3-theme-on-background: var(--cs-text);
+  --b3-theme-on-surface: var(--cs-text-soft);
+  --b3-theme-on-surface-light: var(--cs-text-muted);
+  --b3-theme-on-primary: #22130f;
+  --b3-theme-on-secondary: #211711;
+  --b3-theme-on-error: #231311;
+  --b3-theme-shadow: var(--cs-shadow);
+  --b3-border-color: var(--cs-border);
+  --b3-scroll-color: rgba(241, 231, 219, .21);
+  --b3-list-hover: rgba(223, 128, 91, .075);
+  --b3-list-icon-hover: rgba(223, 128, 91, .14);
+  --b3-list-item-focus: rgba(223, 128, 91, .145);
+  --b3-menu-background: rgba(33, 25, 21, .985);
+  --b3-menu-shadow: 0 18px 56px rgba(0, 0, 0, .48), 0 2px 12px rgba(0, 0, 0, .28);
+  --b3-toolbar-background: rgba(24, 18, 15, .9);
+  --b3-toolbar-blur-background: rgba(24, 18, 15, .72);
+  --b3-toolbar-color: var(--cs-text-soft);
+  --b3-toolbar-hover: rgba(223, 128, 91, .12);
+  --b3-empty-color: rgba(241, 231, 219, .36);
+  --b3-tooltips-color: #201712;
+  --b3-tooltips-background: #f0d8bf;
+
+  --b3-card-error-color: #ffd2c8;
+  --b3-card-error-background: rgba(228, 130, 112, .15);
+  --b3-card-warning-color: #f4d8a2;
+  --b3-card-warning-background: rgba(227, 188, 114, .145);
+  --b3-card-info-color: #c8e4ef;
+  --b3-card-info-background: rgba(149, 191, 208, .135);
+  --b3-card-success-color: #d0e9c5;
+  --b3-card-success-background: rgba(166, 200, 150, .135);
+
+  --b3-font-background5: rgba(255, 244, 229, .055);
+  --b3-font-background6: var(--cs-accent-softer);
+  --b3-protyle-inline-strong-color: #fff2e4;
+  --b3-protyle-inline-em-color: var(--cs-text-soft);
+  --b3-protyle-inline-s-color: var(--cs-text-muted);
+  --b3-protyle-inline-link-color: #f0a27c;
+  --b3-protyle-inline-mark-background: rgba(232, 178, 86, .29);
+  --b3-protyle-inline-mark-color: #fff1df;
+  --b3-protyle-inline-tag-color: #f1a17a;
+  --b3-protyle-inline-tag-background: rgba(223, 128, 91, .13);
+  --b3-protyle-code-background: #1a1411;
+  --b3-protyle-code-linenumber-hl: rgba(223, 128, 91, .16);
+  --b3-protyle-code-linenumber: rgba(241, 231, 219, .34);
+  --b3-pdf-selection: rgba(223, 128, 91, .24);
+  --b3-pdf-dark: #120e0c;
+}
+
+:root[data-theme-mode="dark"],
+:root[data-theme-mode="dark"] body {
+  background: var(--cs-surface);
+}
+
+/* App chrome: make dark mode feel layered rather than uniformly brown. */
+:root[data-theme-mode="dark"] .toolbar,
+:root[data-theme-mode="dark"] .status {
+  background:
+    linear-gradient(180deg, rgba(38, 29, 24, .88), rgba(24, 18, 15, .9));
+  border-color: var(--cs-rail-line);
+  box-shadow: 0 1px 0 rgba(255, 244, 229, .035);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-container,
+:root[data-theme-mode="dark"] .fn__flex-column {
+  background: var(--cs-surface);
+}
+
+:root[data-theme-mode="dark"] .protyle,
+:root[data-theme-mode="dark"] .protyle-content {
+  background:
+    radial-gradient(circle at 50% -8%, rgba(255, 244, 229, .035), transparent 34%),
+    linear-gradient(180deg, #211915 0%, #1f1814 100%);
+}
+
+:root[data-theme-mode="dark"] .protyle-breadcrumb,
+:root[data-theme-mode="dark"] .block__icons {
+  background: rgba(34, 26, 21, .68);
+  border-color: var(--cs-rail-line);
+  box-shadow: 0 1px 0 rgba(255, 244, 229, .035), 0 8px 22px rgba(0, 0, 0, .18);
+}
+
+/* Side docks and document tree. */
+:root[data-theme-mode="dark"] .layout__dockl,
+:root[data-theme-mode="dark"] .layout__dockr,
+:root[data-theme-mode="dark"] .layout__dockb {
+  background:
+    radial-gradient(circle at 12% -8%, rgba(223, 128, 91, .105) 0, transparent 35%),
+    linear-gradient(180deg, #17110e 0%, #1c1410 100%);
+  border-color: var(--cs-rail-line);
+}
+
+:root[data-theme-mode="dark"] .dock {
+  background: linear-gradient(180deg, #18110e, #211812);
+  border-color: var(--cs-rail-line);
+  box-shadow: inset -1px 0 0 rgba(255, 244, 229, .028);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .block__icons,
+:root[data-theme-mode="dark"] .layout__dockr .block__icons,
+:root[data-theme-mode="dark"] .layout__dockb .block__icons {
+  background: rgba(35, 27, 22, .58);
+  border-color: rgba(239, 220, 199, .09);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 229, .035), 0 8px 22px rgba(0, 0, 0, .2);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item,
+:root[data-theme-mode="dark"] .sy__file .b3-list-item,
+:root[data-theme-mode="dark"] .sy__bookmark .b3-list-item,
+:root[data-theme-mode="dark"] .sy__backlink .b3-list-item,
+:root[data-theme-mode="dark"] .sy__outline .b3-list-item,
+:root[data-theme-mode="dark"] .sy__tag .b3-list-item {
+  color: var(--cs-text-soft);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item:hover,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item:hover,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item:hover,
+:root[data-theme-mode="dark"] .sy__file .b3-list-item:not([data-type="navigation-root"]):hover,
+:root[data-theme-mode="dark"] .sy__bookmark .b3-list-item:hover,
+:root[data-theme-mode="dark"] .sy__outline .b3-list-item:hover,
+:root[data-theme-mode="dark"] .sy__tag .b3-list-item:hover {
+  background: rgba(223, 128, 91, .072) !important;
+  border-color: rgba(223, 128, 91, .18);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item--focus,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item--focus,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__file .b3-list-item:not([data-type="navigation-root"]).b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__bookmark .b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__outline .b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__tag .b3-list-item--focus {
+  background: linear-gradient(90deg, rgba(223, 128, 91, .17), rgba(223, 128, 91, .092)) !important;
+  border-color: rgba(223, 128, 91, .28);
+  box-shadow: inset 2px 0 0 var(--cs-accent), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"] {
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"]:hover {
+  background: rgba(255, 244, 229, .045) !important;
+  border-color: rgba(239, 220, 199, .095);
+}
+
+:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus:hover {
+  background: linear-gradient(90deg, rgba(223, 128, 91, .16), rgba(255, 244, 229, .044)) !important;
+  border-color: rgba(223, 128, 91, .25);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockl .counter,
+:root[data-theme-mode="dark"] .layout__dockr .counter,
+:root[data-theme-mode="dark"] .layout__dockb .counter {
+  background: rgba(255, 244, 229, .055);
+  color: rgba(241, 231, 219, .55);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item--focus .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item--focus .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item--focus .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item--focus .counter,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item--focus .counter,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item--focus .counter {
+  background: rgba(223, 128, 91, .16);
+  color: var(--cs-accent-strong);
+}
+
+/* Tabs: normal, pinned, and focused states should stay legible in dark mode. */
+:root[data-theme-mode="dark"] .layout-tab-bar {
+  background: rgba(22, 17, 14, .86);
+  border-color: var(--cs-rail-line);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item {
+  color: var(--cs-text-muted);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item:hover {
+  background: rgba(255, 244, 229, .04);
+  border-color: rgba(239, 220, 199, .075);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item--focus {
+  background: linear-gradient(180deg, rgba(45, 34, 28, .92), rgba(35, 27, 22, .92));
+  border-color: rgba(239, 220, 199, .12);
+  box-shadow: inset 0 -2px 0 var(--cs-accent), 0 1px 6px rgba(0, 0, 0, .26);
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item.item--pin {
+  background: linear-gradient(180deg, rgba(48, 36, 29, .92), rgba(39, 29, 23, .9));
+  border-color: rgba(223, 128, 91, .2);
+  box-shadow: inset 0 -1px 0 rgba(223, 128, 91, .22);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item.item--pin:hover {
+  background: linear-gradient(180deg, rgba(57, 42, 33, .94), rgba(44, 33, 27, .94));
+  border-color: rgba(223, 128, 91, .3);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item.item--pin.item--focus {
+  background: linear-gradient(180deg, rgba(61, 43, 33, .96), rgba(38, 28, 23, .96));
+  border-color: rgba(223, 128, 91, .38);
+  box-shadow: inset 0 -2px 0 var(--cs-accent), 0 1px 6px rgba(0, 0, 0, .3);
+}
+
+/* Menus, dialogs, hints, and utility popovers. */
+:root[data-theme-mode="dark"] .b3-menu,
+:root[data-theme-mode="dark"] .protyle-hint,
+:root[data-theme-mode="dark"] .b3-dialog__container,
+:root[data-theme-mode="dark"] .b3-snackbar__content,
+:root[data-theme-mode="dark"] .graph__panel,
+:root[data-theme-mode="dark"] .protyle-util {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(223, 128, 91, .075), transparent 32%),
+    rgba(33, 25, 21, .985);
+  border-color: rgba(239, 220, 199, .12);
+  box-shadow: var(--b3-menu-shadow);
+}
+
+:root[data-theme-mode="dark"] .b3-menu__separator,
+:root[data-theme-mode="dark"] .fn__hr {
+  background-color: rgba(239, 220, 199, .095);
+}
+
+/* Forms: avoid flat black inputs. */
+:root[data-theme-mode="dark"] .b3-text-field,
+:root[data-theme-mode="dark"] .b3-select,
+:root[data-theme-mode="dark"] .b3-textarea,
+:root[data-theme-mode="dark"] select,
+:root[data-theme-mode="dark"] textarea,
+:root[data-theme-mode="dark"] input[type="text"],
+:root[data-theme-mode="dark"] input[type="search"],
+:root[data-theme-mode="dark"] input[type="password"],
+:root[data-theme-mode="dark"] input[type="number"] {
+  background: rgba(26, 20, 17, .86);
+  border-color: rgba(239, 220, 199, .12);
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .b3-text-field:focus,
+:root[data-theme-mode="dark"] .b3-select:focus,
+:root[data-theme-mode="dark"] .b3-textarea:focus,
+:root[data-theme-mode="dark"] select:focus,
+:root[data-theme-mode="dark"] textarea:focus,
+:root[data-theme-mode="dark"] input:focus {
+  border-color: rgba(223, 128, 91, .38);
+  box-shadow: 0 0 0 3px rgba(223, 128, 91, .13);
+}
+
+/* Editor content and common block surfaces. */
+:root[data-theme-mode="dark"] .protyle-wysiwyg,
+:root[data-theme-mode="dark"] .b3-typography {
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .protyle-title__input {
+  color: #f5eadf;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .22);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-node-id]:hover {
+  background-color: rgba(223, 128, 91, .042);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h3"],
+:root[data-theme-mode="dark"] .b3-typography h3 {
+  color: #f0a17a;
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="code"],
+:root[data-theme-mode="dark"] .b3-typography code,
+:root[data-theme-mode="dark"] .protyle-wysiwyg code {
+  background: rgba(18, 14, 12, .82);
+  color: #f0ae8a;
+  border-color: rgba(239, 220, 199, .11);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeCodeBlock"],
+:root[data-theme-mode="dark"] .b3-typography pre {
+  background: linear-gradient(180deg, #17110e, #130f0d) !important;
+  border-color: rgba(239, 220, 199, .105);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 229, .035), 0 8px 24px rgba(0, 0, 0, .22);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg blockquote,
+:root[data-theme-mode="dark"] .b3-typography blockquote,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"] {
+  background: linear-gradient(90deg, rgba(223, 128, 91, .13), rgba(255, 244, 229, .025) 72%);
+  border-left-color: rgba(223, 128, 91, .82);
+  color: var(--cs-text-soft);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg table,
+:root[data-theme-mode="dark"] .b3-typography table,
+:root[data-theme-mode="dark"] .b3-card,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockQueryEmbed"],
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeSuperBlock"],
+:root[data-theme-mode="dark"] .av__container {
+  background: rgba(39, 31, 26, .78);
+  border-color: rgba(239, 220, 199, .105) !important;
+  box-shadow: 0 1px 0 rgba(255, 244, 229, .03), 0 8px 24px rgba(0, 0, 0, .18);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg th,
+:root[data-theme-mode="dark"] .b3-typography th,
+:root[data-theme-mode="dark"] .av__header,
+:root[data-theme-mode="dark"] .av__views,
+:root[data-theme-mode="dark"] .av__row--header,
+:root[data-theme-mode="dark"] .av__cell--header {
+  background: rgba(255, 244, 229, .045);
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .av__cell:hover,
+:root[data-theme-mode="dark"] .av__row:hover {
+  background: rgba(223, 128, 91, .065);
+}
+
+/* Backlinks and search previews: dark card layers with quieter borders. */
+:root[data-theme-mode="dark"] .graph__svg,
+:root[data-theme-mode="dark"] .graph__panel,
+:root[data-theme-mode="dark"] .search__layout,
+:root[data-theme-mode="dark"] .search__list,
+:root[data-theme-mode="dark"] .search__preview,
+:root[data-theme-mode="dark"] .backlinkList {
+  background: var(--cs-bg-paper);
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .sy__backlink .search__item,
+:root[data-theme-mode="dark"] .sy__search .search__item,
+:root[data-theme-mode="dark"] .sy__backlink .backlinkList > .b3-list-item {
+  background: rgba(42, 32, 26, .72);
+  border-color: rgba(239, 220, 199, .095);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 229, .03), 0 8px 20px rgba(0, 0, 0, .18);
+}
+
+:root[data-theme-mode="dark"] .sy__backlink .search__item:hover,
+:root[data-theme-mode="dark"] .sy__search .search__item:hover,
+:root[data-theme-mode="dark"] .sy__backlink .backlinkList > .b3-list-item:hover,
+:root[data-theme-mode="dark"] .search__item--focus,
+:root[data-theme-mode="dark"] .search__item:hover {
+  background: linear-gradient(180deg, rgba(52, 39, 31, .84), rgba(43, 32, 26, .82));
+  border-color: rgba(223, 128, 91, .24);
+}
+
+:root[data-theme-mode="dark"] .search__header,
+:root[data-theme-mode="dark"] .search__tip,
+:root[data-theme-mode="dark"] .search__empty,
+:root[data-theme-mode="dark"] .backlinkList .b3-list-item__meta {
+  color: rgba(241, 231, 219, .52);
+}
+
+/* Images should not glow too brightly on dark canvas. */
+:root[data-theme-mode="dark"] .asset img,
+:root[data-theme-mode="dark"] .protyle-wysiwyg img {
+  box-shadow: 0 10px 34px rgba(0, 0, 0, .28);
+  filter: saturate(.94) brightness(.92) contrast(.98);
+}
+
+:root[data-theme-mode="dark"] ::selection {
+  background: rgba(223, 128, 91, .34);
+  color: #fff1e4;
+}
+
+/* Claude Shell v1.4.0: dark editorial links, slower quote wash, and nested-hover de-stacking
+   -------------------------------------------------------------------------
+   This patch keeps the refined light mode intact and focuses on the dark-mode
+   reading surface. The hover fix uses :has() only when supported, so older
+   SiYuan/Electron builds keep the previous behavior instead of losing hover. */
+
+/* Dark links: keep Claude-warm accent, but make the underline feel like ink
+   sitting on paper instead of a browser-default decoration. */
+:root[data-theme-mode="dark"] .b3-typography a,
+:root[data-theme-mode="dark"] .protyle-wysiwyg a,
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="a"] {
+  color: #f4a884;
+  text-decoration: none !important;
+  background-image:
+    linear-gradient(0deg, rgba(244, 168, 132, .38), rgba(244, 168, 132, .38)),
+    linear-gradient(0deg, rgba(223, 128, 91, .105), rgba(223, 128, 91, .105));
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% - .075em), 0 100%;
+  background-size: 100% 1px, 0 100%;
+  border-radius: 3px;
+  padding: 0 .035em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: color .16s ease, background-size .18s ease, background-color .18s ease;
+}
+
+:root[data-theme-mode="dark"] .b3-typography a:hover,
+:root[data-theme-mode="dark"] .protyle-wysiwyg a:hover,
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="a"]:hover {
+  color: #ffd0b7;
+  background-size: 100% 1px, 100% 100%;
+}
+
+/* Block refs and annotation refs should read as semantic references, not as
+   ordinary outbound links. Give them a cooler, quieter dashed treatment. */
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="block-ref"] {
+  color: #acd2e0;
+  text-decoration: none !important;
+  border-bottom: 1px dashed rgba(149, 191, 208, .48);
+  background-image: linear-gradient(0deg, rgba(149, 191, 208, .095), rgba(149, 191, 208, .095));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 100%;
+  border-radius: 3px;
+  padding: 0 .035em;
+  transition: color .16s ease, border-color .16s ease, background-size .18s ease;
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="file-annotation-ref"] {
+  color: #b7d8aa;
+  text-decoration: none !important;
+  border-bottom: 1px dashed rgba(166, 200, 150, .48);
+  background-image: linear-gradient(0deg, rgba(166, 200, 150, .09), rgba(166, 200, 150, .09));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 100%;
+  border-radius: 3px;
+  padding: 0 .035em;
+  transition: color .16s ease, border-color .16s ease, background-size .18s ease;
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="block-ref"]:hover,
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="file-annotation-ref"]:hover {
+  color: #eef4e6;
+  border-bottom-color: currentColor;
+  background-size: 100% 100%;
+}
+
+/* Quotes: keep the left glow longer across the block. The previous gradient
+   faded to transparent too early, so wide quotes lost their warm wash. */
+:root[data-theme-mode="dark"] .protyle-wysiwyg blockquote,
+:root[data-theme-mode="dark"] .b3-typography blockquote,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"] {
+  background:
+    linear-gradient(90deg,
+      rgba(223, 128, 91, .135) 0%,
+      rgba(223, 128, 91, .105) 28%,
+      rgba(223, 128, 91, .074) 56%,
+      rgba(255, 244, 229, .034) 86%,
+      rgba(255, 244, 229, .02) 100%);
+  border-left-color: rgba(223, 128, 91, .78);
+  border-top: 1px solid rgba(239, 220, 199, .045);
+  border-right: 1px solid rgba(239, 220, 199, .05);
+  border-bottom: 1px solid rgba(239, 220, 199, .045);
+  color: #d6c7b7;
+  box-shadow: inset 1px 0 0 rgba(255, 244, 229, .035), 0 1px 0 rgba(0, 0, 0, .12);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg blockquote strong,
+:root[data-theme-mode="dark"] .b3-typography blockquote strong,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"] strong {
+  color: #fff0e1;
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg blockquote a,
+:root[data-theme-mode="dark"] .b3-typography blockquote a,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"] span[data-type~="a"] {
+  color: #ffc1a3;
+}
+
+/* Nested block hover: only the deepest hovered block receives the warm paper
+   tint. This prevents large lists / nested super-blocks from accumulating many
+   translucent hover layers at once. */
+@supports selector(:has(*)) {
+  .protyle-wysiwyg [data-node-id]:hover {
+    background-color: transparent !important;
+  }
+
+  .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)) {
+    background-color: color-mix(in srgb, var(--b3-list-hover) 48%, transparent) !important;
+  }
+
+  .protyle-wysiwyg [data-type="NodeList"]:hover,
+  .protyle-wysiwyg [data-type="NodeListItem"]:hover:has([data-node-id]:hover),
+  .protyle-wysiwyg [data-type="NodeSuperBlock"]:hover:has([data-node-id]:hover),
+  .protyle-wysiwyg [data-type="NodeBlockquote"]:hover:has([data-node-id]:hover) {
+    background-color: transparent !important;
+  }
+
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)) {
+    background-color: rgba(223, 128, 91, .036) !important;
+  }
+
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeList"]:hover,
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeListItem"]:hover:has([data-node-id]:hover),
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeSuperBlock"]:hover:has([data-node-id]:hover),
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"]:hover:has([data-node-id]:hover) {
+    background-color: transparent !important;
+  }
+
+  .sy__backlink .protyle-wysiwyg [data-node-id]:hover,
+  .sy__search .protyle-wysiwyg [data-node-id]:hover {
+    background-color: transparent !important;
+  }
+
+  .sy__backlink .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)),
+  .sy__search .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)) {
+    background-color: var(--cs-rail-hover) !important;
+  }
+}
