@@ -14,23 +14,18 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
+      - uses: actions/checkout@v4
 
       - name: Package
         run: |
-          cd dist
-          zip -r ../package.zip .
+          zip -r package.zip \
+            theme.json \
+            theme.css \
+            README.md \
+            README_zh_CN.md \
+            LICENSE \
+            icon.png \
+            preview.png
 
       - uses: ncipollo/release-action@v1
         with:
