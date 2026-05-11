@@ -20,8 +20,11 @@
   --b3-transition: all .18s cubic-bezier(.2, 0, .2, 1);
   --b3-color-transition: color .18s cubic-bezier(.2, 0, .2, 1), background-color .18s cubic-bezier(.2, 0, .2, 1), border-color .18s cubic-bezier(.2, 0, .2, 1);
   --b3-font-size-editor: 16px;
+  --cs-list-radius: 7px;
+  --cs-list-radius-focus: 8px;
+  --cs-pin-bg: color-mix(in srgb, var(--cs-rail-elevated) 76%, var(--cs-accent-softer));
 
-  /* Claude Sand local aliases */
+  /* Siyaude local aliases */
   --cs-bg: #f6f0e8;
   --cs-bg-paper: #fffaf2;
   --cs-bg-paper-2: #fbf4ea;
@@ -147,79 +150,83 @@
 
 /* Dark mode --------------------------------------------------------------- */
 :root[data-theme-mode="dark"] {
+  /* Mode */
   color-scheme: dark;
-  --cs-bg: #191411;
-  --cs-bg-paper: #211a16;
-  --cs-bg-paper-2: #261e19;
-  --cs-surface: #2b221d;
-  --cs-surface-2: #352920;
-  --cs-surface-3: #453426;
-  --cs-text: #f4eadf;
-  --cs-text-soft: #cdbfaf;
-  --cs-text-muted: #9e8f7f;
-  --cs-accent: #d9855f;
-  --cs-accent-strong: #f0a27c;
-  --cs-accent-soft: rgba(217, 133, 95, .28);
-  --cs-accent-softer: rgba(217, 133, 95, .16);
-  --cs-blue: #91b8cc;
-  --cs-green: #9fbe91;
-  --cs-yellow: #deb66a;
-  --cs-red: #de7a68;
-  --cs-purple: #b69ad0;
-  --cs-border: rgba(242, 224, 205, .13);
-  --cs-border-strong: rgba(242, 224, 205, .23);
-  --cs-shadow: rgba(0, 0, 0, .28);
-  --cs-shadow-strong: rgba(0, 0, 0, .42);
-  --cs-rail: #1d1713;
-  --cs-rail-2: #241c17;
-  --cs-rail-elevated: rgba(43, 34, 29, .72);
-  --cs-rail-glass: rgba(43, 34, 29, .56);
-  --cs-rail-active: rgba(217, 133, 95, .16);
-  --cs-rail-hover: rgba(217, 133, 95, .1);
-  --cs-rail-line: rgba(242, 224, 205, .1);
 
+  /* Siyaude local palette */
+  --cs-bg: #16110e;
+  --cs-bg-paper: #211915;
+  --cs-bg-paper-2: #271f1a;
+  --cs-surface: #1b1512;
+  --cs-surface-2: #302620;
+  --cs-surface-3: #3d2f27;
+  --cs-text: #f1e7db;
+  --cs-text-soft: #cbbbaa;
+  --cs-text-muted: #978675;
+  --cs-accent: #df805b;
+  --cs-accent-strong: #f2a17c;
+  --cs-accent-soft: rgba(223, 128, 91, .24);
+  --cs-accent-softer: rgba(223, 128, 91, .13);
+  --cs-blue: #95bfd0;
+  --cs-green: #a6c896;
+  --cs-yellow: #e3bc72;
+  --cs-red: #e48270;
+  --cs-purple: #baa0d4;
+  --cs-border: rgba(239, 220, 199, .115);
+  --cs-border-strong: rgba(239, 220, 199, .21);
+  --cs-shadow: rgba(0, 0, 0, .32);
+  --cs-shadow-strong: rgba(0, 0, 0, .5);
+  --cs-rail: #15100d;
+  --cs-rail-2: #1d1511;
+  --cs-rail-elevated: rgba(44, 34, 28, .66);
+  --cs-rail-glass: rgba(35, 27, 22, .58);
+  --cs-rail-active: rgba(223, 128, 91, .145);
+  --cs-rail-hover: rgba(223, 128, 91, .075);
+  --cs-rail-line: rgba(239, 220, 199, .085);
+
+  /* Core SiYuan variables */
   --b3-theme-background: var(--cs-bg-paper);
   --b3-theme-background-light: var(--cs-bg-paper-2);
-  --b3-theme-surface: var(--cs-bg);
-  --b3-theme-surface-light: var(--cs-surface);
-  --b3-theme-surface-lighter: var(--cs-surface-2);
+  --b3-theme-surface: var(--cs-surface);
+  --b3-theme-surface-light: var(--cs-surface-2);
+  --b3-theme-surface-lighter: var(--cs-surface-3);
   --b3-theme-primary: var(--cs-accent);
-  --b3-theme-primary-light: rgba(217, 133, 95, .38);
-  --b3-theme-primary-lighter: rgba(217, 133, 95, .25);
-  --b3-theme-primary-lightest: rgba(217, 133, 95, .15);
-  --b3-theme-secondary: #d2ad83;
+  --b3-theme-primary-light: rgba(223, 128, 91, .34);
+  --b3-theme-primary-lighter: rgba(223, 128, 91, .22);
+  --b3-theme-primary-lightest: rgba(223, 128, 91, .13);
+  --b3-theme-secondary: #d8b48a;
   --b3-theme-error: var(--cs-red);
   --b3-theme-on-background: var(--cs-text);
   --b3-theme-on-surface: var(--cs-text-soft);
   --b3-theme-on-surface-light: var(--cs-text-muted);
-  --b3-theme-on-primary: #251713;
-  --b3-theme-on-secondary: #201813;
-  --b3-theme-on-error: #241513;
+  --b3-theme-on-primary: #22130f;
+  --b3-theme-on-secondary: #211711;
+  --b3-theme-on-error: #231311;
   --b3-theme-shadow: var(--cs-shadow);
   --b3-border-color: var(--cs-border);
-  --b3-scroll-color: rgba(244, 234, 223, .24);
-  --b3-list-hover: rgba(217, 133, 95, .1);
-  --b3-list-icon-hover: rgba(217, 133, 95, .18);
-  --b3-list-item-focus: rgba(217, 133, 95, .16);
-  --b3-menu-background: rgba(33, 26, 22, .97);
-  --b3-menu-shadow: 0 16px 50px rgba(0, 0, 0, .38), 0 2px 10px rgba(0, 0, 0, .22);
-  --b3-toolbar-background: rgba(25, 20, 17, .92);
-  --b3-toolbar-blur-background: rgba(25, 20, 17, .78);
+  --b3-scroll-color: rgba(241, 231, 219, .21);
+  --b3-list-hover: rgba(223, 128, 91, .075);
+  --b3-list-icon-hover: rgba(223, 128, 91, .14);
+  --b3-list-item-focus: rgba(223, 128, 91, .145);
+  --b3-menu-background: rgba(33, 25, 21, .985);
+  --b3-menu-shadow: 0 18px 56px rgba(0, 0, 0, .48), 0 2px 12px rgba(0, 0, 0, .28);
+  --b3-toolbar-background: rgba(24, 18, 15, .9);
+  --b3-toolbar-blur-background: rgba(24, 18, 15, .72);
   --b3-toolbar-color: var(--cs-text-soft);
-  --b3-toolbar-hover: rgba(217, 133, 95, .14);
-  --b3-empty-color: rgba(244, 234, 223, .38);
-  --b3-tooltips-color: #211a16;
-  --b3-tooltips-background: #f1dcc8;
+  --b3-toolbar-hover: rgba(223, 128, 91, .12);
+  --b3-empty-color: rgba(241, 231, 219, .36);
+  --b3-tooltips-color: #201712;
+  --b3-tooltips-background: #f0d8bf;
 
-  --b3-card-error-color: #ffd3ca;
-  --b3-card-error-background: rgba(222, 122, 104, .18);
-  --b3-card-warning-color: #f3d7a3;
-  --b3-card-warning-background: rgba(222, 182, 106, .17);
-  --b3-card-info-color: #c4e2f0;
-  --b3-card-info-background: rgba(145, 184, 204, .16);
-  --b3-card-success-color: #cde5c2;
-  --b3-card-success-background: rgba(159, 190, 145, .16);
-
+  /* Cards and editor color palette */
+  --b3-card-error-color: #ffd2c8;
+  --b3-card-error-background: rgba(228, 130, 112, .15);
+  --b3-card-warning-color: #f4d8a2;
+  --b3-card-warning-background: rgba(227, 188, 114, .145);
+  --b3-card-info-color: #c8e4ef;
+  --b3-card-info-background: rgba(149, 191, 208, .135);
+  --b3-card-success-color: #d0e9c5;
+  --b3-card-success-background: rgba(166, 200, 150, .135);
   --b3-font-color1: var(--b3-card-error-color);
   --b3-font-color2: var(--b3-card-warning-color);
   --b3-font-color3: var(--b3-card-info-color);
@@ -237,7 +244,7 @@
   --b3-font-background2: var(--b3-card-warning-background);
   --b3-font-background3: var(--b3-card-info-background);
   --b3-font-background4: var(--b3-card-success-background);
-  --b3-font-background5: var(--cs-surface);
+  --b3-font-background5: rgba(255, 244, 229, .055);
   --b3-font-background6: var(--cs-accent-softer);
   --b3-font-background7: rgba(145, 184, 204, .16);
   --b3-font-background8: rgba(182, 154, 208, .16);
@@ -247,18 +254,25 @@
   --b3-font-background12: rgba(224, 189, 139, .16);
   --b3-font-background13: var(--cs-text);
 
-  --b3-protyle-inline-link-color: var(--cs-accent-strong);
-  --b3-protyle-inline-mark-background: rgba(224, 176, 86, .36);
-  --b3-protyle-inline-mark-color: var(--cs-text);
-  --b3-protyle-inline-tag-color: var(--cs-accent-strong);
-  --b3-protyle-inline-tag-background: rgba(217, 133, 95, .14);
-  --b3-protyle-code-background: #2b211b;
-  --b3-protyle-code-linenumber-hl: rgba(217, 133, 95, .2);
-  --b3-protyle-code-linenumber: rgba(244, 234, 223, .42);
+  /* Protyle inline and PDF colors */
+  --b3-protyle-inline-link-color: #f0a27c;
+  --b3-protyle-inline-mark-background: rgba(232, 178, 86, .29);
+  --b3-protyle-inline-mark-color: #fff1df;
+  --b3-protyle-inline-tag-color: #f1a17a;
+  --b3-protyle-inline-tag-background: rgba(223, 128, 91, .13);
+  --b3-protyle-code-background: #1a1411;
+  --b3-protyle-code-linenumber-hl: rgba(223, 128, 91, .16);
+  --b3-protyle-code-linenumber: rgba(241, 231, 219, .34);
   --b3-protyle-inline-blockref-color: var(--cs-blue);
   --b3-protyle-inline-fileref-color: var(--cs-green);
-  --b3-pdf-selection: rgba(217, 133, 95, .24);
-  --b3-pdf-dark: #17120f;
+  --b3-pdf-selection: rgba(223, 128, 91, .24);
+  --b3-pdf-dark: #120e0c;
+  --b3-protyle-inline-strong-color: #fff2e4;
+  --b3-protyle-inline-em-color: var(--cs-text-soft);
+  --b3-protyle-inline-s-color: var(--cs-text-muted);
+
+  /* Component aliases */
+  --cs-pin-bg: color-mix(in srgb, rgba(44, 34, 28, .84) 78%, var(--cs-accent-softer));
 }
 
 /* Global UI --------------------------------------------------------------- */
@@ -394,10 +408,8 @@ body {
   background: var(--b3-list-hover);
 }
 
-
-/* Claude shell: sidebars, document tree, bookmarks, backlinks --------------
-   These rules intentionally stay inside dock / sy__* containers so the editor
-   width and SiYuan's adaptive padding remain untouched. */
+/* Sidebars, document tree, bookmarks, backlinks ---------------------------
+   Scoped to dock / sy__* containers so editor adaptive width is untouched. */
 .layout__dockl,
 .layout__dockr,
 .layout__dockb {
@@ -510,13 +522,6 @@ body {
   box-shadow: 0 1px 4px var(--b3-theme-shadow);
 }
 
-/*暂时去掉*/
-/*.layout__dockl .b3-list,
-.layout__dockr .b3-list,
-.layout__dockb .b3-list {
-  padding: 4px 6px 12px;
-}*/
-
 .layout__dockl .b3-list-item,
 .layout__dockr .b3-list-item,
 .layout__dockb .b3-list-item,
@@ -525,12 +530,12 @@ body {
 .sy__backlink .b3-list-item,
 .sy__outline .b3-list-item,
 .sy__tag .b3-list-item {
-  min-height: 30px;
-  margin: 1px 3px;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  min-height: 25px;
+  margin: 0 3px;
+  padding-top: 0;
+  padding-bottom: 0;
   border: 1px solid transparent;
-  border-radius: 11px;
+  border-radius: var(--cs-list-radius);
   color: var(--b3-theme-on-surface);
 }
 
@@ -556,7 +561,8 @@ body {
 .sy__tag .b3-list-item--focus {
   background: var(--cs-rail-active) !important;
   border-color: var(--b3-theme-primary-lighter);
-  box-shadow: inset 3px 0 0 var(--b3-theme-primary), 0 1px 2px var(--b3-theme-shadow);
+  border-radius: var(--cs-list-radius-focus);
+  box-shadow: inset 2px 0 0 var(--b3-theme-primary), 0 1px 2px color-mix(in srgb, var(--cs-shadow) 70%, transparent);
 }
 
 .layout__dockl .b3-list-item__text,
@@ -607,14 +613,14 @@ body {
 .layout__dockl .counter,
 .layout__dockr .counter,
 .layout__dockb .counter {
-  min-width: 18px;
-  height: 18px;
-  padding: 0 6px;
-  border-radius: 999px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: 6px;
   background: color-mix(in srgb, var(--cs-surface-2) 74%, transparent);
   color: var(--cs-text-muted);
   font-size: 11px;
-  line-height: 18px;
+  line-height: 17px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -641,18 +647,6 @@ body {
   opacity: 1;
 }
 
-.sy__file .b3-list-item[data-type="navigation-root"],
-.sy__file .b3-list-item[data-type="navigation-root"]:hover {
-  background: transparent !important;
-  border-color: transparent;
-  box-shadow: none;
-}
-
-.sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__text {
-  color: var(--b3-theme-on-background);
-  font-weight: 760;
-}
-
 .sy__bookmark .b3-list-item,
 .sy__outline .b3-list-item,
 .sy__tag .b3-list-item {
@@ -670,11 +664,11 @@ body {
 .sy__backlink .search__item,
 .sy__search .search__item,
 .sy__backlink .backlinkList > .b3-list-item {
-  margin: 7px 2px;
-  padding: 8px 9px;
+  margin: 5px 2px;
+  padding: 7px 9px;
   background: var(--cs-rail-elevated);
   border: 1px solid var(--cs-rail-line);
-  border-radius: 15px;
+  border-radius: 11px;
   box-shadow: 0 1px 2px var(--b3-theme-shadow);
 }
 
@@ -707,7 +701,7 @@ body {
 
 .sy__backlink .protyle-wysiwyg [data-node-id],
 .sy__search .protyle-wysiwyg [data-node-id] {
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .sy__backlink .protyle-wysiwyg [data-node-id]:hover,
@@ -1100,38 +1094,7 @@ input:focus {
   }
 }
 
-/* Claude Shell v1.2.0: denser tree, quieter pills, pinned-tab treatment ----
-   These overrides keep the editor untouched and focus on side navigation and tabs. */
-:root {
-  --cs-list-radius: 7px;
-  --cs-list-radius-focus: 8px;
-  --cs-pin-bg: color-mix(in srgb, var(--cs-rail-elevated) 76%, var(--cs-accent-softer));
-}
-
-/*隐藏删掉这个样式*/
-/* Sidebars: reduce the visual “air” between file rows without making them cramped. */
-/*.layout__dockl .b3-list,
-.layout__dockr .b3-list,
-.layout__dockb .b3-list {
-  padding: 3px 6px 10px;
-}*/
-
-.layout__dockl .b3-list-item,
-.layout__dockr .b3-list-item,
-.layout__dockb .b3-list-item,
-.sy__file .b3-list-item,
-.sy__bookmark .b3-list-item,
-.sy__backlink .b3-list-item,
-.sy__outline .b3-list-item,
-.sy__tag .b3-list-item {
-  min-height: 26px;
-  margin: 0 3px;
-  padding-top: 0;
-  padding-bottom: 0;
-  border-radius: var(--cs-list-radius);
-}
-
-/* Default capsules are now less round; top document tabs intentionally keep the old pill shape. */
+/* Compact row radius and pinned tabs --------------------------------------- */
 .b3-list-item,
 .block__icon,
 .toolbar__item,
@@ -1143,47 +1106,6 @@ input:focus {
 .layout__dockr .b3-list-item__action,
 .layout__dockb .b3-list-item__action {
   border-radius: var(--cs-list-radius);
-}
-
-.layout__dockl .b3-list-item--focus,
-.layout__dockr .b3-list-item--focus,
-.layout__dockb .b3-list-item--focus,
-.sy__file .b3-list-item--focus,
-.sy__bookmark .b3-list-item--focus,
-.sy__backlink .b3-list-item--focus,
-.sy__outline .b3-list-item--focus,
-.sy__tag .b3-list-item--focus {
-  border-radius: var(--cs-list-radius-focus);
-  box-shadow: inset 2px 0 0 var(--b3-theme-primary), 0 1px 2px color-mix(in srgb, var(--cs-shadow) 70%, transparent);
-}
-
-/* File tree: root notebooks behave like section headers, while documents stay denser. */
-.sy__file .b3-list-item[data-type="navigation-root"] {
-  min-height: 30px;
-  margin: 5px 2px 2px;
-  padding-left: 6px;
-  padding-right: 6px;
-  border-radius: 9px;
-  background: transparent !important;
-  border-color: transparent;
-}
-
-.sy__file .b3-list-item[data-type="navigation-root"]:hover {
-  background: color-mix(in srgb, var(--cs-rail-elevated) 62%, transparent) !important;
-  border-color: var(--cs-rail-line);
-  box-shadow: none;
-}
-
-.sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus,
-.sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus:hover {
-  background: linear-gradient(90deg, var(--cs-rail-active), color-mix(in srgb, var(--cs-rail-elevated) 66%, transparent)) !important;
-  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 36%, var(--cs-rail-line));
-  box-shadow: inset 2px 0 0 var(--b3-theme-primary);
-}
-
-.sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__text {
-  font-weight: 720;
-  letter-spacing: -.01em;
 }
 
 .sy__file .b3-list-item:not([data-type="navigation-root"]) .b3-list-item__text {
@@ -1201,35 +1123,7 @@ input:focus {
   border-color: color-mix(in srgb, var(--b3-theme-primary-light) 54%, var(--cs-rail-line));
 }
 
-/* Counters: smaller-radius badges to match the calmer list rows. */
-.layout__dockl .b3-list-item__meta,
-.layout__dockr .b3-list-item__meta,
-.layout__dockb .b3-list-item__meta,
-.layout__dockl .counter,
-.layout__dockr .counter,
-.layout__dockb .counter {
-  min-width: 17px;
-  height: 17px;
-  padding: 0 5px;
-  border-radius: 6px;
-  line-height: 17px;
-}
-
-/* Backlink and search cards: a touch less “bubble”, more editorial card. */
-.sy__backlink .search__item,
-.sy__search .search__item,
-.sy__backlink .backlinkList > .b3-list-item {
-  margin: 5px 2px;
-  padding: 7px 9px;
-  border-radius: 11px;
-}
-
-.sy__backlink .protyle-wysiwyg [data-node-id],
-.sy__search .protyle-wysiwyg [data-node-id] {
-  border-radius: 6px;
-}
-
-/* Pinned tabs: compact, identifiable, and still Claude-soft. */
+/* Pinned tabs: compact, identifiable, and still soft. */
 .layout-tab-bar .item.item--pin {
   position: relative;
   min-width: 34px;
@@ -1283,113 +1177,14 @@ input:focus {
   background: var(--b3-theme-primary);
 }
 
-/* If SiYuan hides pinned tab titles, keep the icon centered; if the title is shown by custom settings, it remains readable. */
+/* Center the icon when pinned tab titles are hidden. */
 .layout-tab-bar .item.item--pin .item__icon:only-child,
 .layout-tab-bar .item.item--pin .item__graphic:only-child {
   margin-left: auto;
   margin-right: auto;
 }
 
-
-/* Claude Shell v1.3.0: dark mode polish ----------------------------------
-   Dark mode gets its own tonal system instead of only inverting the light theme:
-   warmer editor canvas, clearer dock/editor separation, quieter hover states,
-   and higher readability for code, cards, tabs, backlinks, and menus. */
-:root[data-theme-mode="dark"] {
-  color-scheme: dark;
-
-  /* Warm umber / ink palette */
-  --cs-bg: #16110e;
-  --cs-bg-paper: #211915;
-  --cs-bg-paper-2: #271f1a;
-  --cs-surface: #1b1512;
-  --cs-surface-2: #302620;
-  --cs-surface-3: #3d2f27;
-  --cs-text: #f1e7db;
-  --cs-text-soft: #cbbbaa;
-  --cs-text-muted: #978675;
-  --cs-accent: #df805b;
-  --cs-accent-strong: #f2a17c;
-  --cs-accent-soft: rgba(223, 128, 91, .24);
-  --cs-accent-softer: rgba(223, 128, 91, .13);
-  --cs-blue: #95bfd0;
-  --cs-green: #a6c896;
-  --cs-yellow: #e3bc72;
-  --cs-red: #e48270;
-  --cs-purple: #baa0d4;
-  --cs-border: rgba(239, 220, 199, .115);
-  --cs-border-strong: rgba(239, 220, 199, .21);
-  --cs-shadow: rgba(0, 0, 0, .32);
-  --cs-shadow-strong: rgba(0, 0, 0, .5);
-
-  /* Rails are intentionally a little darker than the editor paper. */
-  --cs-rail: #15100d;
-  --cs-rail-2: #1d1511;
-  --cs-rail-elevated: rgba(44, 34, 28, .66);
-  --cs-rail-glass: rgba(35, 27, 22, .58);
-  --cs-rail-active: rgba(223, 128, 91, .145);
-  --cs-rail-hover: rgba(223, 128, 91, .075);
-  --cs-rail-line: rgba(239, 220, 199, .085);
-  --cs-pin-bg: color-mix(in srgb, rgba(44, 34, 28, .84) 78%, var(--cs-accent-softer));
-
-  --b3-theme-background: var(--cs-bg-paper);
-  --b3-theme-background-light: var(--cs-bg-paper-2);
-  --b3-theme-surface: var(--cs-surface);
-  --b3-theme-surface-light: var(--cs-surface-2);
-  --b3-theme-surface-lighter: var(--cs-surface-3);
-  --b3-theme-primary: var(--cs-accent);
-  --b3-theme-primary-light: rgba(223, 128, 91, .34);
-  --b3-theme-primary-lighter: rgba(223, 128, 91, .22);
-  --b3-theme-primary-lightest: rgba(223, 128, 91, .13);
-  --b3-theme-secondary: #d8b48a;
-  --b3-theme-error: var(--cs-red);
-  --b3-theme-on-background: var(--cs-text);
-  --b3-theme-on-surface: var(--cs-text-soft);
-  --b3-theme-on-surface-light: var(--cs-text-muted);
-  --b3-theme-on-primary: #22130f;
-  --b3-theme-on-secondary: #211711;
-  --b3-theme-on-error: #231311;
-  --b3-theme-shadow: var(--cs-shadow);
-  --b3-border-color: var(--cs-border);
-  --b3-scroll-color: rgba(241, 231, 219, .21);
-  --b3-list-hover: rgba(223, 128, 91, .075);
-  --b3-list-icon-hover: rgba(223, 128, 91, .14);
-  --b3-list-item-focus: rgba(223, 128, 91, .145);
-  --b3-menu-background: rgba(33, 25, 21, .985);
-  --b3-menu-shadow: 0 18px 56px rgba(0, 0, 0, .48), 0 2px 12px rgba(0, 0, 0, .28);
-  --b3-toolbar-background: rgba(24, 18, 15, .9);
-  --b3-toolbar-blur-background: rgba(24, 18, 15, .72);
-  --b3-toolbar-color: var(--cs-text-soft);
-  --b3-toolbar-hover: rgba(223, 128, 91, .12);
-  --b3-empty-color: rgba(241, 231, 219, .36);
-  --b3-tooltips-color: #201712;
-  --b3-tooltips-background: #f0d8bf;
-
-  --b3-card-error-color: #ffd2c8;
-  --b3-card-error-background: rgba(228, 130, 112, .15);
-  --b3-card-warning-color: #f4d8a2;
-  --b3-card-warning-background: rgba(227, 188, 114, .145);
-  --b3-card-info-color: #c8e4ef;
-  --b3-card-info-background: rgba(149, 191, 208, .135);
-  --b3-card-success-color: #d0e9c5;
-  --b3-card-success-background: rgba(166, 200, 150, .135);
-
-  --b3-font-background5: rgba(255, 244, 229, .055);
-  --b3-font-background6: var(--cs-accent-softer);
-  --b3-protyle-inline-strong-color: #fff2e4;
-  --b3-protyle-inline-em-color: var(--cs-text-soft);
-  --b3-protyle-inline-s-color: var(--cs-text-muted);
-  --b3-protyle-inline-link-color: #f0a27c;
-  --b3-protyle-inline-mark-background: rgba(232, 178, 86, .29);
-  --b3-protyle-inline-mark-color: #fff1df;
-  --b3-protyle-inline-tag-color: #f1a17a;
-  --b3-protyle-inline-tag-background: rgba(223, 128, 91, .13);
-  --b3-protyle-code-background: #1a1411;
-  --b3-protyle-code-linenumber-hl: rgba(223, 128, 91, .16);
-  --b3-protyle-code-linenumber: rgba(241, 231, 219, .34);
-  --b3-pdf-selection: rgba(223, 128, 91, .24);
-  --b3-pdf-dark: #120e0c;
-}
+/* Dark-mode component refinements ----------------------------------------- */
 
 :root[data-theme-mode="dark"],
 :root[data-theme-mode="dark"] body {
@@ -1480,21 +1275,6 @@ input:focus {
   background: linear-gradient(90deg, rgba(223, 128, 91, .17), rgba(223, 128, 91, .092)) !important;
   border-color: rgba(223, 128, 91, .28);
   box-shadow: inset 2px 0 0 var(--cs-accent), 0 1px 2px rgba(0, 0, 0, .24);
-}
-
-:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"] {
-  color: var(--cs-text);
-}
-
-:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"]:hover {
-  background: rgba(255, 244, 229, .045) !important;
-  border-color: rgba(239, 220, 199, .095);
-}
-
-:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus,
-:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus:hover {
-  background: linear-gradient(90deg, rgba(223, 128, 91, .16), rgba(255, 244, 229, .044)) !important;
-  border-color: rgba(223, 128, 91, .25);
 }
 
 :root[data-theme-mode="dark"] .layout__dockl .b3-list-item__meta,
@@ -1635,14 +1415,6 @@ input:focus {
   box-shadow: inset 0 1px 0 rgba(255, 244, 229, .035), 0 8px 24px rgba(0, 0, 0, .22);
 }
 
-:root[data-theme-mode="dark"] .protyle-wysiwyg blockquote,
-:root[data-theme-mode="dark"] .b3-typography blockquote,
-:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"] {
-  background: linear-gradient(90deg, rgba(223, 128, 91, .13), rgba(255, 244, 229, .025) 72%);
-  border-left-color: rgba(223, 128, 91, .82);
-  color: var(--cs-text-soft);
-}
-
 :root[data-theme-mode="dark"] .protyle-wysiwyg table,
 :root[data-theme-mode="dark"] .b3-typography table,
 :root[data-theme-mode="dark"] .b3-card,
@@ -1716,14 +1488,9 @@ input:focus {
   color: #fff1e4;
 }
 
-/* Claude Shell v1.4.0: dark editorial links, slower quote wash, and nested-hover de-stacking
-   -------------------------------------------------------------------------
-   This patch keeps the refined light mode intact and focuses on the dark-mode
-   reading surface. The hover fix uses :has() only when supported, so older
-   SiYuan/Electron builds keep the previous behavior instead of losing hover. */
+/* Editorial links, quotes, and nested-hover de-stacking -------------------- */
 
-/* Dark links: keep Claude-warm accent, but make the underline feel like ink
-   sitting on paper instead of a browser-default decoration. */
+/* Dark links: warm ink underline instead of browser-default decoration. */
 :root[data-theme-mode="dark"] .b3-typography a,
 :root[data-theme-mode="dark"] .protyle-wysiwyg a,
 :root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="a"] {
@@ -1857,11 +1624,7 @@ input:focus {
   }
 }
 
-
-/* Siyaude v0.5.0: chrome contrast, denser notebooks, primary workspace button
-   -------------------------------------------------------------------------
-   Scope: fix snackbar/menu foreground inheritance, tighten notebook rhythm,
-   and give the workspace switcher a primary Claude-like treatment. */
+/* Chrome contrast, snackbar safety, and workspace switcher ----------------- */
 
 /* Floating surfaces must define foreground explicitly.
    SiYuan's message area can carry --b3-theme-on-primary because the default
@@ -1950,15 +1713,10 @@ input:focus {
   border-color: color-mix(in srgb, var(--cs-yellow) 46%, var(--b3-border-color));
 }
 
-/* Workspace name menu: make the current workspace read as the primary app
-   identity instead of another pale toolbar chip. */
+/* Workspace name menu: primary app identity chip. */
 #barWorkspace,
 .toolbar #barWorkspace,
 .toolbar__item#barWorkspace {
-  /*min-height: 28px;*/
-  /*height: 28px;*/
-  /*margin: 2px 6px 2px 6px;*/
-  /*padding: 0 10px;*/
   border: 1px solid color-mix(in srgb, var(--b3-theme-primary) 72%, var(--cs-border));
   border-radius: 10px;
   background: linear-gradient(180deg,
@@ -1975,7 +1733,7 @@ input:focus {
 .toolbar__item#barWorkspace:hover {
   background: linear-gradient(180deg,
     color-mix(in srgb, var(--cs-accent-strong) 88%, var(--b3-theme-primary) 12%),
-    var(--cs-accent-strong));
+    var(--cs-accent-strong)) !important;
   color: var(--b3-theme-on-primary) !important;
   box-shadow: inset 0 1px 0 rgba(255, 250, 242, .2), 0 4px 12px color-mix(in srgb, var(--cs-shadow-strong) 60%, transparent);
   transform: translateY(-1px);
@@ -1994,8 +1752,7 @@ input:focus {
   margin-left: 1px;
 }
 
-/* Notebook root rows: denser, more like Claude's compact sidebar sections.
-   Keep roots distinguishable, but remove the previous loose vertical rhythm. */
+/* Notebook root rows: compact section headers. */
 .sy__file .b3-list {
   padding-top: 2px;
 }
@@ -2003,9 +1760,11 @@ input:focus {
 .sy__file .b3-list-item[data-type="navigation-root"] {
   min-height: 27px;
   margin: 2px 2px 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  border-radius: 7px;
+  padding: 0 6px;
+  border-radius: var(--cs-list-radius);
+  background: transparent !important;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .sy__file .b3-list-item[data-type="navigation-root"] + .b3-list-item[data-type="navigation-root"] {
@@ -2013,8 +1772,10 @@ input:focus {
 }
 
 .sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__text {
+  color: var(--b3-theme-on-background);
   font-size: .96em;
   font-weight: 700;
+  letter-spacing: -.01em;
 }
 
 .sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__graphic,
@@ -2032,14 +1793,6 @@ input:focus {
   background: color-mix(in srgb, var(--cs-rail-active) 74%, transparent) !important;
   border-color: color-mix(in srgb, var(--b3-theme-primary-light) 34%, var(--cs-rail-line));
   box-shadow: inset 2px 0 0 var(--b3-theme-primary);
-}
-
-/* Child document rows stay readable, but the whole tree loses the scattered look. */
-.sy__file .b3-list-item:not([data-type="navigation-root"]),
-.layout__dockl .b3-list-item,
-.layout__dockr .b3-list-item,
-.layout__dockb .b3-list-item {
-  min-height: 25px;
 }
 
 .sy__file .b3-list-item:not([data-type="navigation-root"]) {
@@ -2118,7 +1871,7 @@ input:focus {
 :root[data-theme-mode="dark"] #barWorkspace:hover,
 :root[data-theme-mode="dark"] .toolbar #barWorkspace:hover,
 :root[data-theme-mode="dark"] .toolbar__item#barWorkspace:hover {
-  background: linear-gradient(180deg, #f09a72, #d87551);
+  background: linear-gradient(180deg, #f09a72, #d87551) !important;
   box-shadow: inset 0 1px 0 rgba(255, 244, 229, .2), 0 6px 18px rgba(0, 0, 0, .34);
 }
 
