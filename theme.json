@@ -2,7 +2,7 @@
   "name": "sy-theme-siyaude",
   "author": "frostime",
   "url": "https://github.com/frostime/sy-theme-siyaude",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "minAppVersion": "3.1.0",
   "displayName": {
     "default": "siyaude",
@@ -10,12 +10,10 @@
   },
   "description": {
     "default": "A Claude-inspired SiYuan theme.",
-    "en_US": "A Claude-inspired SiYuan theme.",
     "zh_CN": "一款受 Claude 界面启发的思源笔记主题"
   },
   "readme": {
     "default": "README.md",
-    "en_US": "README.md",
     "zh_CN": "README_zh_CN.md"
   },
   "modes": [
