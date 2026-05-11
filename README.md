@@ -12,6 +12,9 @@ Siyaude brings a warm, quiet, reading-focused interface to SiYuan, with both lig
 - Polished document tree, tabs, backlinks, bookmarks, and panels
 - Gentle hover states for focused writing
 
+## Recommended fonts
+
+For closer typography, consider installing **Noto Serif CJK SC** or **Source Han Serif SC**. The theme works without them and will fall back to system fonts.
 
 ## Disclaimer
 

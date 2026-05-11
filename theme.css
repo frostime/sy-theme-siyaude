@@ -930,9 +930,52 @@ input:focus {
   padding: .05em .45em;
 }
 
-.protyle-wysiwyg span[data-type~="block-ref"],
+.b3-typography span[data-type~="block-ref"],
+.protyle-wysiwyg span[data-type~="block-ref"] {
+  color: color-mix(in srgb, var(--cs-text) 70%, var(--cs-accent-strong) 30%);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 660;
+  letter-spacing: -.012em;
+  text-decoration: none !important;
+  background: color-mix(in srgb, var(--cs-accent-softer) 52%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cs-accent-soft) 50%, transparent);
+  border-radius: 6px;
+  padding: .01em .34em .035em;
+  margin: 0 .03em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
+}
+
+.b3-typography span[data-type~="block-ref"]:hover,
+.protyle-wysiwyg span[data-type~="block-ref"]:hover {
+  color: var(--cs-accent-strong);
+  background: color-mix(in srgb, var(--cs-accent-softer) 74%, transparent);
+  border-color: color-mix(in srgb, var(--cs-accent) 32%, transparent);
+}
+
+.b3-typography span[data-type~="file-annotation-ref"],
 .protyle-wysiwyg span[data-type~="file-annotation-ref"] {
-  border-bottom: 1px dashed currentColor;
+  color: color-mix(in srgb, var(--cs-text) 74%, var(--cs-green) 26%);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 620;
+  letter-spacing: -.008em;
+  text-decoration: none !important;
+  background: color-mix(in srgb, var(--b3-card-success-background) 54%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cs-green) 22%, transparent);
+  border-radius: 6px;
+  padding: .01em .34em .035em;
+  margin: 0 .03em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
+}
+
+.b3-typography span[data-type~="file-annotation-ref"]:hover,
+.protyle-wysiwyg span[data-type~="file-annotation-ref"]:hover {
+  color: color-mix(in srgb, var(--cs-green) 68%, var(--cs-text) 32%);
+  background: color-mix(in srgb, var(--b3-card-success-background) 72%, transparent);
+  border-color: color-mix(in srgb, var(--cs-green) 34%, transparent);
 }
 
 .protyle-wysiwyg span[data-type~="code"],
@@ -1516,39 +1559,53 @@ input:focus {
   background-size: 100% 1px, 100% 100%;
 }
 
-/* Block refs and annotation refs should read as semantic references, not as
-   ordinary outbound links. Give them a cooler, quieter dashed treatment. */
+/* Internal references: warm, compact, and paper-like. */
+:root[data-theme-mode="dark"] .b3-typography span[data-type~="block-ref"],
 :root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="block-ref"] {
-  color: #acd2e0;
+  color: color-mix(in srgb, var(--cs-text) 76%, var(--cs-accent-strong) 24%);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 660;
+  letter-spacing: -.012em;
   text-decoration: none !important;
-  border-bottom: 1px dashed rgba(149, 191, 208, .48);
-  background-image: linear-gradient(0deg, rgba(149, 191, 208, .095), rgba(149, 191, 208, .095));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0 100%;
-  border-radius: 3px;
-  padding: 0 .035em;
-  transition: color .16s ease, border-color .16s ease, background-size .18s ease;
+  background: rgba(223, 128, 91, .105);
+  border: 1px solid rgba(223, 128, 91, .17);
+  border-radius: 6px;
+  padding: .01em .34em .035em;
+  margin: 0 .03em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
 }
 
+:root[data-theme-mode="dark"] .b3-typography span[data-type~="block-ref"]:hover,
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="block-ref"]:hover {
+  color: #ffd1ba;
+  background: rgba(223, 128, 91, .155);
+  border-color: rgba(223, 128, 91, .27);
+}
+
+:root[data-theme-mode="dark"] .b3-typography span[data-type~="file-annotation-ref"],
 :root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="file-annotation-ref"] {
-  color: #b7d8aa;
+  color: color-mix(in srgb, var(--cs-text) 78%, var(--cs-green) 22%);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 620;
+  letter-spacing: -.008em;
   text-decoration: none !important;
-  border-bottom: 1px dashed rgba(166, 200, 150, .48);
-  background-image: linear-gradient(0deg, rgba(166, 200, 150, .09), rgba(166, 200, 150, .09));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0 100%;
-  border-radius: 3px;
-  padding: 0 .035em;
-  transition: color .16s ease, border-color .16s ease, background-size .18s ease;
+  background: rgba(166, 200, 150, .08);
+  border: 1px solid rgba(166, 200, 150, .15);
+  border-radius: 6px;
+  padding: .01em .34em .035em;
+  margin: 0 .03em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
 }
 
-:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="block-ref"]:hover,
+:root[data-theme-mode="dark"] .b3-typography span[data-type~="file-annotation-ref"]:hover,
 :root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="file-annotation-ref"]:hover {
-  color: #eef4e6;
-  border-bottom-color: currentColor;
-  background-size: 100% 100%;
+  color: #e2f0da;
+  background: rgba(166, 200, 150, .12);
+  border-color: rgba(166, 200, 150, .24);
 }
 
 /* Quotes: keep the left glow longer across the block. The previous gradient
