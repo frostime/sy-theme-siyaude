@@ -4,8 +4,6 @@ A SiYuan theme inspired by Claude.
 
 Siyaude brings a warm, quiet, reading-focused interface to SiYuan, with both light and dark modes.
 
-![Preview](preview.png)
-
 ## Features
 
 - Light and dark mode

@@ -1,5 +1,5 @@
 /*
- * Claude Sand for SiYuan Note
+ * Siyaude for SiYuan Note
  * Warm, low-glare theme inspired by Claude's calm editorial aesthetic.
  * No JavaScript. No external assets. Built against the official SiYuan theme-sample package contract.
  */
@@ -510,11 +510,12 @@ body {
   box-shadow: 0 1px 4px var(--b3-theme-shadow);
 }
 
-.layout__dockl .b3-list,
+/*暂时去掉*/
+/*.layout__dockl .b3-list,
 .layout__dockr .b3-list,
 .layout__dockb .b3-list {
   padding: 4px 6px 12px;
-}
+}*/
 
 .layout__dockl .b3-list-item,
 .layout__dockr .b3-list-item,
@@ -1107,12 +1108,13 @@ input:focus {
   --cs-pin-bg: color-mix(in srgb, var(--cs-rail-elevated) 76%, var(--cs-accent-softer));
 }
 
+/*隐藏删掉这个样式*/
 /* Sidebars: reduce the visual “air” between file rows without making them cramped. */
-.layout__dockl .b3-list,
+/*.layout__dockl .b3-list,
 .layout__dockr .b3-list,
 .layout__dockb .b3-list {
   padding: 3px 6px 10px;
-}
+}*/
 
 .layout__dockl .b3-list-item,
 .layout__dockr .b3-list-item,
@@ -1853,4 +1855,284 @@ input:focus {
   .sy__search .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)) {
     background-color: var(--cs-rail-hover) !important;
   }
+}
+
+
+/* Siyaude v0.5.0: chrome contrast, denser notebooks, primary workspace button
+   -------------------------------------------------------------------------
+   Scope: fix snackbar/menu foreground inheritance, tighten notebook rhythm,
+   and give the workspace switcher a primary Claude-like treatment. */
+
+/* Floating surfaces must define foreground explicitly.
+   SiYuan's message area can carry --b3-theme-on-primary because the default
+   snackbar assumes a primary-colored background. This theme gives snackbars a
+   paper/menu surface, so inherited on-primary text can become invisible in
+   light mode. */
+#message.b3-snackbars,
+.b3-snackbars,
+.b3-snackbar__content,
+.b3-snackbar__content .b3-snackbar__message,
+.b3-snackbar__content .b3-snackbar__title,
+.b3-snackbar__content .b3-snackbar__desc,
+.b3-snackbar__content .fn__flex-1,
+.b3-snackbar__content .block__icon,
+.b3-snackbar__content .b3-snackbar__close {
+  color: var(--b3-theme-on-background) !important;
+}
+
+.b3-snackbar__content {
+  background:
+    radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--cs-accent-softer) 42%, transparent), transparent 42%),
+    color-mix(in srgb, var(--b3-menu-background) 96%, var(--b3-theme-background));
+  border-color: color-mix(in srgb, var(--cs-border-strong) 68%, transparent);
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--cs-shadow-strong) 70%, transparent), 0 2px 8px var(--cs-shadow);
+}
+
+.b3-snackbar__content a,
+.b3-snackbar__content .b3-button--text {
+  color: var(--cs-accent-strong) !important;
+}
+
+.b3-snackbar__content .b3-button:not(.b3-button--outline):not(.b3-button--text) {
+  color: var(--b3-theme-on-primary) !important;
+  background: var(--b3-theme-primary);
+}
+
+.b3-snackbar__content .b3-button--outline {
+  color: var(--b3-theme-on-background) !important;
+  background: var(--b3-theme-background);
+}
+
+/* The same inheritance trap can appear in popovers opened from primary-colored
+   controls. Keep menu-like surfaces paper-colored, with paper-appropriate text. */
+.b3-menu,
+.b3-menu__item,
+.protyle-hint,
+.protyle-hint .b3-list-item,
+.b3-dialog__container,
+.protyle-util,
+.graph__panel {
+  color: var(--b3-theme-on-background);
+}
+
+.b3-menu__item .b3-menu__label,
+.b3-menu__item .b3-menu__accelerator,
+.b3-menu__item .b3-menu__icon,
+.protyle-hint .b3-list-item__text,
+.protyle-util .b3-list-item__text {
+  color: inherit;
+}
+
+.b3-menu__item--disabled,
+.b3-menu__item[disabled],
+.b3-menu__item--disabled .b3-menu__label,
+.b3-menu__item[disabled] .b3-menu__label {
+  color: var(--b3-theme-on-surface-light) !important;
+  opacity: .62;
+}
+
+/* Status variants: preserve semantic color without relying on white text. */
+.b3-snackbar__content--success,
+.b3-snackbar__content.success,
+.b3-snackbar__content[data-type="success"] {
+  border-color: color-mix(in srgb, var(--cs-green) 42%, var(--b3-border-color));
+}
+
+.b3-snackbar__content--error,
+.b3-snackbar__content.error,
+.b3-snackbar__content[data-type="error"] {
+  border-color: color-mix(in srgb, var(--cs-red) 46%, var(--b3-border-color));
+}
+
+.b3-snackbar__content--warning,
+.b3-snackbar__content.warning,
+.b3-snackbar__content[data-type="warning"] {
+  border-color: color-mix(in srgb, var(--cs-yellow) 46%, var(--b3-border-color));
+}
+
+/* Workspace name menu: make the current workspace read as the primary app
+   identity instead of another pale toolbar chip. */
+#barWorkspace,
+.toolbar #barWorkspace,
+.toolbar__item#barWorkspace {
+  /*min-height: 28px;*/
+  /*height: 28px;*/
+  /*margin: 2px 6px 2px 6px;*/
+  /*padding: 0 10px;*/
+  border: 1px solid color-mix(in srgb, var(--b3-theme-primary) 72%, var(--cs-border));
+  border-radius: 10px;
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--b3-theme-primary) 94%, #fff 6%),
+    color-mix(in srgb, var(--b3-theme-primary) 86%, var(--cs-accent-strong) 14%));
+  color: var(--b3-theme-on-primary) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 250, 242, .22), 0 1px 2px var(--b3-theme-shadow);
+  font-weight: 680;
+  letter-spacing: -.012em;
+}
+
+#barWorkspace:hover,
+.toolbar #barWorkspace:hover,
+.toolbar__item#barWorkspace:hover {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--cs-accent-strong) 88%, var(--b3-theme-primary) 12%),
+    var(--cs-accent-strong));
+  color: var(--b3-theme-on-primary) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 250, 242, .2), 0 4px 12px color-mix(in srgb, var(--cs-shadow-strong) 60%, transparent);
+  transform: translateY(-1px);
+}
+
+#barWorkspace svg,
+#barWorkspace .svg,
+#barWorkspace .toolbar__text,
+#barWorkspace .toolbar__itemtext,
+#barWorkspace .fn__flex-1 {
+  color: currentColor !important;
+  fill: currentColor;
+}
+
+#barWorkspace + .toolbar__item {
+  margin-left: 1px;
+}
+
+/* Notebook root rows: denser, more like Claude's compact sidebar sections.
+   Keep roots distinguishable, but remove the previous loose vertical rhythm. */
+.sy__file .b3-list {
+  padding-top: 2px;
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"] {
+  min-height: 27px;
+  margin: 2px 2px 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: 7px;
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"] + .b3-list-item[data-type="navigation-root"] {
+  margin-top: 1px;
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__text {
+  font-size: .96em;
+  font-weight: 700;
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__graphic,
+.sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__toggle {
+  opacity: .72;
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"]:hover {
+  background: color-mix(in srgb, var(--cs-rail-hover) 58%, transparent) !important;
+  border-color: color-mix(in srgb, var(--cs-rail-line) 82%, transparent);
+}
+
+.sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus,
+.sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus:hover {
+  background: color-mix(in srgb, var(--cs-rail-active) 74%, transparent) !important;
+  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 34%, var(--cs-rail-line));
+  box-shadow: inset 2px 0 0 var(--b3-theme-primary);
+}
+
+/* Child document rows stay readable, but the whole tree loses the scattered look. */
+.sy__file .b3-list-item:not([data-type="navigation-root"]),
+.layout__dockl .b3-list-item,
+.layout__dockr .b3-list-item,
+.layout__dockb .b3-list-item {
+  min-height: 25px;
+}
+
+.sy__file .b3-list-item:not([data-type="navigation-root"]) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Light-mode link and reference polish, matching the dark-mode editorial rules. */
+:root[data-theme-mode="light"] .b3-typography a,
+:root[data-theme-mode="light"] .protyle-wysiwyg a,
+:root[data-theme-mode="light"] .protyle-wysiwyg span[data-type~="a"] {
+  color: #8f3f28;
+  text-decoration: none !important;
+  background-image:
+    linear-gradient(0deg, rgba(143, 63, 40, .34), rgba(143, 63, 40, .34)),
+    linear-gradient(0deg, rgba(193, 95, 60, .105), rgba(193, 95, 60, .105));
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% - .075em), 0 100%;
+  background-size: 100% 1px, 0 100%;
+  border-radius: 3px;
+  padding: 0 .035em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: color .16s ease, background-size .18s ease;
+}
+
+:root[data-theme-mode="light"] .b3-typography a:hover,
+:root[data-theme-mode="light"] .protyle-wysiwyg a:hover,
+:root[data-theme-mode="light"] .protyle-wysiwyg span[data-type~="a"]:hover {
+  color: var(--cs-accent-strong);
+  background-size: 100% 1px, 100% 100%;
+}
+
+/* Dark refinements for the new chrome rules. */
+:root[data-theme-mode="dark"] #message.b3-snackbars,
+:root[data-theme-mode="dark"] .b3-snackbars,
+:root[data-theme-mode="dark"] .b3-snackbar__content,
+:root[data-theme-mode="dark"] .b3-snackbar__content .b3-snackbar__message,
+:root[data-theme-mode="dark"] .b3-snackbar__content .b3-snackbar__title,
+:root[data-theme-mode="dark"] .b3-snackbar__content .b3-snackbar__desc,
+:root[data-theme-mode="dark"] .b3-snackbar__content .fn__flex-1,
+:root[data-theme-mode="dark"] .b3-snackbar__content .block__icon,
+:root[data-theme-mode="dark"] .b3-snackbar__content .b3-snackbar__close {
+  color: var(--cs-text) !important;
+}
+
+:root[data-theme-mode="dark"] .b3-snackbar__content {
+  background:
+    radial-gradient(circle at 16% 0%, rgba(223, 128, 91, .09), transparent 42%),
+    rgba(33, 25, 21, .985);
+  border-color: rgba(239, 220, 199, .14);
+  box-shadow: 0 18px 56px rgba(0, 0, 0, .48), 0 2px 12px rgba(0, 0, 0, .26);
+}
+
+:root[data-theme-mode="dark"] .b3-menu,
+:root[data-theme-mode="dark"] .b3-menu__item,
+:root[data-theme-mode="dark"] .protyle-hint,
+:root[data-theme-mode="dark"] .protyle-hint .b3-list-item,
+:root[data-theme-mode="dark"] .b3-dialog__container,
+:root[data-theme-mode="dark"] .protyle-util,
+:root[data-theme-mode="dark"] .graph__panel {
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] #barWorkspace,
+:root[data-theme-mode="dark"] .toolbar #barWorkspace,
+:root[data-theme-mode="dark"] .toolbar__item#barWorkspace {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--cs-accent) 92%, #fff 8%),
+    color-mix(in srgb, var(--cs-accent) 72%, #6d3525 28%));
+  color: var(--b3-theme-on-primary) !important;
+  border-color: rgba(223, 128, 91, .5);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 229, .18), 0 1px 4px rgba(0, 0, 0, .22);
+}
+
+:root[data-theme-mode="dark"] #barWorkspace:hover,
+:root[data-theme-mode="dark"] .toolbar #barWorkspace:hover,
+:root[data-theme-mode="dark"] .toolbar__item#barWorkspace:hover {
+  background: linear-gradient(180deg, #f09a72, #d87551);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 229, .2), 0 6px 18px rgba(0, 0, 0, .34);
+}
+
+:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"] {
+  margin-top: 2px;
+}
+
+:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"]:hover {
+  background: rgba(255, 244, 229, .032) !important;
+  border-color: rgba(239, 220, 199, .075);
+}
+
+:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus:hover {
+  background: linear-gradient(90deg, rgba(223, 128, 91, .135), rgba(255, 244, 229, .028)) !important;
+  border-color: rgba(223, 128, 91, .22);
 }
