@@ -1016,12 +1016,82 @@ input:focus {
   padding: .75em 1em;
 }
 
+/* Thematic breaks: SiYuan editor renders Markdown `---` as
+   [data-type="NodeThematicBreak"].hr > div::after, not as a plain <hr>.
+   Keep the divider visible on the warm paper canvas without making it heavy. */
+/*.protyle-wysiwyg [data-type="NodeThematicBreak"],
+.protyle-wysiwyg [data-node-id].hr {
+  min-height: 2.55em;
+  margin: 1.35em 0;
+  padding: .15em 0;
+  border-radius: 12px;
+}*/
+
+/*.protyle-wysiwyg [data-type="NodeThematicBreak"] > div,
+.protyle-wysiwyg [data-node-id].hr > div {
+  position: relative;
+  min-height: 2.25em;
+}*/
+
+.protyle-wysiwyg [data-type="NodeThematicBreak"] > div::after,
+.protyle-wysiwyg [data-node-id].hr > div::after {
+  content: "" !important;
+  position: absolute;
+  left: 2%;
+  top: 50%;
+  width: 96%;
+  height: 1px !important;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      color-mix(in srgb, var(--cs-border-strong) 48%, transparent) 7%,
+      color-mix(in srgb, var(--cs-accent) 38%, var(--cs-border-strong)) 50%,
+      color-mix(in srgb, var(--cs-border-strong) 48%, transparent) 93%,
+      transparent 100%) !important;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--b3-theme-background) 80%, transparent),
+    0 1px 3px color-mix(in srgb, var(--cs-shadow) 72%, transparent);
+}
+
+
+/* Preview/export/plain typography hr. */
 .protyle-wysiwyg hr,
 .b3-typography hr {
   border: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--b3-border-color), transparent);
-  margin: 1.6em 0;
+  /*height: 2.25em;*/
+  /*margin: 1.35em 0;*/
+  background:
+    linear-gradient(90deg,
+      transparent 2%,
+      color-mix(in srgb, var(--cs-border-strong) 48%, transparent) 8%,
+      color-mix(in srgb, var(--cs-accent) 32%, var(--cs-border-strong)) 50%,
+      color-mix(in srgb, var(--cs-border-strong) 48%, transparent) 92%,
+      transparent 98%);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: center;
+}
+
+/* Dark mode: slightly brighter center line, lower glow to avoid a neon divider. */
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeThematicBreak"] > div::after,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-node-id].hr > div::after {
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(239, 220, 199, .15) 7%,
+      rgba(223, 128, 91, .46) 50%,
+      rgba(239, 220, 199, .15) 93%,
+      transparent 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(18, 14, 12, .72),
+    0 1px 5px rgba(0, 0, 0, .24);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg hr,
+:root[data-theme-mode="dark"] .b3-typography hr {
+  filter: saturate(.94) brightness(.98);
 }
 
 .protyle-wysiwyg table,
