@@ -21,6 +21,7 @@ jobs:
           zip -r package.zip \
             theme.json \
             theme.css \
+            style/ \
             README.md \
             README_zh_CN.md \
             LICENSE \
