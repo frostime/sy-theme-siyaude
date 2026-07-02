@@ -1,0 +1,90 @@
+/* Compact row radius and pinned tabs --------------------------------------- */
+.b3-list-item,
+.block__icon,
+.toolbar__item,
+.protyle-breadcrumb__item,
+.layout__dockl .block__icon,
+.layout__dockr .block__icon,
+.layout__dockb .block__icon,
+.layout__dockl .b3-list-item__action,
+.layout__dockr .b3-list-item__action,
+.layout__dockb .b3-list-item__action {
+  border-radius: var(--cs-list-radius);
+}
+
+.sy__file .b3-list-item:not([data-type="navigation-root"]) .b3-list-item__text {
+  font-weight: 500;
+}
+
+.sy__file .b3-list-item:not([data-type="navigation-root"]):hover {
+  background: color-mix(in srgb, var(--cs-rail-hover) 82%, transparent) !important;
+  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 28%, transparent);
+}
+
+.sy__file .b3-list-item:not([data-type="navigation-root"]).b3-list-item--focus,
+.sy__file .b3-list-item:not([data-type="navigation-root"]).b3-list-item--focus:hover {
+  background: color-mix(in srgb, var(--cs-rail-active) 84%, var(--cs-rail-elevated)) !important;
+  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 54%, var(--cs-rail-line));
+}
+
+/* Pinned tabs: compact, identifiable, and still soft. */
+.layout-tab-bar .item.item--pin {
+  position: relative;
+  min-width: 34px;
+  min-height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: var(--cs-pin-bg);
+  border-color: color-mix(in srgb, var(--b3-theme-primary-light) 32%, var(--cs-rail-line));
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--b3-theme-primary-light) 48%, transparent);
+}
+
+.layout-tab-bar .item.item--pin::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 12px;
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--b3-theme-primary) 78%, transparent);
+  transform: translateX(-50%);
+  opacity: .72;
+}
+
+.layout-tab-bar .item.item--pin .item__icon,
+.layout-tab-bar .item.item--pin .item__graphic {
+  color: var(--cs-accent-strong);
+  opacity: .92;
+}
+
+.layout-tab-bar .item.item--pin .item__text {
+  color: var(--b3-theme-on-surface);
+  font-weight: 620;
+}
+
+.layout-tab-bar .item.item--pin:hover {
+  background: color-mix(in srgb, var(--cs-pin-bg) 76%, var(--b3-theme-background));
+  border-color: var(--b3-theme-primary-lighter);
+  box-shadow: inset 0 -1px 0 var(--b3-theme-primary-light), 0 2px 8px color-mix(in srgb, var(--cs-shadow) 70%, transparent);
+  transform: translateY(-1px);
+}
+
+.layout-tab-bar .item.item--pin.item--focus {
+  background: var(--b3-theme-background);
+  border-color: var(--b3-theme-primary-lighter);
+  box-shadow: inset 0 -2px 0 var(--b3-theme-primary), 0 1px 6px var(--b3-theme-shadow);
+}
+
+.layout-tab-bar .item.item--pin.item--focus::after {
+  opacity: 1;
+  background: var(--b3-theme-primary);
+}
+
+/* Center the icon when pinned tab titles are hidden. */
+.layout-tab-bar .item.item--pin .item__icon:only-child,
+.layout-tab-bar .item.item--pin .item__graphic:only-child {
+  margin-left: auto;
+  margin-right: auto;
+}
+

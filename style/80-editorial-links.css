@@ -1,0 +1,150 @@
+/* Editorial links, quotes, and nested-hover de-stacking -------------------- */
+
+/* Dark links: warm ink underline instead of browser-default decoration. */
+:root[data-theme-mode="dark"] .b3-typography a,
+:root[data-theme-mode="dark"] .protyle-wysiwyg a,
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="a"] {
+  color: #f4a884;
+  text-decoration: none !important;
+  background-image:
+    linear-gradient(0deg, rgba(244, 168, 132, .38), rgba(244, 168, 132, .38)),
+    linear-gradient(0deg, rgba(223, 128, 91, .105), rgba(223, 128, 91, .105));
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% - .075em), 0 100%;
+  background-size: 100% 1px, 0 100%;
+  border-radius: 3px;
+  padding: 0 .035em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: color .16s ease, background-size .18s ease, background-color .18s ease;
+}
+
+:root[data-theme-mode="dark"] .b3-typography a:hover,
+:root[data-theme-mode="dark"] .protyle-wysiwyg a:hover,
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="a"]:hover {
+  color: #ffd0b7;
+  background-size: 100% 1px, 100% 100%;
+}
+
+/* Internal references: warm, compact, and paper-like. */
+:root[data-theme-mode="dark"] .b3-typography span[data-type~="block-ref"],
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="block-ref"] {
+  color: color-mix(in srgb, var(--cs-text) 76%, var(--cs-accent-strong) 24%);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 660;
+  letter-spacing: -.012em;
+  text-decoration: none !important;
+  background: rgba(223, 128, 91, .105);
+  border: 1px solid rgba(223, 128, 91, .17);
+  border-radius: 6px;
+  padding: .01em .34em .035em;
+  margin: 0 .03em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
+}
+
+:root[data-theme-mode="dark"] .b3-typography span[data-type~="block-ref"]:hover,
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="block-ref"]:hover {
+  color: #ffd1ba;
+  background: rgba(223, 128, 91, .155);
+  border-color: rgba(223, 128, 91, .27);
+}
+
+:root[data-theme-mode="dark"] .b3-typography span[data-type~="file-annotation-ref"],
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="file-annotation-ref"] {
+  color: color-mix(in srgb, var(--cs-text) 78%, var(--cs-green) 22%);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 620;
+  letter-spacing: -.008em;
+  text-decoration: none !important;
+  background: rgba(166, 200, 150, .08);
+  border: 1px solid rgba(166, 200, 150, .15);
+  border-radius: 6px;
+  padding: .01em .34em .035em;
+  margin: 0 .03em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
+}
+
+:root[data-theme-mode="dark"] .b3-typography span[data-type~="file-annotation-ref"]:hover,
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="file-annotation-ref"]:hover {
+  color: #e2f0da;
+  background: rgba(166, 200, 150, .12);
+  border-color: rgba(166, 200, 150, .24);
+}
+
+/* Quotes: keep the left glow longer across the block. The previous gradient
+   faded to transparent too early, so wide quotes lost their warm wash. */
+:root[data-theme-mode="dark"] .protyle-wysiwyg blockquote,
+:root[data-theme-mode="dark"] .b3-typography blockquote,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"] {
+  background:
+    linear-gradient(90deg,
+      rgba(223, 128, 91, .135) 0%,
+      rgba(223, 128, 91, .105) 28%,
+      rgba(223, 128, 91, .074) 56%,
+      rgba(255, 244, 229, .034) 86%,
+      rgba(255, 244, 229, .02) 100%);
+  border-left-color: rgba(223, 128, 91, .78);
+  border-top: 1px solid rgba(239, 220, 199, .045);
+  border-right: 1px solid rgba(239, 220, 199, .05);
+  border-bottom: 1px solid rgba(239, 220, 199, .045);
+  color: #d6c7b7;
+  box-shadow: inset 1px 0 0 rgba(255, 244, 229, .035), 0 1px 0 rgba(0, 0, 0, .12);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg blockquote strong,
+:root[data-theme-mode="dark"] .b3-typography blockquote strong,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"] strong {
+  color: #fff0e1;
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg blockquote a,
+:root[data-theme-mode="dark"] .b3-typography blockquote a,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"] span[data-type~="a"] {
+  color: #ffc1a3;
+}
+
+/* Nested block hover: only the deepest hovered block receives the warm paper
+   tint. This prevents large lists / nested super-blocks from accumulating many
+   translucent hover layers at once. */
+@supports selector(:has(*)) {
+  .protyle-wysiwyg [data-node-id]:hover {
+    background-color: transparent !important;
+  }
+
+  .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)) {
+    background-color: color-mix(in srgb, var(--b3-list-hover) 48%, transparent) !important;
+  }
+
+  .protyle-wysiwyg [data-type="NodeList"]:hover,
+  .protyle-wysiwyg [data-type="NodeListItem"]:hover:has([data-node-id]:hover),
+  .protyle-wysiwyg [data-type="NodeSuperBlock"]:hover:has([data-node-id]:hover),
+  .protyle-wysiwyg [data-type="NodeBlockquote"]:hover:has([data-node-id]:hover) {
+    background-color: transparent !important;
+  }
+
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)) {
+    background-color: rgba(223, 128, 91, .036) !important;
+  }
+
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeList"]:hover,
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeListItem"]:hover:has([data-node-id]:hover),
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeSuperBlock"]:hover:has([data-node-id]:hover),
+  :root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockquote"]:hover:has([data-node-id]:hover) {
+    background-color: transparent !important;
+  }
+
+  .sy__backlink .protyle-wysiwyg [data-node-id]:hover,
+  .sy__search .protyle-wysiwyg [data-node-id]:hover {
+    background-color: transparent !important;
+  }
+
+  .sy__backlink .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)),
+  .sy__search .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)) {
+    background-color: var(--cs-rail-hover) !important;
+  }
+}
+

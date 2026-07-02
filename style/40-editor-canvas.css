@@ -1,0 +1,64 @@
+/* Editor canvas ----------------------------------------------------------- */
+.protyle,
+.protyle-content {
+  background: var(--b3-theme-background);
+}
+
+.protyle-content {
+  scrollbar-gutter: stable;
+}
+
+.protyle-wysiwyg,
+.b3-typography {
+  color: var(--b3-theme-on-background);
+  /* font-family: var(--b3-font-family-protyle); */
+  /* font-size: var(--b3-font-size-editor); */
+  line-height: 1.72;
+  letter-spacing: .005em;
+}
+
+/* Let SiYuan own the editor width and its inline padding.
+   Adding max-width + margin:auto here fights the built-in adaptive-width
+   calculation and can squeeze/offset the middle editor pane. */
+.protyle-wysiwyg {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+  padding-bottom: 20vh !important;
+}
+
+.protyle-wysiwyg [data-node-id] {
+  border-radius: 9px;
+}
+
+.protyle-wysiwyg [data-node-id]:hover {
+  background-color: color-mix(in srgb, var(--b3-list-hover) 48%, transparent);
+}
+
+.protyle-title {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  box-sizing: border-box;
+}
+
+.protyle-title__input {
+  color: var(--b3-theme-on-background);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 760;
+  letter-spacing: -.03em;
+}
+
+.protyle-title__input::selection {
+  background: var(--b3-theme-primary-light);
+}
+
+.protyle-background__img img {
+  filter: saturate(.92) contrast(.98) brightness(.98);
+}
+
+.protyle-background__icon {
+  filter: drop-shadow(0 6px 16px var(--b3-theme-shadow));
+}
+
