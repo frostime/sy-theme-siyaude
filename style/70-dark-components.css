@@ -1,0 +1,304 @@
+/* Dark-mode component refinements ----------------------------------------- */
+
+:root[data-theme-mode="dark"],
+:root[data-theme-mode="dark"] body {
+  background: var(--cs-surface);
+}
+
+/* App chrome: make dark mode feel layered rather than uniformly brown. */
+:root[data-theme-mode="dark"] .toolbar,
+:root[data-theme-mode="dark"] .status {
+  background:
+    linear-gradient(180deg, rgba(38, 29, 24, .88), rgba(24, 18, 15, .9));
+  border-color: var(--cs-rail-line);
+  box-shadow: 0 1px 0 rgba(255, 244, 229, .035);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-container,
+:root[data-theme-mode="dark"] .fn__flex-column {
+  background: var(--cs-surface);
+}
+
+:root[data-theme-mode="dark"] .protyle,
+:root[data-theme-mode="dark"] .protyle-content {
+  background:
+    radial-gradient(circle at 50% -8%, rgba(255, 244, 229, .035), transparent 34%),
+    linear-gradient(180deg, #211915 0%, #1f1814 100%);
+}
+
+:root[data-theme-mode="dark"] .protyle-breadcrumb,
+:root[data-theme-mode="dark"] .block__icons {
+  background: rgba(34, 26, 21, .68);
+  border-color: var(--cs-rail-line);
+  box-shadow: 0 1px 0 rgba(255, 244, 229, .035), 0 8px 22px rgba(0, 0, 0, .18);
+}
+
+/* Side docks and document tree. */
+:root[data-theme-mode="dark"] .layout__dockl,
+:root[data-theme-mode="dark"] .layout__dockr,
+:root[data-theme-mode="dark"] .layout__dockb {
+  background:
+    radial-gradient(circle at 12% -8%, rgba(223, 128, 91, .105) 0, transparent 35%),
+    linear-gradient(180deg, #17110e 0%, #1c1410 100%);
+  border-color: var(--cs-rail-line);
+}
+
+:root[data-theme-mode="dark"] .dock {
+  background: linear-gradient(180deg, #18110e, #211812);
+  border-color: var(--cs-rail-line);
+  box-shadow: inset -1px 0 0 rgba(255, 244, 229, .028);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .block__icons,
+:root[data-theme-mode="dark"] .layout__dockr .block__icons,
+:root[data-theme-mode="dark"] .layout__dockb .block__icons {
+  background: rgba(35, 27, 22, .58);
+  border-color: rgba(239, 220, 199, .09);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 229, .035), 0 8px 22px rgba(0, 0, 0, .2);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item,
+:root[data-theme-mode="dark"] .sy__file .b3-list-item,
+:root[data-theme-mode="dark"] .sy__bookmark .b3-list-item,
+:root[data-theme-mode="dark"] .sy__backlink .b3-list-item,
+:root[data-theme-mode="dark"] .sy__outline .b3-list-item,
+:root[data-theme-mode="dark"] .sy__tag .b3-list-item {
+  color: var(--cs-text-soft);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item:hover,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item:hover,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item:hover,
+:root[data-theme-mode="dark"] .sy__file .b3-list-item:not([data-type="navigation-root"]):hover,
+:root[data-theme-mode="dark"] .sy__bookmark .b3-list-item:hover,
+:root[data-theme-mode="dark"] .sy__outline .b3-list-item:hover,
+:root[data-theme-mode="dark"] .sy__tag .b3-list-item:hover {
+  background: rgba(223, 128, 91, .072) !important;
+  border-color: rgba(223, 128, 91, .18);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item--focus,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item--focus,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__file .b3-list-item:not([data-type="navigation-root"]).b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__bookmark .b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__outline .b3-list-item--focus,
+:root[data-theme-mode="dark"] .sy__tag .b3-list-item--focus {
+  background: linear-gradient(90deg, rgba(223, 128, 91, .17), rgba(223, 128, 91, .092)) !important;
+  border-color: rgba(223, 128, 91, .28);
+  box-shadow: inset 2px 0 0 var(--cs-accent), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockl .counter,
+:root[data-theme-mode="dark"] .layout__dockr .counter,
+:root[data-theme-mode="dark"] .layout__dockb .counter {
+  background: rgba(255, 244, 229, .055);
+  color: rgba(241, 231, 219, .55);
+}
+
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item--focus .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item--focus .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item--focus .b3-list-item__meta,
+:root[data-theme-mode="dark"] .layout__dockl .b3-list-item--focus .counter,
+:root[data-theme-mode="dark"] .layout__dockr .b3-list-item--focus .counter,
+:root[data-theme-mode="dark"] .layout__dockb .b3-list-item--focus .counter {
+  background: rgba(223, 128, 91, .16);
+  color: var(--cs-accent-strong);
+}
+
+/* Tabs: normal, pinned, and focused states should stay legible in dark mode. */
+:root[data-theme-mode="dark"] .layout-tab-bar {
+  background: rgba(22, 17, 14, .86);
+  border-color: var(--cs-rail-line);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item {
+  color: var(--cs-text-muted);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item:hover {
+  background: rgba(255, 244, 229, .04);
+  border-color: rgba(239, 220, 199, .075);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item--focus {
+  background: linear-gradient(180deg, rgba(45, 34, 28, .92), rgba(35, 27, 22, .92));
+  border-color: rgba(239, 220, 199, .12);
+  box-shadow: inset 0 -2px 0 var(--cs-accent), 0 1px 6px rgba(0, 0, 0, .26);
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item.item--pin {
+  background: linear-gradient(180deg, rgba(48, 36, 29, .92), rgba(39, 29, 23, .9));
+  border-color: rgba(223, 128, 91, .2);
+  box-shadow: inset 0 -1px 0 rgba(223, 128, 91, .22);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item.item--pin:hover {
+  background: linear-gradient(180deg, rgba(57, 42, 33, .94), rgba(44, 33, 27, .94));
+  border-color: rgba(223, 128, 91, .3);
+}
+
+:root[data-theme-mode="dark"] .layout-tab-bar .item.item--pin.item--focus {
+  background: linear-gradient(180deg, rgba(61, 43, 33, .96), rgba(38, 28, 23, .96));
+  border-color: rgba(223, 128, 91, .38);
+  box-shadow: inset 0 -2px 0 var(--cs-accent), 0 1px 6px rgba(0, 0, 0, .3);
+}
+
+/* Menus, dialogs, hints, and utility popovers. */
+:root[data-theme-mode="dark"] .b3-menu,
+:root[data-theme-mode="dark"] .protyle-hint,
+:root[data-theme-mode="dark"] .b3-dialog__container,
+:root[data-theme-mode="dark"] .b3-snackbar__content,
+:root[data-theme-mode="dark"] .graph__panel,
+:root[data-theme-mode="dark"] .protyle-util {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(223, 128, 91, .075), transparent 32%),
+    rgba(33, 25, 21, .985);
+  border-color: rgba(239, 220, 199, .12);
+  box-shadow: var(--b3-menu-shadow);
+}
+
+:root[data-theme-mode="dark"] .b3-menu__separator,
+:root[data-theme-mode="dark"] .fn__hr {
+  background-color: rgba(239, 220, 199, .095);
+}
+
+/* Forms: avoid flat black inputs. */
+:root[data-theme-mode="dark"] .b3-text-field,
+:root[data-theme-mode="dark"] .b3-select,
+:root[data-theme-mode="dark"] .b3-textarea,
+:root[data-theme-mode="dark"] select,
+:root[data-theme-mode="dark"] textarea,
+:root[data-theme-mode="dark"] input[type="text"],
+:root[data-theme-mode="dark"] input[type="search"],
+:root[data-theme-mode="dark"] input[type="password"],
+:root[data-theme-mode="dark"] input[type="number"] {
+  background: rgba(26, 20, 17, .86);
+  border-color: rgba(239, 220, 199, .12);
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .b3-text-field:focus,
+:root[data-theme-mode="dark"] .b3-select:focus,
+:root[data-theme-mode="dark"] .b3-textarea:focus,
+:root[data-theme-mode="dark"] select:focus,
+:root[data-theme-mode="dark"] textarea:focus,
+:root[data-theme-mode="dark"] input:focus {
+  border-color: rgba(223, 128, 91, .38);
+  box-shadow: 0 0 0 3px rgba(223, 128, 91, .13);
+}
+
+/* Editor content and common block surfaces. */
+:root[data-theme-mode="dark"] .protyle-wysiwyg,
+:root[data-theme-mode="dark"] .b3-typography {
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .protyle-title__input {
+  color: #f5eadf;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .22);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-node-id]:hover {
+  background-color: rgba(223, 128, 91, .042);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h3"],
+:root[data-theme-mode="dark"] .b3-typography h3 {
+  color: #f0a17a;
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg span[data-type~="code"],
+:root[data-theme-mode="dark"] .b3-typography code,
+:root[data-theme-mode="dark"] .protyle-wysiwyg code {
+  background: rgba(18, 14, 12, .82);
+  color: #f0ae8a;
+  border-color: rgba(239, 220, 199, .11);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeCodeBlock"],
+:root[data-theme-mode="dark"] .b3-typography pre {
+  background: linear-gradient(180deg, #17110e, #130f0d) !important;
+  border-color: rgba(239, 220, 199, .105);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 229, .035), 0 8px 24px rgba(0, 0, 0, .22);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg table,
+:root[data-theme-mode="dark"] .b3-typography table,
+:root[data-theme-mode="dark"] .b3-card,
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeBlockQueryEmbed"],
+:root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeSuperBlock"],
+:root[data-theme-mode="dark"] .av__container {
+  background: rgba(39, 31, 26, .78);
+  border-color: rgba(239, 220, 199, .105) !important;
+  box-shadow: 0 1px 0 rgba(255, 244, 229, .03), 0 8px 24px rgba(0, 0, 0, .18);
+}
+
+:root[data-theme-mode="dark"] .protyle-wysiwyg th,
+:root[data-theme-mode="dark"] .b3-typography th,
+:root[data-theme-mode="dark"] .av__header,
+:root[data-theme-mode="dark"] .av__views,
+:root[data-theme-mode="dark"] .av__row--header,
+:root[data-theme-mode="dark"] .av__cell--header {
+  background: rgba(255, 244, 229, .045);
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .av__cell:hover,
+:root[data-theme-mode="dark"] .av__row:hover {
+  background: rgba(223, 128, 91, .065);
+}
+
+/* Backlinks and search previews: dark card layers with quieter borders. */
+:root[data-theme-mode="dark"] .graph__svg,
+:root[data-theme-mode="dark"] .graph__panel,
+:root[data-theme-mode="dark"] .search__layout,
+:root[data-theme-mode="dark"] .search__list,
+:root[data-theme-mode="dark"] .search__preview,
+:root[data-theme-mode="dark"] .backlinkList {
+  background: var(--cs-bg-paper);
+  color: var(--cs-text);
+}
+
+:root[data-theme-mode="dark"] .sy__backlink .search__item,
+:root[data-theme-mode="dark"] .sy__search .search__item,
+:root[data-theme-mode="dark"] .sy__backlink .backlinkList>.b3-list-item {
+  background: rgba(42, 32, 26, .72);
+  border-color: rgba(239, 220, 199, .095);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 229, .03), 0 8px 20px rgba(0, 0, 0, .18);
+}
+
+:root[data-theme-mode="dark"] .sy__backlink .search__item:hover,
+:root[data-theme-mode="dark"] .sy__search .search__item:hover,
+:root[data-theme-mode="dark"] .sy__backlink .backlinkList>.b3-list-item:hover,
+:root[data-theme-mode="dark"] .search__item--focus,
+:root[data-theme-mode="dark"] .search__item:hover {
+  background: linear-gradient(180deg, rgba(52, 39, 31, .84), rgba(43, 32, 26, .82));
+  border-color: rgba(223, 128, 91, .24);
+}
+
+:root[data-theme-mode="dark"] .search__header,
+:root[data-theme-mode="dark"] .search__tip,
+:root[data-theme-mode="dark"] .search__empty,
+:root[data-theme-mode="dark"] .backlinkList .b3-list-item__meta {
+  color: rgba(241, 231, 219, .52);
+}
+
+/* Images should not glow too brightly on dark canvas. */
+:root[data-theme-mode="dark"] .asset img,
+:root[data-theme-mode="dark"] .protyle-wysiwyg img {
+  box-shadow: 0 10px 34px rgba(0, 0, 0, .28);
+  filter: saturate(.94) brightness(.92) contrast(.98);
+}
+
+:root[data-theme-mode="dark"] ::selection {
+  background: rgba(223, 128, 91, .34);
+  color: #fff1e4;
+}
+

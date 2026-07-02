@@ -1,0 +1,279 @@
+/*
+ * Siyaude for SiYuan Note
+ * Warm, low-glare theme inspired by Claude's calm editorial aesthetic.
+ * No JavaScript. No external assets. Built against the official SiYuan theme-sample package contract.
+ */
+
+/* Shared design tokens ---------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  /* Typography */
+  --b3-font-family: ui-serif, Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --b3-font-family-protyle: ui-serif, Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --b3-font-family-code: "SFMono-Regular", "Cascadia Code", "JetBrains Mono", "Fira Code", Menlo, Consolas, "Noto Sans Mono CJK SC", monospace;
+  --b3-font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+
+  /* Radius, animation, density */
+  --b3-border-radius: 10px;
+  --b3-border-radius-b: 14px;
+  --b3-transition: all .18s cubic-bezier(.2, 0, .2, 1);
+  --b3-color-transition: color .18s cubic-bezier(.2, 0, .2, 1), background-color .18s cubic-bezier(.2, 0, .2, 1), border-color .18s cubic-bezier(.2, 0, .2, 1);
+  --b3-font-size-editor: 16px;
+  --cs-list-radius: 7px;
+  --cs-list-radius-focus: 8px;
+  --cs-pin-bg: color-mix(in srgb, var(--cs-rail-elevated) 76%, var(--cs-accent-softer));
+
+  /* Siyaude local aliases */
+  --cs-bg: #f6f0e8;
+  --cs-bg-paper: #fffaf2;
+  --cs-bg-paper-2: #fbf4ea;
+  --cs-surface: #eee4d8;
+  --cs-surface-2: #e8dccf;
+  --cs-surface-3: #decfc0;
+  --cs-text: #2f241d;
+  --cs-text-soft: #6e5d4e;
+  --cs-text-muted: #8b7a6a;
+  --cs-accent: #c15f3c;
+  --cs-accent-strong: #9b452c;
+  --cs-accent-soft: #f1d1bf;
+  --cs-accent-softer: #f8e3d7;
+  --cs-blue: #3f6f8f;
+  --cs-green: #4f7a54;
+  --cs-yellow: #a97625;
+  --cs-red: #a94636;
+  --cs-purple: #785b91;
+  --cs-border: rgba(86, 65, 49, .17);
+  --cs-border-strong: rgba(86, 65, 49, .28);
+  --cs-shadow: rgba(69, 45, 30, .12);
+  --cs-shadow-strong: rgba(69, 45, 30, .2);
+  --cs-rail: #f2e9de;
+  --cs-rail-2: #eadfd2;
+  --cs-rail-elevated: rgba(255, 250, 242, .74);
+  --cs-rail-glass: rgba(255, 250, 242, .58);
+  --cs-rail-active: rgba(193, 95, 60, .13);
+  --cs-rail-hover: rgba(193, 95, 60, .08);
+  --cs-rail-line: rgba(86, 65, 49, .12);
+
+  /* Core SiYuan variables */
+  --b3-theme-background: var(--cs-bg-paper);
+  --b3-theme-background-light: var(--cs-bg-paper-2);
+  --b3-theme-surface: var(--cs-bg);
+  --b3-theme-surface-light: var(--cs-surface);
+  --b3-theme-surface-lighter: var(--cs-surface-2);
+  --b3-theme-primary: var(--cs-accent);
+  --b3-theme-primary-light: rgba(193, 95, 60, .34);
+  --b3-theme-primary-lighter: rgba(193, 95, 60, .22);
+  --b3-theme-primary-lightest: rgba(193, 95, 60, .12);
+  --b3-theme-secondary: #7a5c3f;
+  --b3-theme-error: var(--cs-red);
+  --b3-theme-on-background: var(--cs-text);
+  --b3-theme-on-surface: var(--cs-text-soft);
+  --b3-theme-on-surface-light: var(--cs-text-muted);
+  --b3-theme-on-primary: #fffaf2;
+  --b3-theme-on-secondary: #fffaf2;
+  --b3-theme-on-error: #fff7f2;
+  --b3-theme-shadow: var(--cs-shadow);
+  --b3-border-color: var(--cs-border);
+  --b3-scroll-color: rgba(122, 92, 63, .25);
+  --b3-list-hover: rgba(193, 95, 60, .09);
+  --b3-list-icon-hover: rgba(193, 95, 60, .16);
+  --b3-list-item-focus: rgba(193, 95, 60, .14);
+  --b3-menu-background: rgba(255, 250, 242, .97);
+  --b3-menu-shadow: 0 16px 50px rgba(69, 45, 30, .18), 0 2px 10px rgba(69, 45, 30, .08);
+  --b3-toolbar-background: rgba(246, 240, 232, .92);
+  --b3-toolbar-blur-background: rgba(246, 240, 232, .78);
+  --b3-toolbar-color: var(--cs-text-soft);
+  --b3-toolbar-hover: rgba(193, 95, 60, .12);
+  --b3-empty-color: rgba(47, 36, 29, .42);
+  --b3-tooltips-color: #fffaf2;
+  --b3-tooltips-background: #4b382b;
+
+  /* Cards */
+  --b3-card-error-color: #783125;
+  --b3-card-error-background: #f8d7cc;
+  --b3-card-warning-color: #6f4c14;
+  --b3-card-warning-background: #f7e4bc;
+  --b3-card-info-color: #29546c;
+  --b3-card-info-background: #d8e8ee;
+  --b3-card-success-color: #315a35;
+  --b3-card-success-background: #dcead9;
+
+  /* Text color palette in the editor color picker */
+  --b3-font-color1: var(--b3-card-error-color);
+  --b3-font-color2: var(--b3-card-warning-color);
+  --b3-font-color3: var(--b3-card-info-color);
+  --b3-font-color4: var(--b3-card-success-color);
+  --b3-font-color5: var(--cs-text-soft);
+  --b3-font-color6: var(--cs-accent);
+  --b3-font-color7: var(--cs-blue);
+  --b3-font-color8: var(--cs-purple);
+  --b3-font-color9: #9f5b2a;
+  --b3-font-color10: #7e4965;
+  --b3-font-color11: #597d43;
+  --b3-font-color12: #8f6632;
+  --b3-font-color13: #fffaf2;
+  --b3-font-background1: var(--b3-card-error-background);
+  --b3-font-background2: var(--b3-card-warning-background);
+  --b3-font-background3: var(--b3-card-info-background);
+  --b3-font-background4: var(--b3-card-success-background);
+  --b3-font-background5: var(--cs-surface);
+  --b3-font-background6: var(--cs-accent-softer);
+  --b3-font-background7: #e3edf2;
+  --b3-font-background8: #eadfee;
+  --b3-font-background9: #f1dfca;
+  --b3-font-background10: #eaded5;
+  --b3-font-background11: #e3ead9;
+  --b3-font-background12: #f2e0c6;
+  --b3-font-background13: var(--cs-text);
+
+  /* Protyle inline and PDF colors */
+  --b3-protyle-inline-strong-color: var(--cs-text);
+  --b3-protyle-inline-em-color: var(--cs-text-soft);
+  --b3-protyle-inline-s-color: var(--cs-text-muted);
+  --b3-protyle-inline-link-color: var(--cs-accent-strong);
+  --b3-protyle-inline-mark-background: #f6dca6;
+  --b3-protyle-inline-mark-color: var(--cs-text);
+  --b3-protyle-inline-tag-color: var(--cs-accent-strong);
+  --b3-protyle-inline-tag-background: rgba(193, 95, 60, .1);
+  --b3-protyle-code-background: #f2e7dc;
+  --b3-protyle-code-linenumber-hl: rgba(193, 95, 60, .16);
+  --b3-protyle-code-linenumber: rgba(47, 36, 29, .42);
+  --b3-protyle-inline-blockref-color: var(--cs-blue);
+  --b3-protyle-inline-fileref-color: var(--cs-green);
+  --b3-pdf-selection: rgba(193, 95, 60, .2);
+  --b3-pdf-dark: #2e2119;
+}
+
+/* Explicit light mode hook for SiYuan's data-theme-mode contract */
+:root[data-theme-mode="light"] {
+  color-scheme: light;
+}
+
+/* Dark mode --------------------------------------------------------------- */
+:root[data-theme-mode="dark"] {
+  /* Mode */
+  color-scheme: dark;
+
+  /* Siyaude local palette */
+  --cs-bg: #16110e;
+  --cs-bg-paper: #211915;
+  --cs-bg-paper-2: #271f1a;
+  --cs-surface: #1b1512;
+  --cs-surface-2: #302620;
+  --cs-surface-3: #3d2f27;
+  --cs-text: #f1e7db;
+  --cs-text-soft: #cbbbaa;
+  --cs-text-muted: #978675;
+  --cs-accent: #df805b;
+  --cs-accent-strong: #f2a17c;
+  --cs-accent-soft: rgba(223, 128, 91, .24);
+  --cs-accent-softer: rgba(223, 128, 91, .13);
+  --cs-blue: #95bfd0;
+  --cs-green: #a6c896;
+  --cs-yellow: #e3bc72;
+  --cs-red: #e48270;
+  --cs-purple: #baa0d4;
+  --cs-border: rgba(239, 220, 199, .115);
+  --cs-border-strong: rgba(239, 220, 199, .21);
+  --cs-shadow: rgba(0, 0, 0, .32);
+  --cs-shadow-strong: rgba(0, 0, 0, .5);
+  --cs-rail: #15100d;
+  --cs-rail-2: #1d1511;
+  --cs-rail-elevated: rgba(44, 34, 28, .66);
+  --cs-rail-glass: rgba(35, 27, 22, .58);
+  --cs-rail-active: rgba(223, 128, 91, .145);
+  --cs-rail-hover: rgba(223, 128, 91, .075);
+  --cs-rail-line: rgba(239, 220, 199, .085);
+
+  /* Core SiYuan variables */
+  --b3-theme-background: var(--cs-bg-paper);
+  --b3-theme-background-light: var(--cs-bg-paper-2);
+  --b3-theme-surface: var(--cs-surface);
+  --b3-theme-surface-light: var(--cs-surface-2);
+  --b3-theme-surface-lighter: var(--cs-surface-3);
+  --b3-theme-primary: var(--cs-accent);
+  --b3-theme-primary-light: rgba(223, 128, 91, .34);
+  --b3-theme-primary-lighter: rgba(223, 128, 91, .22);
+  --b3-theme-primary-lightest: rgba(223, 128, 91, .13);
+  --b3-theme-secondary: #d8b48a;
+  --b3-theme-error: var(--cs-red);
+  --b3-theme-on-background: var(--cs-text);
+  --b3-theme-on-surface: var(--cs-text-soft);
+  --b3-theme-on-surface-light: var(--cs-text-muted);
+  --b3-theme-on-primary: #22130f;
+  --b3-theme-on-secondary: #211711;
+  --b3-theme-on-error: #231311;
+  --b3-theme-shadow: var(--cs-shadow);
+  --b3-border-color: var(--cs-border);
+  --b3-scroll-color: rgba(241, 231, 219, .21);
+  --b3-list-hover: rgba(223, 128, 91, .075);
+  --b3-list-icon-hover: rgba(223, 128, 91, .14);
+  --b3-list-item-focus: rgba(223, 128, 91, .145);
+  --b3-menu-background: rgba(33, 25, 21, .985);
+  --b3-menu-shadow: 0 18px 56px rgba(0, 0, 0, .48), 0 2px 12px rgba(0, 0, 0, .28);
+  --b3-toolbar-background: rgba(24, 18, 15, .9);
+  --b3-toolbar-blur-background: rgba(24, 18, 15, .72);
+  --b3-toolbar-color: var(--cs-text-soft);
+  --b3-toolbar-hover: rgba(223, 128, 91, .12);
+  --b3-empty-color: rgba(241, 231, 219, .36);
+  --b3-tooltips-color: #201712;
+  --b3-tooltips-background: #f0d8bf;
+
+  /* Cards and editor color palette */
+  --b3-card-error-color: #ffd2c8;
+  --b3-card-error-background: rgba(228, 130, 112, .15);
+  --b3-card-warning-color: #f4d8a2;
+  --b3-card-warning-background: rgba(227, 188, 114, .145);
+  --b3-card-info-color: #c8e4ef;
+  --b3-card-info-background: rgba(149, 191, 208, .135);
+  --b3-card-success-color: #d0e9c5;
+  --b3-card-success-background: rgba(166, 200, 150, .135);
+  --b3-font-color1: var(--b3-card-error-color);
+  --b3-font-color2: var(--b3-card-warning-color);
+  --b3-font-color3: var(--b3-card-info-color);
+  --b3-font-color4: var(--b3-card-success-color);
+  --b3-font-color5: var(--cs-text-soft);
+  --b3-font-color6: var(--cs-accent);
+  --b3-font-color7: var(--cs-blue);
+  --b3-font-color8: var(--cs-purple);
+  --b3-font-color9: #d9a06e;
+  --b3-font-color10: #d99ab6;
+  --b3-font-color11: #b7d39e;
+  --b3-font-color12: #e0bd8b;
+  --b3-font-color13: #211a16;
+  --b3-font-background1: var(--b3-card-error-background);
+  --b3-font-background2: var(--b3-card-warning-background);
+  --b3-font-background3: var(--b3-card-info-background);
+  --b3-font-background4: var(--b3-card-success-background);
+  --b3-font-background5: rgba(255, 244, 229, .055);
+  --b3-font-background6: var(--cs-accent-softer);
+  --b3-font-background7: rgba(145, 184, 204, .16);
+  --b3-font-background8: rgba(182, 154, 208, .16);
+  --b3-font-background9: rgba(217, 160, 110, .16);
+  --b3-font-background10: rgba(217, 154, 182, .16);
+  --b3-font-background11: rgba(183, 211, 158, .16);
+  --b3-font-background12: rgba(224, 189, 139, .16);
+  --b3-font-background13: var(--cs-text);
+
+  /* Protyle inline and PDF colors */
+  --b3-protyle-inline-link-color: #f0a27c;
+  --b3-protyle-inline-mark-background: rgba(232, 178, 86, .29);
+  --b3-protyle-inline-mark-color: #fff1df;
+  --b3-protyle-inline-tag-color: #f1a17a;
+  --b3-protyle-inline-tag-background: rgba(223, 128, 91, .13);
+  --b3-protyle-code-background: #1a1411;
+  --b3-protyle-code-linenumber-hl: rgba(223, 128, 91, .16);
+  --b3-protyle-code-linenumber: rgba(241, 231, 219, .34);
+  --b3-protyle-inline-blockref-color: var(--cs-blue);
+  --b3-protyle-inline-fileref-color: var(--cs-green);
+  --b3-pdf-selection: rgba(223, 128, 91, .24);
+  --b3-pdf-dark: #120e0c;
+  --b3-protyle-inline-strong-color: #fff2e4;
+  --b3-protyle-inline-em-color: var(--cs-text-soft);
+  --b3-protyle-inline-s-color: var(--cs-text-muted);
+
+  /* Component aliases */
+  --cs-pin-bg: color-mix(in srgb, rgba(44, 34, 28, .84) 78%, var(--cs-accent-softer));
+}
+

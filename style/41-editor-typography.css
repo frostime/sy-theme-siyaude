@@ -1,0 +1,145 @@
+/* Headings ---------------------------------------------------------------- */
+.protyle-wysiwyg [data-type="NodeHeading"],
+.b3-typography h1,
+.b3-typography h2,
+.b3-typography h3,
+.b3-typography h4,
+.b3-typography h5,
+.b3-typography h6 {
+  color: var(--b3-theme-on-background);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 760;
+  letter-spacing: -.025em;
+}
+
+.protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h1"],
+.b3-typography h1 {
+  font-size: 2.1em;
+  line-height: 1.18;
+  margin-top: 1.4em;
+  margin-bottom: .42em;
+}
+
+.protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h2"],
+.b3-typography h2 {
+  font-size: 1.55em;
+  line-height: 1.25;
+  margin-top: 1.2em;
+  margin-bottom: .35em;
+  padding-bottom: .2em;
+  border-bottom: 1px solid var(--b3-border-color);
+}
+
+.protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h3"],
+.b3-typography h3 {
+  font-size: 1.24em;
+  color: var(--cs-accent-strong);
+}
+
+.protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h4"],
+.b3-typography h4 {
+  font-size: 1.08em;
+  color: var(--cs-text-soft);
+}
+
+/* Inline content ---------------------------------------------------------- */
+.b3-typography a,
+.protyle-wysiwyg a,
+.protyle-wysiwyg span[data-type~="a"] {
+  color: var(--b3-protyle-inline-link-color);
+  text-decoration-color: var(--b3-theme-primary-light);
+  text-underline-offset: .16em;
+  text-decoration-thickness: 1.5px;
+}
+
+.b3-typography a:hover,
+.protyle-wysiwyg a:hover,
+.protyle-wysiwyg span[data-type~="a"]:hover {
+  color: var(--cs-accent-strong);
+  text-decoration-color: currentColor;
+}
+
+.protyle-wysiwyg strong,
+.b3-typography strong {
+  color: var(--b3-protyle-inline-strong-color);
+  font-weight: 760;
+}
+
+.protyle-wysiwyg mark,
+.b3-typography mark,
+.protyle-wysiwyg span[data-type~="mark"] {
+  background: linear-gradient(180deg, transparent 46%, var(--b3-protyle-inline-mark-background) 46%);
+  color: var(--b3-protyle-inline-mark-color);
+  border-radius: 2px;
+  padding: 0 .08em;
+}
+
+.protyle-wysiwyg span[data-type~="tag"],
+.b3-typography span[data-type~="tag"] {
+  background: var(--b3-protyle-inline-tag-background);
+  color: var(--b3-protyle-inline-tag-color);
+  border: 1px solid var(--b3-theme-primary-lighter);
+  border-radius: 999px;
+  padding: .05em .45em;
+}
+
+.b3-typography span[data-type~="block-ref"],
+.protyle-wysiwyg span[data-type~="block-ref"] {
+  color: color-mix(in srgb, var(--cs-text) 70%, var(--cs-accent-strong) 30%);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 660;
+  letter-spacing: -.012em;
+  text-decoration: none !important;
+  background: color-mix(in srgb, var(--cs-accent-softer) 52%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cs-accent-soft) 50%, transparent);
+  border-radius: 6px;
+  padding: .01em .34em .035em;
+  margin: 0 .03em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
+}
+
+.b3-typography span[data-type~="block-ref"]:hover,
+.protyle-wysiwyg span[data-type~="block-ref"]:hover {
+  color: var(--cs-accent-strong);
+  background: color-mix(in srgb, var(--cs-accent-softer) 74%, transparent);
+  border-color: color-mix(in srgb, var(--cs-accent) 32%, transparent);
+}
+
+.b3-typography span[data-type~="file-annotation-ref"],
+.protyle-wysiwyg span[data-type~="file-annotation-ref"] {
+  color: color-mix(in srgb, var(--cs-text) 74%, var(--cs-green) 26%);
+  font-family: var(--b3-font-family-protyle);
+  font-weight: 620;
+  letter-spacing: -.008em;
+  text-decoration: none !important;
+  background: color-mix(in srgb, var(--b3-card-success-background) 54%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cs-green) 22%, transparent);
+  border-radius: 6px;
+  padding: .01em .34em .035em;
+  margin: 0 .03em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
+}
+
+.b3-typography span[data-type~="file-annotation-ref"]:hover,
+.protyle-wysiwyg span[data-type~="file-annotation-ref"]:hover {
+  color: color-mix(in srgb, var(--cs-green) 68%, var(--cs-text) 32%);
+  background: color-mix(in srgb, var(--b3-card-success-background) 72%, transparent);
+  border-color: color-mix(in srgb, var(--cs-green) 34%, transparent);
+}
+
+.protyle-wysiwyg span[data-type~="code"],
+.b3-typography code,
+.protyle-wysiwyg code {
+  background: var(--b3-protyle-code-background);
+  color: var(--cs-accent-strong);
+  border: 1px solid var(--b3-border-color);
+  border-radius: 6px;
+  font-family: var(--b3-font-family-code);
+  font-size: .92em;
+  padding: .11em .34em;
+}
+
