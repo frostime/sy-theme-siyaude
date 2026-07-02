@@ -126,23 +126,20 @@
   margin-left: 1px;
 }
 
-/* Notebook root rows: compact section headers. */
+/* Notebook root rows: compact section headers.
+   Keep vertical spacing inside the li; drag hit-testing must not cross margin gaps. */
 .sy__file .b3-list {
   padding-top: 2px;
 }
 
 .sy__file .b3-list-item[data-type="navigation-root"] {
   min-height: 27px;
-  margin: 2px 2px 0;
+  margin: 0 2px;
   padding: 0 6px;
   border-radius: var(--cs-list-radius);
   background: transparent !important;
   border-color: transparent;
   box-shadow: none;
-}
-
-.sy__file .b3-list-item[data-type="navigation-root"]+.b3-list-item[data-type="navigation-root"] {
-  margin-top: 1px;
 }
 
 .sy__file .b3-list-item[data-type="navigation-root"] .b3-list-item__text {
@@ -247,10 +244,6 @@
 :root[data-theme-mode="dark"] .toolbar__item#barWorkspace:hover {
   background: linear-gradient(180deg, #f09a72, #d87551) !important;
   box-shadow: inset 0 1px 0 rgba(255, 244, 229, .2), 0 6px 18px rgba(0, 0, 0, .34);
-}
-
-:root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"] {
-  margin-top: 2px;
 }
 
 :root[data-theme-mode="dark"] .sy__file .b3-list-item[data-type="navigation-root"]:hover {
