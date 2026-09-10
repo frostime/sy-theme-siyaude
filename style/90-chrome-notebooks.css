@@ -88,9 +88,7 @@
 }
 
 /* Workspace name menu: primary app identity chip. */
-#barWorkspace,
-.toolbar #barWorkspace,
-.toolbar__item#barWorkspace {
+#barWorkspace {
   border: 1px solid color-mix(in srgb, var(--b3-theme-primary) 72%, var(--cs-border));
   border-radius: 10px;
   background: linear-gradient(180deg,
@@ -102,9 +100,7 @@
   letter-spacing: -.012em;
 }
 
-#barWorkspace:hover,
-.toolbar #barWorkspace:hover,
-.toolbar__item#barWorkspace:hover {
+#barWorkspace:hover {
   background: linear-gradient(180deg,
       color-mix(in srgb, var(--cs-accent-strong) 88%, var(--b3-theme-primary) 12%),
       var(--cs-accent-strong)) !important;
@@ -171,31 +167,8 @@
   margin-bottom: 0;
 }
 
-/* Light-mode link and reference polish, matching the dark-mode editorial rules. */
-:root[data-theme-mode="light"] .b3-typography a,
-:root[data-theme-mode="light"] .protyle-wysiwyg a,
-:root[data-theme-mode="light"] .protyle-wysiwyg span[data-type~="a"] {
-  color: #8f3f28;
-  text-decoration: none !important;
-  background-image:
-    linear-gradient(0deg, rgba(143, 63, 40, .34), rgba(143, 63, 40, .34)),
-    linear-gradient(0deg, rgba(193, 95, 60, .105), rgba(193, 95, 60, .105));
-  background-repeat: no-repeat;
-  background-position: 0 calc(100% - .075em), 0 100%;
-  background-size: 100% 1px, 0 100%;
-  border-radius: 3px;
-  padding: 0 .035em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  transition: color .16s ease, background-size .18s ease;
-}
-
-:root[data-theme-mode="light"] .b3-typography a:hover,
-:root[data-theme-mode="light"] .protyle-wysiwyg a:hover,
-:root[data-theme-mode="light"] .protyle-wysiwyg span[data-type~="a"]:hover {
-  color: var(--cs-accent-strong);
-  background-size: 100% 1px, 100% 100%;
-}
+/* Light-mode link and reference polish, matching the dark-mode editorial rules:
+   those rules live in 80-editorial-links, both modes co-located there. */
 
 /* Dark refinements for the new chrome rules. */
 :root[data-theme-mode="dark"] #message.b3-snackbars,
@@ -228,9 +201,7 @@
   color: var(--cs-text);
 }
 
-:root[data-theme-mode="dark"] #barWorkspace,
-:root[data-theme-mode="dark"] .toolbar #barWorkspace,
-:root[data-theme-mode="dark"] .toolbar__item#barWorkspace {
+:root[data-theme-mode="dark"] #barWorkspace {
   background: linear-gradient(180deg,
       color-mix(in srgb, var(--cs-accent) 92%, #fff 8%),
       color-mix(in srgb, var(--cs-accent) 72%, #6d3525 28%));
@@ -239,9 +210,7 @@
   box-shadow: inset 0 1px 0 rgba(255, 244, 229, .18), 0 1px 4px rgba(0, 0, 0, .22);
 }
 
-:root[data-theme-mode="dark"] #barWorkspace:hover,
-:root[data-theme-mode="dark"] .toolbar #barWorkspace:hover,
-:root[data-theme-mode="dark"] .toolbar__item#barWorkspace:hover {
+:root[data-theme-mode="dark"] #barWorkspace:hover {
   background: linear-gradient(180deg, #f09a72, #d87551) !important;
   box-shadow: inset 0 1px 0 rgba(255, 244, 229, .2), 0 6px 18px rgba(0, 0, 0, .34);
 }

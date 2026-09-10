@@ -97,7 +97,7 @@ body {
 .block__icon,
 .toolbar__item,
 .protyle-breadcrumb__item {
-  border-radius: 9px;
+  border-radius: var(--cs-list-radius);
 }
 
 .b3-list-item:hover,

@@ -42,22 +42,7 @@
   color: var(--cs-text-soft);
 }
 
-/* Inline content ---------------------------------------------------------- */
-.b3-typography a,
-.protyle-wysiwyg a,
-.protyle-wysiwyg span[data-type~="a"] {
-  color: var(--b3-protyle-inline-link-color);
-  text-decoration-color: var(--b3-theme-primary-light);
-  text-underline-offset: .16em;
-  text-decoration-thickness: 1.5px;
-}
-
-.b3-typography a:hover,
-.protyle-wysiwyg a:hover,
-.protyle-wysiwyg span[data-type~="a"]:hover {
-  color: var(--cs-accent-strong);
-  text-decoration-color: currentColor;
-}
+/* Link styling lives in 80-editorial-links (both modes, co-located there). */
 
 .protyle-wysiwyg strong,
 .b3-typography strong {
