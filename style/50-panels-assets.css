@@ -18,6 +18,14 @@
   box-shadow: 0 1px 5px var(--b3-theme-shadow);
 }
 
+/* Bazaar market rows (b3-card) use a flex-column for the info part; a second
+   opaque layer over the card background renders as a two-tone card (the
+   actions column has no inner column and shows through lighter). Scoped to
+   the bazaar since that's where the kernel nests columns in cards. */
+.config-bazaar .b3-card .fn__flex-column {
+  background: transparent;
+}
+
 .av__header,
 .av__views,
 .av__row--header,
@@ -35,8 +43,7 @@
 .graph__panel,
 .search__layout,
 .search__list,
-.search__preview,
-.backlinkList {
+.search__preview {
   background: var(--b3-theme-background);
   color: var(--b3-theme-on-background);
 }
@@ -44,6 +51,72 @@
 .search__item--focus,
 .search__item:hover {
   background: var(--b3-list-item-focus);
+}
+
+/* Document bottom backlink panel ------------------------------------------
+   The kernel renders it as .sy__backlink--bottom inside .protyle-content.
+   Real item container is div.backlinkList__item (li.b3-list-item is only the
+   title row inside it), so card styles must target the wrapper; otherwise
+   items fall back to the kernel's default white b3-list-item look. */
+.sy__backlink--bottom {
+  /* Match the editor canvas, not --b3-theme-surface: the panel sits between
+     white editor content and white item cards, a beige band looks like a bug. */
+  background: var(--b3-theme-background);
+  border-top: 1px solid var(--cs-rail-line);
+}
+
+/* Headers share the dock sidebar header pill look (20-navigation). */
+.sy__backlink--bottom > .block__icons {
+  min-height: 38px;
+  margin: 6px 7px 5px;
+  padding: 4px 6px;
+  background: var(--cs-rail-glass);
+  border: 1px solid var(--cs-rail-line);
+  border-radius: 15px;
+  box-shadow: 0 1px 2px var(--b3-theme-shadow);
+}
+
+.sy__backlink--bottom .block__logo {
+  color: var(--b3-theme-on-background);
+  font-weight: 720;
+  letter-spacing: -.015em;
+}
+
+.sy__backlink--bottom .block__icon {
+  color: var(--cs-text-muted);
+  border-radius: 10px;
+}
+
+.sy__backlink--bottom .block__icon:hover {
+  color: var(--cs-accent-strong);
+  background: var(--b3-list-icon-hover);
+}
+
+/* Card container on the real wrapper (side dock + bottom panel). */
+.sy__backlink .backlinkList__item {
+  background: var(--b3-theme-background);
+  border: 1px solid var(--cs-rail-line);
+  border-radius: 12px;
+  margin: 0 0 8px;
+  box-shadow: 0 1px 3px var(--b3-theme-shadow);
+  overflow: hidden;
+}
+
+.sy__backlink .backlinkList__item:hover {
+  border-color: color-mix(in srgb, var(--cs-accent) 30%, var(--cs-rail-line));
+}
+
+/* Neutralize kernel default white card on the inner title row so the wrapper
+   carries the card visuals. !important is required to beat the global
+   .b3-list-item:hover rule in 10-global; the extra class count outweighs
+   base.css's own 4-class backlink selectors. */
+.sy__backlink .backlinkList > .b3-list > .backlinkList__item > li.b3-list-item,
+.sy__backlink .backlinkList > .b3-list > .backlinkList__item > li.b3-list-item:hover {
+  background: transparent !important;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
 }
 
 /* PDF and assets ---------------------------------------------------------- */

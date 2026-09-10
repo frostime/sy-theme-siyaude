@@ -11,8 +11,6 @@
 .protyle-wysiwyg,
 .b3-typography {
   color: var(--b3-theme-on-background);
-  /* font-family: var(--b3-font-family-protyle); */
-  /* font-size: var(--b3-font-size-editor); */
   line-height: 1.72;
   letter-spacing: .005em;
 }
@@ -32,9 +30,8 @@
   border-radius: 9px;
 }
 
-.protyle-wysiwyg [data-node-id]:hover {
-  background-color: color-mix(in srgb, var(--b3-list-hover) 48%, transparent);
-}
+/* Block hover tinting lives in 80-editorial-links (@supports :has de-stacking
+   rules); a plain fallback here would only apply where :has is unsupported. */
 
 .protyle-title {
   max-width: none;

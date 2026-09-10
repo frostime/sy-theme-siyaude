@@ -1,5 +1,32 @@
 /* Editorial links, quotes, and nested-hover de-stacking -------------------- */
 
+/* Light-mode links: warm ink underline instead of browser-default decoration.
+   Dark-mode counterparts live further below in this same file. */
+:root[data-theme-mode="light"] .b3-typography a,
+:root[data-theme-mode="light"] .protyle-wysiwyg a,
+:root[data-theme-mode="light"] .protyle-wysiwyg span[data-type~="a"] {
+  color: #8f3f28;
+  text-decoration: none !important;
+  background-image:
+    linear-gradient(0deg, rgba(143, 63, 40, .34), rgba(143, 63, 40, .34)),
+    linear-gradient(0deg, rgba(193, 95, 60, .105), rgba(193, 95, 60, .105));
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% - .075em), 0 100%;
+  background-size: 100% 1px, 0 100%;
+  border-radius: 3px;
+  padding: 0 .035em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: color .16s ease, background-size .18s ease;
+}
+
+:root[data-theme-mode="light"] .b3-typography a:hover,
+:root[data-theme-mode="light"] .protyle-wysiwyg a:hover,
+:root[data-theme-mode="light"] .protyle-wysiwyg span[data-type~="a"]:hover {
+  color: var(--cs-accent-strong);
+  background-size: 100% 1px, 100% 100%;
+}
+
 /* Dark links: warm ink underline instead of browser-default decoration. */
 :root[data-theme-mode="dark"] .b3-typography a,
 :root[data-theme-mode="dark"] .protyle-wysiwyg a,

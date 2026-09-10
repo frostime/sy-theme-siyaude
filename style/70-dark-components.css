@@ -19,11 +19,23 @@
   background: var(--cs-surface);
 }
 
+/* Except bazaar market rows: the card surface already carries the layer. */
+.config-bazaar .b3-card .fn__flex-column {
+  background: transparent;
+}
+
 :root[data-theme-mode="dark"] .protyle,
 :root[data-theme-mode="dark"] .protyle-content {
   background:
     radial-gradient(circle at 50% -8%, rgba(255, 244, 229, .035), transparent 34%),
     linear-gradient(180deg, #211915 0%, #1f1814 100%);
+}
+
+/* The bottom backlink panel sits inside .protyle-content; staying transparent
+   lets it inherit the canvas gradient, otherwise it reads as a darker band
+   (.fn__flex-column would otherwise pin it to --cs-surface). */
+:root[data-theme-mode="dark"] .protyle-content > .sy__backlink--bottom {
+  background: transparent;
 }
 
 :root[data-theme-mode="dark"] .protyle-breadcrumb,
@@ -62,7 +74,6 @@
 :root[data-theme-mode="dark"] .layout__dockb .b3-list-item,
 :root[data-theme-mode="dark"] .sy__file .b3-list-item,
 :root[data-theme-mode="dark"] .sy__bookmark .b3-list-item,
-:root[data-theme-mode="dark"] .sy__backlink .b3-list-item,
 :root[data-theme-mode="dark"] .sy__outline .b3-list-item,
 :root[data-theme-mode="dark"] .sy__tag .b3-list-item {
   color: var(--cs-text-soft);
@@ -205,10 +216,6 @@
   text-shadow: 0 1px 0 rgba(0, 0, 0, .22);
 }
 
-:root[data-theme-mode="dark"] .protyle-wysiwyg [data-node-id]:hover {
-  background-color: rgba(223, 128, 91, .042);
-}
-
 :root[data-theme-mode="dark"] .protyle-wysiwyg [data-type="NodeHeading"][data-subtype="h3"],
 :root[data-theme-mode="dark"] .b3-typography h3 {
   color: #f0a17a;
@@ -260,15 +267,22 @@
 :root[data-theme-mode="dark"] .graph__panel,
 :root[data-theme-mode="dark"] .search__layout,
 :root[data-theme-mode="dark"] .search__list,
-:root[data-theme-mode="dark"] .search__preview,
-:root[data-theme-mode="dark"] .backlinkList {
+:root[data-theme-mode="dark"] .search__preview {
   background: var(--cs-bg-paper);
+  color: var(--cs-text);
+}
+
+/* Cards carry their own layer now; keep backlink/mention list containers
+   transparent so both sections share the panel background. */
+:root[data-theme-mode="dark"] .sy__backlink .backlinkList,
+:root[data-theme-mode="dark"] .sy__backlink .backlinkMList {
+  background: transparent;
   color: var(--cs-text);
 }
 
 :root[data-theme-mode="dark"] .sy__backlink .search__item,
 :root[data-theme-mode="dark"] .sy__search .search__item,
-:root[data-theme-mode="dark"] .sy__backlink .backlinkList>.b3-list-item {
+:root[data-theme-mode="dark"] .sy__backlink .backlinkList__item {
   background: rgba(42, 32, 26, .72);
   border-color: rgba(239, 220, 199, .095);
   box-shadow: inset 0 1px 0 rgba(255, 244, 229, .03), 0 8px 20px rgba(0, 0, 0, .18);
@@ -276,7 +290,7 @@
 
 :root[data-theme-mode="dark"] .sy__backlink .search__item:hover,
 :root[data-theme-mode="dark"] .sy__search .search__item:hover,
-:root[data-theme-mode="dark"] .sy__backlink .backlinkList>.b3-list-item:hover,
+:root[data-theme-mode="dark"] .sy__backlink .backlinkList__item:hover,
 :root[data-theme-mode="dark"] .search__item--focus,
 :root[data-theme-mode="dark"] .search__item:hover {
   background: linear-gradient(180deg, rgba(52, 39, 31, .84), rgba(43, 32, 26, .82));

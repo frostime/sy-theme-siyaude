@@ -1,8 +1,6 @@
-/* Compact row radius and pinned tabs --------------------------------------- */
-.b3-list-item,
-.block__icon,
-.toolbar__item,
-.protyle-breadcrumb__item,
+/* Compact row radius: shell-wide rows/icons take the shared list radius;
+   dock-specific bits (block__icon, action buttons) are tightened here.
+   Doc-tree rows get their own hover/focus treatment below. */
 .layout__dockl .block__icon,
 .layout__dockr .block__icon,
 .layout__dockb .block__icon,

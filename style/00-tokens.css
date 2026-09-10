@@ -145,11 +145,6 @@
   --b3-pdf-dark: #2e2119;
 }
 
-/* Explicit light mode hook for SiYuan's data-theme-mode contract */
-:root[data-theme-mode="light"] {
-  color-scheme: light;
-}
-
 /* Dark mode --------------------------------------------------------------- */
 :root[data-theme-mode="dark"] {
   /* Mode */
