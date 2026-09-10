@@ -18,6 +18,14 @@
   box-shadow: 0 1px 5px var(--b3-theme-shadow);
 }
 
+/* Bazaar market rows (b3-card) use a flex-column for the info part; a second
+   opaque layer over the card background renders as a two-tone card (the
+   actions column has no inner column and shows through lighter). Scoped to
+   the bazaar since that's where the kernel nests columns in cards. */
+.config-bazaar .b3-card .fn__flex-column {
+  background: transparent;
+}
+
 .av__header,
 .av__views,
 .av__row--header,

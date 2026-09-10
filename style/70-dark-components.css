@@ -19,6 +19,11 @@
   background: var(--cs-surface);
 }
 
+/* Except bazaar market rows: the card surface already carries the layer. */
+.config-bazaar .b3-card .fn__flex-column {
+  background: transparent;
+}
+
 :root[data-theme-mode="dark"] .protyle,
 :root[data-theme-mode="dark"] .protyle-content {
   background:
