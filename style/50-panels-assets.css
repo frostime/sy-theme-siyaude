@@ -46,6 +46,73 @@
   background: var(--b3-list-item-focus);
 }
 
+/* Document bottom backlink panel ------------------------------------------
+   The kernel renders it as .sy__backlink--bottom inside .protyle-content.
+   Real item container is div.backlinkList__item (li.b3-list-item is only the
+   title row inside it), so card styles must target the wrapper; otherwise
+   items fall back to the kernel's default white b3-list-item look. */
+.sy__backlink--bottom {
+  /* Match the editor canvas, not --b3-theme-surface: the panel sits between
+     white editor content and white item cards, a beige band looks like a bug. */
+  background: var(--b3-theme-background);
+  border-top: 1px solid var(--cs-rail-line);
+}
+
+/* Headers share the dock sidebar header pill look (20-navigation). */
+.sy__backlink--bottom > .block__icons {
+  min-height: 38px;
+  margin: 6px 7px 5px;
+  padding: 4px 6px;
+  background: var(--cs-rail-glass);
+  border: 1px solid var(--cs-rail-line);
+  border-radius: 15px;
+  box-shadow: 0 1px 2px var(--b3-theme-shadow);
+}
+
+.sy__backlink--bottom .block__logo {
+  color: var(--b3-theme-on-background);
+  font-weight: 720;
+  letter-spacing: -.015em;
+}
+
+.sy__backlink--bottom .block__icon {
+  color: var(--cs-text-muted);
+  border-radius: 10px;
+}
+
+.sy__backlink--bottom .block__icon:hover {
+  color: var(--cs-accent-strong);
+  background: var(--b3-list-icon-hover);
+}
+
+/* Kernel gives .backlinkList 8px padding on all sides but nothing on
+   .backlinkMList, which makes mention cards wider, offset, and tighter to
+   their header than backlink cards. Mirror the full padding here. */
+.sy__backlink .backlinkMList {
+  padding: 8px;
+}
+
+/* Card container on the real wrapper (side dock + bottom panel). */
+.sy__backlink .backlinkList__item {
+  background: var(--b3-theme-background);
+  border: 1px solid var(--cs-rail-line);
+  border-radius: 12px;
+  margin: 0 0 8px;
+  box-shadow: 0 1px 3px var(--b3-theme-shadow);
+  overflow: hidden;
+}
+
+/* Neutralize the kernel default white card on the inner title row so the
+   wrapper carries the card visuals (outweighs base.css's 4-class selector). */
+.sy__backlink .backlinkList > .b3-list > .backlinkList__item > li.b3-list-item,
+.sy__backlink .backlinkList > .b3-list > .backlinkList__item > li.b3-list-item:hover {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+}
+
 /* PDF and assets ---------------------------------------------------------- */
 .textLayer ::selection,
 .pdf__resize::selection {
