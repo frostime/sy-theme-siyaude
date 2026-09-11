@@ -142,7 +142,9 @@
     max-width: 100%;
   }
 
-  .protyle-wysiwyg {
+  /* Embedded protyle instances (agent chat messages/composer) keep the
+     kernel's own inline padding instead of the mobile canvas padding. */
+  .protyle-wysiwyg:not(.agent-chat *) {
     padding-left: 18px !important;
     padding-right: 18px !important;
   }

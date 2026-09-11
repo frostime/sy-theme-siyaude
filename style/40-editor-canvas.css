@@ -15,15 +15,17 @@
   letter-spacing: .005em;
 }
 
-/* Let SiYuan own the editor width and its inline padding.
+/* Let SiYuan own the editor width and its inline padding, including the
+   scroll-past-end bottom room: the kernel writes it inline (data-bottom-eof).
    Adding max-width + margin:auto here fights the built-in adaptive-width
-   calculation and can squeeze/offset the middle editor pane. */
-.protyle-wysiwyg {
+   calculation and can squeeze/offset the middle editor pane.
+   The agent chat hosts embedded protyle instances (message bodies, composer,
+   edit editor) -- they are not the editor canvas. */
+.protyle-wysiwyg:not(.agent-chat *) {
   width: 100%;
   max-width: none;
   margin: 0;
   box-sizing: border-box;
-  padding-bottom: 20vh !important;
 }
 
 .protyle-wysiwyg [data-node-id] {
