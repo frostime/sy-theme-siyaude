@@ -22,6 +22,12 @@
   box-shadow: 0 18px 44px color-mix(in srgb, var(--cs-shadow-strong) 70%, transparent), 0 2px 8px var(--cs-shadow);
 }
 
+/* Kernel's only snackbar status variant (it adds the ❗ marker). */
+.b3-snackbar--error .b3-snackbar__content,
+:root[data-theme-mode="dark"] .b3-snackbar--error .b3-snackbar__content {
+  border-color: color-mix(in srgb, var(--cs-red) 46%, var(--b3-border-color));
+}
+
 .b3-snackbar__content a,
 .b3-snackbar__content .b3-button--text {
   color: var(--cs-accent-strong) !important;
