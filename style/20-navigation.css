@@ -23,10 +23,7 @@
 
 .layout__dockl .layout-tab-container,
 .layout__dockr .layout-tab-container,
-.layout__dockb .layout-tab-container,
-.layout__dockl .fn__flex-column,
-.layout__dockr .fn__flex-column,
-.layout__dockb .fn__flex-column {
+.layout__dockb .layout-tab-container {
   background: transparent;
 }
 
