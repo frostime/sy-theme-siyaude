@@ -137,7 +137,6 @@
 .sy__file .b3-list-item[data-type="navigation-root"].b3-list-item--focus:hover {
   background: color-mix(in srgb, var(--cs-rail-active) 74%, transparent) !important;
   border-color: color-mix(in srgb, var(--b3-theme-primary-light) 34%, var(--cs-rail-line));
-  box-shadow: inset 2px 0 0 var(--b3-theme-primary);
 }
 
 .sy__file .b3-list-item:not([data-type="navigation-root"]) {

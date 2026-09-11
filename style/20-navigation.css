@@ -155,7 +155,7 @@
   background: var(--cs-rail-active) !important;
   border-color: var(--b3-theme-primary-lighter);
   border-radius: var(--cs-list-radius-focus);
-  box-shadow: inset 2px 0 0 var(--b3-theme-primary), 0 1px 2px color-mix(in srgb, var(--cs-shadow) 70%, transparent);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--cs-shadow) 70%, transparent);
 }
 
 .layout__dockl .b3-list-item__text,

@@ -107,10 +107,13 @@ body {
   background: var(--b3-list-hover) !important;
 }
 
+/* Selected rows are filled rounded rects. An edge inset shadow is painted along
+   the border radius, so on a rounded row it reads as a crescent hugging the
+   corner; the accent is carried by the border colour instead. */
 .b3-list-item--focus,
 .b3-list-item--focus:hover {
   background: var(--b3-list-item-focus) !important;
-  box-shadow: inset 3px 0 0 var(--b3-theme-primary);
+  border-color: var(--b3-theme-primary-lighter);
 }
 
 .b3-list-item__text,
