@@ -8,9 +8,6 @@
 #message.b3-snackbars,
 .b3-snackbars,
 .b3-snackbar__content,
-.b3-snackbar__content .b3-snackbar__message,
-.b3-snackbar__content .b3-snackbar__title,
-.b3-snackbar__content .b3-snackbar__desc,
 .b3-snackbar__content .fn__flex-1,
 .b3-snackbar__content .block__icon,
 .b3-snackbar__content .b3-snackbar__close {
@@ -28,11 +25,6 @@
 .b3-snackbar__content a,
 .b3-snackbar__content .b3-button--text {
   color: var(--cs-accent-strong) !important;
-}
-
-.b3-snackbar__content .b3-button:not(.b3-button--outline):not(.b3-button--text) {
-  color: var(--b3-theme-on-primary) !important;
-  background: var(--b3-theme-primary);
 }
 
 .b3-snackbar__content .b3-button--outline {
@@ -68,25 +60,6 @@
   opacity: .62;
 }
 
-/* Status variants: preserve semantic color without relying on white text. */
-.b3-snackbar__content--success,
-.b3-snackbar__content.success,
-.b3-snackbar__content[data-type="success"] {
-  border-color: color-mix(in srgb, var(--cs-green) 42%, var(--b3-border-color));
-}
-
-.b3-snackbar__content--error,
-.b3-snackbar__content.error,
-.b3-snackbar__content[data-type="error"] {
-  border-color: color-mix(in srgb, var(--cs-red) 46%, var(--b3-border-color));
-}
-
-.b3-snackbar__content--warning,
-.b3-snackbar__content.warning,
-.b3-snackbar__content[data-type="warning"] {
-  border-color: color-mix(in srgb, var(--cs-yellow) 46%, var(--b3-border-color));
-}
-
 /* Workspace name menu: primary app identity chip. */
 #barWorkspace {
   border: 1px solid color-mix(in srgb, var(--b3-theme-primary) 72%, var(--cs-border));
@@ -112,7 +85,6 @@
 #barWorkspace svg,
 #barWorkspace .svg,
 #barWorkspace .toolbar__text,
-#barWorkspace .toolbar__itemtext,
 #barWorkspace .fn__flex-1 {
   color: currentColor !important;
   fill: currentColor;
@@ -174,9 +146,6 @@
 :root[data-theme-mode="dark"] #message.b3-snackbars,
 :root[data-theme-mode="dark"] .b3-snackbars,
 :root[data-theme-mode="dark"] .b3-snackbar__content,
-:root[data-theme-mode="dark"] .b3-snackbar__content .b3-snackbar__message,
-:root[data-theme-mode="dark"] .b3-snackbar__content .b3-snackbar__title,
-:root[data-theme-mode="dark"] .b3-snackbar__content .b3-snackbar__desc,
 :root[data-theme-mode="dark"] .b3-snackbar__content .fn__flex-1,
 :root[data-theme-mode="dark"] .b3-snackbar__content .block__icon,
 :root[data-theme-mode="dark"] .b3-snackbar__content .b3-snackbar__close {

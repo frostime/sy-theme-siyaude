@@ -49,7 +49,6 @@
 }
 
 .dock__item--active,
-.dock__item--focus,
 .dock__item--activefocus {
   background: var(--cs-rail-active);
   color: var(--cs-accent-strong);
@@ -83,7 +82,6 @@
 .layout__dockr .block__icon,
 .layout__dockb .block__icon {
   color: var(--cs-text-muted);
-  border-radius: 10px;
 }
 
 .layout__dockl .block__icon:hover,
@@ -256,55 +254,24 @@
    mention cards wider/offset vs backlink cards; pad both here. */
 .sy__backlink .backlinkList,
 .sy__backlink .backlinkMList,
-.sy__backlink .search__list,
-.sy__search .search__list {
+.sy__backlink .search__list {
   background: transparent;
   padding: 8px;
 }
 
-.sy__backlink .search__item,
-.sy__search .search__item {
-  margin: 5px 2px;
-  padding: 7px 9px;
-  background: var(--cs-rail-elevated);
-  border: 1px solid var(--cs-rail-line);
-  border-radius: 11px;
-  box-shadow: 0 1px 2px var(--b3-theme-shadow);
-}
-
-.sy__backlink .search__item:hover,
-.sy__search .search__item:hover {
-  background: color-mix(in srgb, var(--cs-rail-elevated) 80%, var(--cs-accent-softer));
-  border-color: var(--b3-theme-primary-lighter);
-  box-shadow: 0 5px 18px color-mix(in srgb, var(--cs-shadow) 72%, transparent);
-}
-
 .sy__backlink .protyle,
 .sy__backlink .protyle-content,
-.sy__backlink .protyle-wysiwyg,
-.sy__search .protyle,
-.sy__search .protyle-content,
-.sy__search .protyle-wysiwyg {
+.sy__backlink .protyle-wysiwyg {
   background: transparent;
 }
 
-.sy__backlink .protyle-wysiwyg,
-.sy__search .protyle-wysiwyg {
-  width: 100%;
-  max-width: none;
-  margin: 0;
+.sy__backlink .protyle-wysiwyg {
   font-size: .94em;
   line-height: 1.58;
 }
 
-.sy__backlink .protyle-wysiwyg [data-node-id],
-.sy__search .protyle-wysiwyg [data-node-id] {
+.sy__backlink .protyle-wysiwyg [data-node-id] {
   border-radius: 6px;
-}
-
-.sy__backlink .protyle-wysiwyg [data-node-id]:hover,
-.sy__search .protyle-wysiwyg [data-node-id]:hover {
-  background: var(--cs-rail-hover);
 }
 
 .search__header,

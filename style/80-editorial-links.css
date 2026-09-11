@@ -164,13 +164,11 @@
     background-color: transparent !important;
   }
 
-  .sy__backlink .protyle-wysiwyg [data-node-id]:hover,
-  .sy__search .protyle-wysiwyg [data-node-id]:hover {
+  .sy__backlink .protyle-wysiwyg [data-node-id]:hover {
     background-color: transparent !important;
   }
 
-  .sy__backlink .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)),
-  .sy__search .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)) {
+  .sy__backlink .protyle-wysiwyg [data-node-id]:hover:not(:has([data-node-id]:hover)) {
     background-color: var(--cs-rail-hover) !important;
   }
 }

@@ -125,12 +125,24 @@ body {
 .b3-menu,
 .protyle-hint,
 .b3-dialog__container,
-.b3-snackbar__content,
-.graph__panel,
 .protyle-util {
   background: var(--b3-menu-background);
   border: 1px solid var(--b3-border-color);
   box-shadow: var(--b3-menu-shadow);
+  border-radius: var(--b3-border-radius-b);
+}
+
+/* .graph__panel gets its own background from 50-panels-assets; the
+   .b3-snackbar__content surface is owned by 90-chrome-notebooks. Only the
+   chrome they don't set lives here. */
+.graph__panel {
+  border: 1px solid var(--b3-border-color);
+  box-shadow: var(--b3-menu-shadow);
+  border-radius: var(--b3-border-radius-b);
+}
+
+.b3-snackbar__content {
+  border: 1px solid var(--b3-border-color);
   border-radius: var(--b3-border-radius-b);
 }
 
