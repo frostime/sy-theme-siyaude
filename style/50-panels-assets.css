@@ -1,6 +1,4 @@
 /* Cards / embeds / database ---------------------------------------------- */
-.b3-card,
-.b3-chip,
 .protyle-wysiwyg [data-type="NodeBlockQueryEmbed"],
 .protyle-wysiwyg [data-type="NodeSuperBlock"],
 .av__container,
@@ -48,9 +46,23 @@
   color: var(--b3-theme-on-background);
 }
 
-.search__item--focus,
-.search__item:hover {
-  background: var(--b3-list-item-focus);
+/* Search dialog results: kernel rows are .b3-list-item[data-type="search-item"]
+   inside .search__list. Give them the backlink panel's card language. The
+   card shadow is skipped while focused so the theme's inset focus bar shows. */
+.search__list [data-type="search-item"] {
+  margin: 0 8px 6px;
+  padding: 4px 8px;
+  background: var(--b3-theme-background);
+  border: 1px solid var(--cs-rail-line);
+  border-radius: 12px;
+}
+
+.search__list [data-type="search-item"]:not(.b3-list-item--focus) {
+  box-shadow: 0 1px 3px var(--b3-theme-shadow);
+}
+
+.search__list [data-type="search-item"]:hover {
+  border-color: color-mix(in srgb, var(--cs-accent) 30%, var(--cs-rail-line));
 }
 
 /* Document bottom backlink panel ------------------------------------------
@@ -119,6 +131,26 @@
   margin: 0;
 }
 
+/* Mention titles get the same treatment, except that the kernel keeps them
+   sticky, so they must stay opaque to hide the content scrolling underneath. */
+.sy__backlink .backlinkMList > .b3-list > .backlinkList__item > li.b3-list-item,
+.sy__backlink .backlinkMList > .b3-list > .backlinkList__item > li.b3-list-item:hover,
+.sy__backlink .backlinkMList > .b3-list > .backlinkList__item > li.b3-list-item.b3-list-item--focus {
+  background-color: var(--b3-theme-background) !important;
+  background-image: none !important;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+}
+
+/* Focus belongs to the card, and follows the card's own radius. */
+.sy__backlink .backlinkList__item:has(> .b3-list-item--focus) {
+  border-color: var(--b3-theme-primary-lighter);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--b3-theme-primary-lighter) 60%, transparent),
+    0 1px 3px var(--b3-theme-shadow);
+}
+
 /* PDF and assets ---------------------------------------------------------- */
 .textLayer ::selection,
 .pdf__resize::selection {
@@ -142,7 +174,9 @@
     max-width: 100%;
   }
 
-  .protyle-wysiwyg {
+  /* Embedded protyle instances (agent chat messages/composer) keep the
+     kernel's own inline padding instead of the mobile canvas padding. */
+  .protyle-wysiwyg:not(.agent-chat *) {
     padding-left: 18px !important;
     padding-right: 18px !important;
   }

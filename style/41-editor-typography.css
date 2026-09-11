@@ -59,13 +59,29 @@
   padding: 0 .08em;
 }
 
+/* Tags. The kernel's own editor rule
+   (.protyle-wysiwyg [data-node-id] span[data-type~=tag]) out-specifies a plain
+   .protyle-wysiwyg selector and would keep its 1px side padding and bottom
+   underline, so repeat that depth here. The leading # is part of the look. */
+.protyle-wysiwyg [data-node-id] span[data-type~="tag"],
 .protyle-wysiwyg span[data-type~="tag"],
 .b3-typography span[data-type~="tag"] {
-  background: var(--b3-protyle-inline-tag-background);
-  color: var(--b3-protyle-inline-tag-color);
-  border: 1px solid var(--b3-theme-primary-lighter);
-  border-radius: 999px;
-  padding: .05em .45em;
+  background: var(--b3-theme-primary-lighter);
+  color: var(--b3-theme-on-background);
+  border: 0;
+  border-radius: 6px;
+  padding: 0 .29em .14em;
+}
+
+.protyle-wysiwyg span[data-type~="tag"]::before,
+.b3-typography span[data-type~="tag"]::before {
+  content: "#";
+}
+
+/* Kernel hover repaints tags with the neutral surface color. */
+.protyle-wysiwyg[data-readonly="false"] span[data-type~="tag"]:hover,
+.b3-typography span[data-type~="tag"]:hover {
+  background: var(--b3-theme-primary-light);
 }
 
 .b3-typography span[data-type~="block-ref"],

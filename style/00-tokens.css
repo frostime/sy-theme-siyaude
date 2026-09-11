@@ -134,6 +134,12 @@
   --b3-protyle-inline-link-color: var(--cs-accent-strong);
   --b3-protyle-inline-mark-background: #f6dca6;
   --b3-protyle-inline-mark-color: var(--cs-text);
+  /* Search / reference keyword highlight. The kernel paints these through the
+     CSS Custom Highlight API (::highlight(search-mark-*)); leaving them unset
+     inherits the built-in theme's raw #ffff00. */
+  --b3-highlight-color: var(--b3-protyle-inline-mark-color);
+  --b3-highlight-background: var(--b3-protyle-inline-mark-background);
+  --b3-highlight-current-background: #eeab6b;
   --b3-protyle-inline-tag-color: var(--cs-accent-strong);
   --b3-protyle-inline-tag-background: rgba(193, 95, 60, .1);
   --b3-protyle-code-background: #f2e7dc;
@@ -255,6 +261,9 @@
   --b3-protyle-inline-link-color: #f0a27c;
   --b3-protyle-inline-mark-background: rgba(232, 178, 86, .29);
   --b3-protyle-inline-mark-color: #fff1df;
+  --b3-highlight-color: var(--b3-protyle-inline-mark-color);
+  --b3-highlight-background: var(--b3-protyle-inline-mark-background);
+  --b3-highlight-current-background: rgba(240, 166, 106, .42);
   --b3-protyle-inline-tag-color: #f1a17a;
   --b3-protyle-inline-tag-background: rgba(223, 128, 91, .13);
   --b3-protyle-code-background: #1a1411;

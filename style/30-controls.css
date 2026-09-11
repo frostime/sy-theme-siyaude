@@ -14,14 +14,17 @@ input[type="number"] {
   transition: var(--b3-color-transition), box-shadow .18s ease, transform .18s ease;
 }
 
-.b3-button {
-  background: var(--b3-theme-primary);
-  color: var(--b3-theme-on-primary);
-  border-color: transparent;
+/* Kernel already paints the default filled button from the theme tokens, and
+   deliberately keeps the flat variants (--text / --cancel / --remove / --white
+   / --error / --progress) transparent. Painting every .b3-button flattened
+   those variants app-wide -- e.g. the agent-chat composer icon actions and
+   "rollback" rendered as solid primary buttons. Only the plain filled button
+   takes the theme's lift. */
+.b3-button:not(.b3-button--text):not(.b3-button--cancel):not(.b3-button--outline):not(.b3-button--remove):not(.b3-button--white):not(.b3-button--error):not(.b3-button--progress) {
   box-shadow: 0 1px 2px var(--b3-theme-shadow);
 }
 
-.b3-button:hover {
+.b3-button:not(.b3-button--text):not(.b3-button--cancel):not(.b3-button--outline):not(.b3-button--remove):not(.b3-button--white):not(.b3-button--error):not(.b3-button--progress):hover {
   background: var(--cs-accent-strong);
   box-shadow: 0 4px 14px var(--b3-theme-shadow);
   transform: translateY(-1px);
@@ -50,6 +53,14 @@ input[type="number"] {
   background: var(--b3-theme-background);
   color: var(--b3-theme-on-background);
   border: 1px solid var(--b3-border-color);
+}
+
+/* The kernel marks the agent-chat inline pickers (model / permission /
+   reasoning effort) --noborder on purpose: they sit inside the composer and
+   should read as inline controls, not as boxed fields. */
+.b3-select--noborder {
+  background: transparent;
+  border-color: transparent;
 }
 
 .b3-text-field:focus,
