@@ -2,7 +2,7 @@
   "name": "sy-theme-siyaude",
   "author": "frostime",
   "url": "https://github.com/frostime/sy-theme-siyaude",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "minAppVersion": "3.1.0",
   "displayName": {
     "default": "siyaude",
@@ -16,6 +16,7 @@
     "default": "README.md",
     "zh_CN": "README_zh_CN.md"
   },
+  "preview": "preview.jpg",
   "modes": [
     "light",
     "dark"

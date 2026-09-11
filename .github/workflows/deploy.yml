@@ -26,7 +26,7 @@ jobs:
             README_zh_CN.md \
             LICENSE \
             icon.png \
-            preview.png
+            preview.jpg
 
       - uses: ncipollo/release-action@v1
         with:
